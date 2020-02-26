@@ -13077,7 +13077,7 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Importamos la BD, despues de la importacion tenemos 8012 filas y 252 columnas</p>
+<p>Importamos la BD, despues de la importacion tenemos 8012 filas y 25 columnas</p>
 
 </div>
 </div>
@@ -13431,7 +13431,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-python"><pre><span></span><span class="n">filtro</span> <span class="o">=</span> <span class="p">((</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Data Quality Rating&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;A&#39;</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Data Quality Rating&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;B&#39;</span><span class="p">))</span> <span class="o">&amp;</span> <span class="p">((</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;UFP rating&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;A&#39;</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;UFP rating&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;B&#39;</span><span class="p">))</span> 
@@ -13447,6 +13447,226 @@ div#notebook {
 </pre></div>
 
     </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[2]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>ISBSG Project ID</th>
+      <th>Application Group</th>
+      <th>Development Type</th>
+      <th>Development Platform</th>
+      <th>Language Type</th>
+      <th>Primary Programming Language</th>
+      <th>Functional Size</th>
+      <th>Adjusted Function Points</th>
+      <th>Normalised Work Effort Level 1</th>
+      <th>Project Elapsed Time</th>
+      <th>Used Methodology</th>
+      <th>Resource Level</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>7</td>
+      <td>10026</td>
+      <td>Business Application</td>
+      <td>New Development</td>
+      <td>MF</td>
+      <td>3GL</td>
+      <td>Java</td>
+      <td>620.0</td>
+      <td>620</td>
+      <td>18160.0</td>
+      <td>7,0</td>
+      <td>Don't Know</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <td>43</td>
+      <td>10143</td>
+      <td>Business Application</td>
+      <td>New Development</td>
+      <td>MF</td>
+      <td>3GL</td>
+      <td>COBOL</td>
+      <td>243.0</td>
+      <td>250</td>
+      <td>2924.0</td>
+      <td>8,0</td>
+      <td>Yes</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <td>54</td>
+      <td>10173</td>
+      <td>Business Application</td>
+      <td>Enhancement</td>
+      <td>Multi</td>
+      <td>3GL</td>
+      <td>Java</td>
+      <td>25.0</td>
+      <td>25</td>
+      <td>118.0</td>
+      <td>1,0</td>
+      <td>Yes</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <td>63</td>
+      <td>10200</td>
+      <td>Business Application</td>
+      <td>Enhancement</td>
+      <td>Multi</td>
+      <td>3GL</td>
+      <td>Java</td>
+      <td>90.0</td>
+      <td>90</td>
+      <td>1112.0</td>
+      <td>4,0</td>
+      <td>Yes</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <td>68</td>
+      <td>10218</td>
+      <td>Business Application</td>
+      <td>New Development</td>
+      <td>MF</td>
+      <td>3GL</td>
+      <td>PL/I</td>
+      <td>163.0</td>
+      <td>152</td>
+      <td>668.0</td>
+      <td>9,0</td>
+      <td>Yes</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <td>7924</td>
+      <td>32708</td>
+      <td>Business Application</td>
+      <td>Enhancement</td>
+      <td>MR</td>
+      <td>3GL</td>
+      <td>COBOL</td>
+      <td>242.0</td>
+      <td>213</td>
+      <td>2185.0</td>
+      <td>7,0</td>
+      <td>No</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <td>7925</td>
+      <td>32710</td>
+      <td>Business Application</td>
+      <td>New Development</td>
+      <td>Multi</td>
+      <td>3GL</td>
+      <td>Java</td>
+      <td>133.0</td>
+      <td>133</td>
+      <td>1769.0</td>
+      <td>6,0</td>
+      <td>Yes</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <td>7928</td>
+      <td>32721</td>
+      <td>Business Application</td>
+      <td>Enhancement</td>
+      <td>MF</td>
+      <td>3GL</td>
+      <td>PL/I</td>
+      <td>96.0</td>
+      <td>96</td>
+      <td>1011.0</td>
+      <td>6,0</td>
+      <td>Yes</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <td>7934</td>
+      <td>32731</td>
+      <td>Business Application</td>
+      <td>New Development</td>
+      <td>Multi</td>
+      <td>4GL</td>
+      <td>Datastage</td>
+      <td>1048.0</td>
+      <td>1048</td>
+      <td>7722.0</td>
+      <td>16,0</td>
+      <td>Yes</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <td>7940</td>
+      <td>32756</td>
+      <td>Business Application</td>
+      <td>Enhancement</td>
+      <td>MF</td>
+      <td>3GL</td>
+      <td>COBOL</td>
+      <td>23.0</td>
+      <td>23</td>
+      <td>224.0</td>
+      <td>12,5</td>
+      <td>Yes</td>
+      <td>1.0</td>
+    </tr>
+  </tbody>
+</table>
+<p>860 rows × 12 columns</p>
+</div>
+</div>
+
+</div>
+
 </div>
 </div>
 
@@ -14054,19 +14274,6 @@ div#notebook {
 
 </div>
 
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-python"><pre><span></span>
-</pre></div>
-
-    </div>
 </div>
 </div>
 
