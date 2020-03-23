@@ -2,7 +2,7 @@
 <html>
 <head><meta charset="utf-8" />
 
-<title>import</title>
+<title>import_agile</title>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
@@ -13074,25 +13074,19 @@ div#notebook {
   <div tabindex="-1" id="notebook" class="border-box-sizing">
     <div class="container" id="notebook-container">
 
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Importamos la BD, despues de la importacion tenemos 8012 filas y 25 columnas</p>
-
-</div>
-</div>
-</div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-python"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="n">archivo</span> <span class="o">=</span> <span class="s1">&#39;..\data\ISBSG - Release May 2017 R1.csv&#39;</span>
-<span class="c1">#archivo = &#39;..\data\ISBSG DATA Release 12.csv&#39;</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">archivo</span><span class="p">,</span> <span class="n">sep</span> <span class="o">=</span> <span class="s1">&#39;;&#39;</span><span class="p">,</span> <span class="n">low_memory</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
-<span class="n">variables</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Data Quality Rating&#39;</span><span class="p">,</span> <span class="s1">&#39;UFP rating&#39;</span><span class="p">,</span> <span class="s1">&#39;Industry Sector&#39;</span><span class="p">,</span><span class="s1">&#39;Application Group&#39;</span><span class="p">,</span> <span class="s1">&#39;Development Type&#39;</span><span class="p">,</span> <span class="s1">&#39;Development Platform&#39;</span><span class="p">,</span> <span class="s1">&#39;Language Type&#39;</span><span class="p">,</span> <span class="s1">&#39;Primary Programming Language&#39;</span><span class="p">,</span> <span class="s1">&#39;Count Approach&#39;</span><span class="p">,</span> <span class="s1">&#39;Functional Size&#39;</span><span class="p">,</span> <span class="s1">&#39;Adjusted Function Points&#39;</span><span class="p">,</span> <span class="s1">&#39;Normalised Work Effort Level 1&#39;</span><span class="p">,</span> <span class="s1">&#39;Summary Work Effort&#39;</span><span class="p">,</span> <span class="s1">&#39;Project Elapsed Time&#39;</span><span class="p">,</span> <span class="s1">&#39;Business Area Type&#39;</span><span class="p">,</span> <span class="s1">&#39;1st Data Base System&#39;</span><span class="p">,</span> <span class="s1">&#39;Used Methodology&#39;</span><span class="p">,</span> <span class="s1">&#39;Resource Level&#39;</span><span class="p">,</span> <span class="s1">&#39;Max Team Size&#39;</span><span class="p">,</span> <span class="s1">&#39;Average Team Size&#39;</span><span class="p">,</span> <span class="s1">&#39;Input count&#39;</span><span class="p">,</span> <span class="s1">&#39;Output count&#39;</span><span class="p">,</span> <span class="s1">&#39;Enquiry count&#39;</span><span class="p">,</span> <span class="s1">&#39;File count&#39;</span><span class="p">,</span> <span class="s1">&#39;Interface count&#39;</span><span class="p">,</span> <span class="s1">&#39;Agile Method Used&#39;</span><span class="p">]</span>
+<span class="n">variables</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Data Quality Rating&#39;</span><span class="p">,</span> <span class="s1">&#39;UFP rating&#39;</span><span class="p">,</span> <span class="s1">&#39;Industry Sector&#39;</span><span class="p">,</span><span class="s1">&#39;Application Group&#39;</span><span class="p">,</span> <span class="s1">&#39;Development Type&#39;</span><span class="p">,</span> <span class="s1">&#39;Development Platform&#39;</span><span class="p">,</span> <span class="s1">&#39;Language Type&#39;</span><span class="p">,</span> <span class="s1">&#39;Primary Programming Language&#39;</span><span class="p">,</span> <span class="s1">&#39;Count Approach&#39;</span><span class="p">,</span> <span class="s1">&#39;Functional Size&#39;</span><span class="p">,</span> <span class="s1">&#39;Adjusted Function Points&#39;</span><span class="p">,</span> <span class="s1">&#39;Normalised Work Effort Level 1&#39;</span><span class="p">,</span> <span class="s1">&#39;Summary Work Effort&#39;</span><span class="p">,</span> <span class="s1">&#39;Project Elapsed Time&#39;</span><span class="p">,</span> <span class="s1">&#39;Business Area Type&#39;</span><span class="p">,</span> <span class="s1">&#39;1st Data Base System&#39;</span><span class="p">,</span> <span class="s1">&#39;Used Methodology&#39;</span><span class="p">,</span> <span class="s1">&#39;Resource Level&#39;</span><span class="p">,</span> <span class="s1">&#39;Max Team Size&#39;</span><span class="p">,</span> <span class="s1">&#39;Average Team Size&#39;</span><span class="p">,</span> <span class="s1">&#39;Input count&#39;</span><span class="p">,</span> <span class="s1">&#39;Output count&#39;</span><span class="p">,</span> <span class="s1">&#39;Enquiry count&#39;</span><span class="p">,</span> <span class="s1">&#39;File count&#39;</span><span class="p">,</span> <span class="s1">&#39;Interface count&#39;</span><span class="p">,</span> <span class="s1">&#39;Agile Method Used&#39;</span><span class="p">,</span> <span class="s1">&#39;Sprints / iterations size&#39;</span><span class="p">]</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="n">variables</span><span class="p">]</span>
+<span class="n">filtro</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Agile Method Used&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Yes&#39;</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">filtro</span><span class="p">,</span> <span class="p">:]</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Sprints / iterations size&#39;</span><span class="p">])</span>
 <span class="n">df</span>
 </pre></div>
 
@@ -13106,7 +13100,7 @@ div#notebook {
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[4]:</div>
+    <div class="prompt output_prompt">Out[1]:</div>
 
 
 
@@ -13140,7 +13134,6 @@ div#notebook {
       <th>Count Approach</th>
       <th>Functional Size</th>
       <th>...</th>
-      <th>Used Methodology</th>
       <th>Resource Level</th>
       <th>Max Team Size</th>
       <th>Average Team Size</th>
@@ -13150,119 +13143,71 @@ div#notebook {
       <th>File count</th>
       <th>Interface count</th>
       <th>Agile Method Used</th>
+      <th>Sprints / iterations size</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td>0</td>
-      <td>D</td>
-      <td>A</td>
-      <td>Service Industry</td>
-      <td>Business Application</td>
-      <td>New Development</td>
-      <td>MR</td>
+      <td>210</td>
+      <td>B</td>
+      <td>B</td>
+      <td>Government</td>
+      <td>Onshore</td>
+      <td>Enhancement</td>
+      <td>NaN</td>
       <td>4GL</td>
       <td>Oracle</td>
       <td>NESMA</td>
-      <td>237.0</td>
+      <td>54.0</td>
       <td>...</td>
-      <td>No</td>
       <td>1.0</td>
-      <td>5</td>
-      <td>5</td>
-      <td>60</td>
-      <td>110</td>
-      <td>10.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Yes</td>
       <td>42</td>
-      <td>15.0</td>
-      <td>NaN</td>
     </tr>
     <tr>
-      <td>1</td>
-      <td>B</td>
-      <td>B</td>
-      <td>Communication</td>
-      <td>Business Application</td>
+      <td>629</td>
+      <td>A</td>
+      <td>A</td>
+      <td>Government</td>
+      <td>NaN</td>
       <td>Enhancement</td>
       <td>Multi</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>IFPUG 4+</td>
-      <td>67.0</td>
-      <td>...</td>
-      <td>NaN</td>
-      <td>1.0</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <td>2</td>
-      <td>B</td>
-      <td>A</td>
-      <td>Construction</td>
-      <td>Business Application</td>
-      <td>New Development</td>
-      <td>Multi</td>
-      <td>4GL</td>
-      <td>Access</td>
-      <td>IFPUG 4+</td>
-      <td>443.0</td>
-      <td>...</td>
-      <td>Don't Know</td>
-      <td>1.0</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <td>3</td>
-      <td>B</td>
-      <td>A</td>
-      <td>Wholesale &amp; Retail</td>
-      <td>Business Application</td>
-      <td>Enhancement</td>
-      <td>NaN</td>
       <td>3GL</td>
-      <td>COBOL</td>
+      <td>C#</td>
       <td>IFPUG 4+</td>
-      <td>76.0</td>
+      <td>63.0</td>
       <td>...</td>
-      <td>Yes</td>
       <td>1.0</td>
+      <td>8</td>
       <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
+      <td>28</td>
+      <td>29</td>
+      <td>6.0</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>Yes</td>
+      <td>0</td>
     </tr>
     <tr>
-      <td>4</td>
-      <td>B</td>
+      <td>861</td>
       <td>A</td>
-      <td>NaN</td>
-      <td>NaN</td>
+      <td>B</td>
+      <td>Government</td>
+      <td>Onshore</td>
       <td>Enhancement</td>
       <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>IFPUG 4+</td>
-      <td>3.0</td>
+      <td>4GL</td>
+      <td>Oracle</td>
+      <td>NESMA</td>
+      <td>75.0</td>
       <td>...</td>
-      <td>NaN</td>
       <td>1.0</td>
       <td>NaN</td>
       <td>NaN</td>
@@ -13271,46 +13216,22 @@ div#notebook {
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-    </tr>
-    <tr>
-      <td>8007</td>
-      <td>B</td>
-      <td>B</td>
-      <td>Communication</td>
-      <td>Business Application</td>
-      <td>Enhancement</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>IFPUG 4+</td>
-      <td>161.0</td>
-      <td>...</td>
       <td>Yes</td>
+      <td>74</td>
+    </tr>
+    <tr>
+      <td>1020</td>
+      <td>A</td>
+      <td>B</td>
+      <td>Government</td>
+      <td>Onshore</td>
+      <td>Enhancement</td>
+      <td>NaN</td>
+      <td>4GL</td>
+      <td>Oracle</td>
+      <td>NESMA</td>
+      <td>159.0</td>
+      <td>...</td>
       <td>1.0</td>
       <td>NaN</td>
       <td>NaN</td>
@@ -13319,22 +13240,286 @@ div#notebook {
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
-      <td>NaN</td>
+      <td>Yes</td>
+      <td>88</td>
     </tr>
     <tr>
-      <td>8008</td>
+      <td>1085</td>
       <td>B</td>
-      <td>B</td>
-      <td>Banking</td>
       <td>NaN</td>
+      <td>Service Industry</td>
+      <td>Business Application</td>
+      <td>Re-development</td>
+      <td>PC</td>
+      <td>3GL</td>
+      <td>Java</td>
+      <td>COSMIC</td>
+      <td>46.0</td>
+      <td>...</td>
+      <td>4.0</td>
+      <td>2</td>
+      <td>1,7</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Yes</td>
+      <td>40</td>
+    </tr>
+    <tr>
+      <td>1093</td>
+      <td>B</td>
+      <td>B</td>
+      <td>Government</td>
+      <td>Onshore</td>
+      <td>Enhancement</td>
+      <td>NaN</td>
+      <td>4GL</td>
+      <td>Oracle</td>
+      <td>NESMA</td>
+      <td>88.0</td>
+      <td>...</td>
+      <td>1.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Yes</td>
+      <td>36</td>
+    </tr>
+    <tr>
+      <td>1238</td>
+      <td>A</td>
+      <td>B</td>
+      <td>Government</td>
+      <td>Onshore</td>
       <td>New development</td>
+      <td>NaN</td>
+      <td>4GL</td>
+      <td>Oracle</td>
+      <td>NESMA</td>
+      <td>66.0</td>
+      <td>...</td>
+      <td>1.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Yes</td>
+      <td>31</td>
+    </tr>
+    <tr>
+      <td>1252</td>
+      <td>B</td>
+      <td>B</td>
+      <td>Government</td>
+      <td>Onshore</td>
+      <td>Enhancement</td>
+      <td>NaN</td>
+      <td>4GL</td>
+      <td>Oracle</td>
+      <td>NESMA</td>
+      <td>51.0</td>
+      <td>...</td>
+      <td>1.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Yes</td>
+      <td>47</td>
+    </tr>
+    <tr>
+      <td>1268</td>
+      <td>B</td>
+      <td>B</td>
+      <td>Government</td>
+      <td>Onshore</td>
+      <td>Enhancement</td>
+      <td>NaN</td>
+      <td>4GL</td>
+      <td>Oracle</td>
+      <td>NESMA</td>
+      <td>149.0</td>
+      <td>...</td>
+      <td>1.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Yes</td>
+      <td>71</td>
+    </tr>
+    <tr>
+      <td>1330</td>
+      <td>A</td>
+      <td>B</td>
+      <td>Government</td>
+      <td>Onshore</td>
+      <td>New development</td>
+      <td>NaN</td>
+      <td>4GL</td>
+      <td>Oracle</td>
+      <td>NESMA</td>
+      <td>90.0</td>
+      <td>...</td>
+      <td>1.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Yes</td>
+      <td>47,5</td>
+    </tr>
+    <tr>
+      <td>1572</td>
+      <td>B</td>
+      <td>B</td>
+      <td>Government</td>
+      <td>Onshore</td>
+      <td>Enhancement</td>
+      <td>NaN</td>
+      <td>4GL</td>
+      <td>Oracle</td>
+      <td>NESMA</td>
+      <td>69.0</td>
+      <td>...</td>
+      <td>1.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Yes</td>
+      <td>52</td>
+    </tr>
+    <tr>
+      <td>1606</td>
+      <td>B</td>
+      <td>B</td>
+      <td>Government</td>
+      <td>Onshore</td>
+      <td>Enhancement</td>
+      <td>NaN</td>
+      <td>4GL</td>
+      <td>Oracle</td>
+      <td>NESMA</td>
+      <td>72.0</td>
+      <td>...</td>
+      <td>1.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Yes</td>
+      <td>59</td>
+    </tr>
+    <tr>
+      <td>1674</td>
+      <td>A</td>
+      <td>B</td>
+      <td>Government</td>
+      <td>Onshore</td>
+      <td>Enhancement</td>
+      <td>NaN</td>
+      <td>4GL</td>
+      <td>Oracle</td>
+      <td>NESMA</td>
+      <td>86.0</td>
+      <td>...</td>
+      <td>1.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Yes</td>
+      <td>63</td>
+    </tr>
+    <tr>
+      <td>1765</td>
+      <td>A</td>
+      <td>B</td>
+      <td>Government</td>
+      <td>Onshore</td>
+      <td>New development</td>
+      <td>NaN</td>
+      <td>4GL</td>
+      <td>Oracle</td>
+      <td>NESMA</td>
+      <td>82.0</td>
+      <td>...</td>
+      <td>1.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Yes</td>
+      <td>45</td>
+    </tr>
+    <tr>
+      <td>1829</td>
+      <td>A</td>
+      <td>B</td>
+      <td>Government</td>
+      <td>Onshore</td>
+      <td>Enhancement</td>
+      <td>NaN</td>
+      <td>4GL</td>
+      <td>Oracle</td>
+      <td>NESMA</td>
+      <td>59.0</td>
+      <td>...</td>
+      <td>1.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Yes</td>
+      <td>56</td>
+    </tr>
+    <tr>
+      <td>1860</td>
+      <td>A</td>
+      <td>B</td>
+      <td>Government</td>
+      <td>Onshore</td>
+      <td>Enhancement</td>
       <td>NaN</td>
       <td>4GL</td>
       <td>.Net</td>
       <td>NESMA</td>
-      <td>5667.0</td>
+      <td>14.0</td>
       <td>...</td>
-      <td>Yes</td>
       <td>1.0</td>
       <td>NaN</td>
       <td>NaN</td>
@@ -13343,22 +13528,46 @@ div#notebook {
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
-      <td>NaN</td>
+      <td>Yes</td>
+      <td>9</td>
     </tr>
     <tr>
-      <td>8009</td>
-      <td>B</td>
-      <td>B</td>
-      <td>Communication</td>
+      <td>2095</td>
+      <td>A</td>
+      <td>A</td>
+      <td>NaN</td>
       <td>Business Application</td>
       <td>Enhancement</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
+      <td>Multi</td>
+      <td>3GL</td>
+      <td>C#</td>
       <td>IFPUG 4+</td>
-      <td>84.0</td>
+      <td>47.0</td>
       <td>...</td>
+      <td>1.0</td>
+      <td>3</td>
+      <td>NaN</td>
+      <td>14</td>
+      <td>4</td>
+      <td>7.0</td>
+      <td>7</td>
+      <td>15.0</td>
       <td>Yes</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>2272</td>
+      <td>A</td>
+      <td>B</td>
+      <td>Government</td>
+      <td>Onshore</td>
+      <td>New development</td>
+      <td>NaN</td>
+      <td>4GL</td>
+      <td>Oracle</td>
+      <td>NESMA</td>
+      <td>77.0</td>
+      <td>...</td>
       <td>1.0</td>
       <td>NaN</td>
       <td>NaN</td>
@@ -13367,22 +13576,22 @@ div#notebook {
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
-      <td>NaN</td>
+      <td>Yes</td>
+      <td>37,5</td>
     </tr>
     <tr>
-      <td>8010</td>
+      <td>2280</td>
+      <td>A</td>
       <td>B</td>
-      <td>B</td>
-      <td>NaN</td>
-      <td>NaN</td>
+      <td>Government</td>
+      <td>Onshore</td>
       <td>Enhancement</td>
       <td>NaN</td>
-      <td>NaN</td>
-      <td>Cordys</td>
-      <td>IFPUG</td>
-      <td>184.0</td>
+      <td>4GL</td>
+      <td>Oracle</td>
+      <td>NESMA</td>
+      <td>289.0</td>
       <td>...</td>
-      <td>Yes</td>
       <td>1.0</td>
       <td>NaN</td>
       <td>NaN</td>
@@ -13391,22 +13600,70 @@ div#notebook {
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
-      <td>NaN</td>
+      <td>Yes</td>
+      <td>49</td>
     </tr>
     <tr>
-      <td>8011</td>
+      <td>2323</td>
       <td>B</td>
-      <td>B</td>
-      <td>Manufacturing</td>
       <td>NaN</td>
+      <td>Service Industry</td>
+      <td>Business Application</td>
       <td>New Development</td>
-      <td>NaN</td>
+      <td>PC</td>
       <td>3GL</td>
       <td>Java</td>
-      <td>IFPUG</td>
-      <td>61.0</td>
+      <td>COSMIC</td>
+      <td>97.0</td>
       <td>...</td>
+      <td>4.0</td>
+      <td>2</td>
+      <td>1,7</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
       <td>Yes</td>
+      <td>40</td>
+    </tr>
+    <tr>
+      <td>2808</td>
+      <td>A</td>
+      <td>A</td>
+      <td>Government</td>
+      <td>NaN</td>
+      <td>Enhancement</td>
+      <td>Multi</td>
+      <td>3GL</td>
+      <td>C#</td>
+      <td>IFPUG 4+</td>
+      <td>109.0</td>
+      <td>...</td>
+      <td>1.0</td>
+      <td>5</td>
+      <td>NaN</td>
+      <td>64</td>
+      <td>38</td>
+      <td>0.0</td>
+      <td>7</td>
+      <td>0.0</td>
+      <td>Yes</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>2995</td>
+      <td>B</td>
+      <td>B</td>
+      <td>Government</td>
+      <td>Onshore</td>
+      <td>Enhancement</td>
+      <td>NaN</td>
+      <td>4GL</td>
+      <td>Oracle</td>
+      <td>NESMA</td>
+      <td>216.0</td>
+      <td>...</td>
       <td>1.0</td>
       <td>NaN</td>
       <td>NaN</td>
@@ -13415,11 +13672,804 @@ div#notebook {
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
+      <td>Yes</td>
+      <td>82</td>
+    </tr>
+    <tr>
+      <td>3756</td>
+      <td>B</td>
+      <td>B</td>
+      <td>Government</td>
+      <td>Onshore</td>
+      <td>Enhancement</td>
       <td>NaN</td>
+      <td>4GL</td>
+      <td>Oracle</td>
+      <td>NESMA</td>
+      <td>33.0</td>
+      <td>...</td>
+      <td>1.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Yes</td>
+      <td>26</td>
+    </tr>
+    <tr>
+      <td>3760</td>
+      <td>A</td>
+      <td>B</td>
+      <td>Government</td>
+      <td>Onshore</td>
+      <td>Enhancement</td>
+      <td>NaN</td>
+      <td>4GL</td>
+      <td>.Net</td>
+      <td>NESMA</td>
+      <td>41.0</td>
+      <td>...</td>
+      <td>1.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Yes</td>
+      <td>19</td>
+    </tr>
+    <tr>
+      <td>4010</td>
+      <td>A</td>
+      <td>B</td>
+      <td>Government</td>
+      <td>Onshore</td>
+      <td>New development</td>
+      <td>NaN</td>
+      <td>4GL</td>
+      <td>Oracle</td>
+      <td>NESMA</td>
+      <td>52.0</td>
+      <td>...</td>
+      <td>1.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Yes</td>
+      <td>23</td>
+    </tr>
+    <tr>
+      <td>4133</td>
+      <td>B</td>
+      <td>NaN</td>
+      <td>Service Industry</td>
+      <td>Business Application</td>
+      <td>New Development</td>
+      <td>PC</td>
+      <td>3GL</td>
+      <td>Java</td>
+      <td>COSMIC</td>
+      <td>57.0</td>
+      <td>...</td>
+      <td>4.0</td>
+      <td>2</td>
+      <td>1,7</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Yes</td>
+      <td>40</td>
+    </tr>
+    <tr>
+      <td>4208</td>
+      <td>A</td>
+      <td>B</td>
+      <td>Government</td>
+      <td>Onshore</td>
+      <td>Enhancement</td>
+      <td>NaN</td>
+      <td>4GL</td>
+      <td>.Net</td>
+      <td>NESMA</td>
+      <td>80.0</td>
+      <td>...</td>
+      <td>1.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Yes</td>
+      <td>15</td>
+    </tr>
+    <tr>
+      <td>4233</td>
+      <td>A</td>
+      <td>B</td>
+      <td>Government</td>
+      <td>Onshore</td>
+      <td>Enhancement</td>
+      <td>NaN</td>
+      <td>4GL</td>
+      <td>Oracle</td>
+      <td>NESMA</td>
+      <td>129.0</td>
+      <td>...</td>
+      <td>1.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Yes</td>
+      <td>81</td>
+    </tr>
+    <tr>
+      <td>4852</td>
+      <td>B</td>
+      <td>B</td>
+      <td>Government</td>
+      <td>Onshore</td>
+      <td>Enhancement</td>
+      <td>NaN</td>
+      <td>4GL</td>
+      <td>Oracle</td>
+      <td>NESMA</td>
+      <td>95.0</td>
+      <td>...</td>
+      <td>1.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Yes</td>
+      <td>40</td>
+    </tr>
+    <tr>
+      <td>4882</td>
+      <td>B</td>
+      <td>B</td>
+      <td>Government</td>
+      <td>Onshore</td>
+      <td>Enhancement</td>
+      <td>NaN</td>
+      <td>4GL</td>
+      <td>Oracle</td>
+      <td>NESMA</td>
+      <td>138.0</td>
+      <td>...</td>
+      <td>1.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Yes</td>
+      <td>51</td>
+    </tr>
+    <tr>
+      <td>4966</td>
+      <td>B</td>
+      <td>B</td>
+      <td>Government</td>
+      <td>Onshore</td>
+      <td>Enhancement</td>
+      <td>NaN</td>
+      <td>4GL</td>
+      <td>Oracle</td>
+      <td>NESMA</td>
+      <td>29.0</td>
+      <td>...</td>
+      <td>1.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Yes</td>
+      <td>27</td>
+    </tr>
+    <tr>
+      <td>4977</td>
+      <td>A</td>
+      <td>B</td>
+      <td>Government</td>
+      <td>Onshore</td>
+      <td>New development</td>
+      <td>NaN</td>
+      <td>4GL</td>
+      <td>Oracle</td>
+      <td>NESMA</td>
+      <td>54.0</td>
+      <td>...</td>
+      <td>1.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Yes</td>
+      <td>54</td>
+    </tr>
+    <tr>
+      <td>4996</td>
+      <td>A</td>
+      <td>B</td>
+      <td>Government</td>
+      <td>Onshore</td>
+      <td>New development</td>
+      <td>NaN</td>
+      <td>4GL</td>
+      <td>Oracle</td>
+      <td>NESMA</td>
+      <td>43.0</td>
+      <td>...</td>
+      <td>1.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Yes</td>
+      <td>18</td>
+    </tr>
+    <tr>
+      <td>5081</td>
+      <td>A</td>
+      <td>B</td>
+      <td>Government</td>
+      <td>Onshore</td>
+      <td>Enhancement</td>
+      <td>NaN</td>
+      <td>4GL</td>
+      <td>Oracle</td>
+      <td>NESMA</td>
+      <td>42.0</td>
+      <td>...</td>
+      <td>1.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Yes</td>
+      <td>38</td>
+    </tr>
+    <tr>
+      <td>5227</td>
+      <td>A</td>
+      <td>B</td>
+      <td>Government</td>
+      <td>Onshore</td>
+      <td>Enhancement</td>
+      <td>NaN</td>
+      <td>4GL</td>
+      <td>Oracle</td>
+      <td>NESMA</td>
+      <td>76.0</td>
+      <td>...</td>
+      <td>1.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Yes</td>
+      <td>79</td>
+    </tr>
+    <tr>
+      <td>5580</td>
+      <td>A</td>
+      <td>B</td>
+      <td>Government</td>
+      <td>Onshore</td>
+      <td>Enhancement</td>
+      <td>NaN</td>
+      <td>4GL</td>
+      <td>.Net</td>
+      <td>NESMA</td>
+      <td>8.0</td>
+      <td>...</td>
+      <td>1.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Yes</td>
+      <td>8</td>
+    </tr>
+    <tr>
+      <td>5834</td>
+      <td>A</td>
+      <td>B</td>
+      <td>Government</td>
+      <td>Onshore</td>
+      <td>Enhancement</td>
+      <td>NaN</td>
+      <td>4GL</td>
+      <td>Oracle</td>
+      <td>NESMA</td>
+      <td>70.0</td>
+      <td>...</td>
+      <td>1.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Yes</td>
+      <td>38</td>
+    </tr>
+    <tr>
+      <td>6310</td>
+      <td>B</td>
+      <td>B</td>
+      <td>Government</td>
+      <td>Onshore</td>
+      <td>Enhancement</td>
+      <td>NaN</td>
+      <td>4GL</td>
+      <td>Oracle</td>
+      <td>NESMA</td>
+      <td>85.0</td>
+      <td>...</td>
+      <td>1.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Yes</td>
+      <td>63</td>
+    </tr>
+    <tr>
+      <td>6336</td>
+      <td>A</td>
+      <td>B</td>
+      <td>Government</td>
+      <td>Onshore</td>
+      <td>Enhancement</td>
+      <td>NaN</td>
+      <td>4GL</td>
+      <td>.Net</td>
+      <td>NESMA</td>
+      <td>4.0</td>
+      <td>...</td>
+      <td>1.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Yes</td>
+      <td>11</td>
+    </tr>
+    <tr>
+      <td>6427</td>
+      <td>B</td>
+      <td>B</td>
+      <td>Government</td>
+      <td>Onshore</td>
+      <td>Enhancement</td>
+      <td>NaN</td>
+      <td>4GL</td>
+      <td>Oracle</td>
+      <td>NESMA</td>
+      <td>28.0</td>
+      <td>...</td>
+      <td>1.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Yes</td>
+      <td>28</td>
+    </tr>
+    <tr>
+      <td>6462</td>
+      <td>B</td>
+      <td>B</td>
+      <td>Government</td>
+      <td>Onshore</td>
+      <td>Enhancement</td>
+      <td>NaN</td>
+      <td>4GL</td>
+      <td>Oracle</td>
+      <td>NESMA</td>
+      <td>61.0</td>
+      <td>...</td>
+      <td>1.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Yes</td>
+      <td>36</td>
+    </tr>
+    <tr>
+      <td>6505</td>
+      <td>A</td>
+      <td>B</td>
+      <td>Government</td>
+      <td>Onshore</td>
+      <td>New development</td>
+      <td>NaN</td>
+      <td>4GL</td>
+      <td>Oracle</td>
+      <td>NESMA</td>
+      <td>45.0</td>
+      <td>...</td>
+      <td>1.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Yes</td>
+      <td>29</td>
+    </tr>
+    <tr>
+      <td>6700</td>
+      <td>B</td>
+      <td>B</td>
+      <td>Government</td>
+      <td>Onshore</td>
+      <td>Enhancement</td>
+      <td>NaN</td>
+      <td>4GL</td>
+      <td>Oracle</td>
+      <td>NESMA</td>
+      <td>49.0</td>
+      <td>...</td>
+      <td>1.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Yes</td>
+      <td>46</td>
+    </tr>
+    <tr>
+      <td>6812</td>
+      <td>A</td>
+      <td>B</td>
+      <td>Government</td>
+      <td>Onshore</td>
+      <td>Enhancement</td>
+      <td>NaN</td>
+      <td>4GL</td>
+      <td>.Net</td>
+      <td>NESMA</td>
+      <td>192.0</td>
+      <td>...</td>
+      <td>1.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Yes</td>
+      <td>11</td>
+    </tr>
+    <tr>
+      <td>7022</td>
+      <td>A</td>
+      <td>B</td>
+      <td>Government</td>
+      <td>Onshore</td>
+      <td>Enhancement</td>
+      <td>NaN</td>
+      <td>4GL</td>
+      <td>.Net</td>
+      <td>NESMA</td>
+      <td>24.0</td>
+      <td>...</td>
+      <td>1.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Yes</td>
+      <td>13</td>
+    </tr>
+    <tr>
+      <td>7132</td>
+      <td>A</td>
+      <td>B</td>
+      <td>Government</td>
+      <td>Onshore</td>
+      <td>Enhancement</td>
+      <td>NaN</td>
+      <td>4GL</td>
+      <td>.Net</td>
+      <td>NESMA</td>
+      <td>28.0</td>
+      <td>...</td>
+      <td>1.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Yes</td>
+      <td>11</td>
+    </tr>
+    <tr>
+      <td>7323</td>
+      <td>B</td>
+      <td>B</td>
+      <td>Government</td>
+      <td>Onshore</td>
+      <td>Enhancement</td>
+      <td>NaN</td>
+      <td>4GL</td>
+      <td>Oracle</td>
+      <td>NESMA</td>
+      <td>85.0</td>
+      <td>...</td>
+      <td>1.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Yes</td>
+      <td>50</td>
+    </tr>
+    <tr>
+      <td>7358</td>
+      <td>B</td>
+      <td>B</td>
+      <td>Government</td>
+      <td>Onshore</td>
+      <td>Enhancement</td>
+      <td>NaN</td>
+      <td>4GL</td>
+      <td>Oracle</td>
+      <td>NESMA</td>
+      <td>121.0</td>
+      <td>...</td>
+      <td>1.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Yes</td>
+      <td>57</td>
+    </tr>
+    <tr>
+      <td>7693</td>
+      <td>D</td>
+      <td>C</td>
+      <td>Manufacturing</td>
+      <td>Business Application</td>
+      <td>New Development</td>
+      <td>PC</td>
+      <td>3GL</td>
+      <td>C#</td>
+      <td>IFPUG 4+</td>
+      <td>5393.0</td>
+      <td>...</td>
+      <td>4.0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Yes</td>
+      <td>14</td>
+    </tr>
+    <tr>
+      <td>7715</td>
+      <td>B</td>
+      <td>B</td>
+      <td>Government</td>
+      <td>Onshore</td>
+      <td>Enhancement</td>
+      <td>NaN</td>
+      <td>4GL</td>
+      <td>Oracle</td>
+      <td>NESMA</td>
+      <td>159.0</td>
+      <td>...</td>
+      <td>1.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Yes</td>
+      <td>70</td>
+    </tr>
+    <tr>
+      <td>7738</td>
+      <td>A</td>
+      <td>B</td>
+      <td>Government</td>
+      <td>Onshore</td>
+      <td>Enhancement</td>
+      <td>NaN</td>
+      <td>4GL</td>
+      <td>Oracle</td>
+      <td>NESMA</td>
+      <td>103.0</td>
+      <td>...</td>
+      <td>1.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Yes</td>
+      <td>59</td>
+    </tr>
+    <tr>
+      <td>7813</td>
+      <td>A</td>
+      <td>B</td>
+      <td>Government</td>
+      <td>Onshore</td>
+      <td>New development</td>
+      <td>NaN</td>
+      <td>4GL</td>
+      <td>Oracle</td>
+      <td>NESMA</td>
+      <td>90.0</td>
+      <td>...</td>
+      <td>1.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Yes</td>
+      <td>39</td>
+    </tr>
+    <tr>
+      <td>7958</td>
+      <td>A</td>
+      <td>B</td>
+      <td>Government</td>
+      <td>Onshore</td>
+      <td>Enhancement</td>
+      <td>NaN</td>
+      <td>4GL</td>
+      <td>.Net</td>
+      <td>NESMA</td>
+      <td>12.0</td>
+      <td>...</td>
+      <td>1.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Yes</td>
+      <td>7</td>
+    </tr>
+    <tr>
+      <td>7966</td>
+      <td>A</td>
+      <td>B</td>
+      <td>Government</td>
+      <td>Onshore</td>
+      <td>Enhancement</td>
+      <td>NaN</td>
+      <td>4GL</td>
+      <td>Oracle</td>
+      <td>NESMA</td>
+      <td>116.0</td>
+      <td>...</td>
+      <td>1.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Yes</td>
+      <td>63</td>
+    </tr>
+    <tr>
+      <td>7998</td>
+      <td>B</td>
+      <td>B</td>
+      <td>Government</td>
+      <td>Onshore</td>
+      <td>Enhancement</td>
+      <td>NaN</td>
+      <td>4GL</td>
+      <td>Oracle</td>
+      <td>NESMA</td>
+      <td>13.0</td>
+      <td>...</td>
+      <td>1.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Yes</td>
+      <td>20</td>
     </tr>
   </tbody>
 </table>
-<p>8012 rows × 26 columns</p>
+<p>55 rows × 27 columns</p>
 </div>
 </div>
 
@@ -13428,32 +14478,17 @@ div#notebook {
 </div>
 </div>
 
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Para aplicar el filtro del proyecto en R:
-En este caso el umbral de las variables está al 50%</p>
-
-</div>
-</div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-python"><pre><span></span><span class="n">filtro</span> <span class="o">=</span> <span class="p">((</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Data Quality Rating&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;A&#39;</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Data Quality Rating&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;B&#39;</span><span class="p">))</span> <span class="o">&amp;</span> <span class="p">((</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;UFP rating&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;A&#39;</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;UFP rating&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;B&#39;</span><span class="p">))</span> 
-<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">filtro</span><span class="p">,</span> <span class="p">:]</span>
-<span class="n">filtro</span> <span class="o">=</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Normalised Work Effort Level 1&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">notnull</span><span class="p">())</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Normalised Work Effort Level 1&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Summary Work Effort&#39;</span><span class="p">])</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">filtro</span><span class="p">,</span> <span class="p">:]</span>
-<span class="n">filtro</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Count Approach&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;IFPUG 4+&#39;</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">filtro</span><span class="p">,</span> <span class="p">:]</span>
-<span class="n">variables</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Industry Sector&#39;</span><span class="p">,</span><span class="s1">&#39;Application Group&#39;</span><span class="p">,</span> <span class="s1">&#39;Development Type&#39;</span><span class="p">,</span> <span class="s1">&#39;Development Platform&#39;</span><span class="p">,</span> <span class="s1">&#39;Language Type&#39;</span><span class="p">,</span> <span class="s1">&#39;Primary Programming Language&#39;</span><span class="p">,</span> <span class="s1">&#39;Functional Size&#39;</span><span class="p">,</span> <span class="s1">&#39;Adjusted Function Points&#39;</span><span class="p">,</span> <span class="s1">&#39;Normalised Work Effort Level 1&#39;</span><span class="p">,</span> <span class="s1">&#39;Project Elapsed Time&#39;</span><span class="p">,</span> <span class="s1">&#39;Business Area Type&#39;</span><span class="p">,</span> <span class="s1">&#39;1st Data Base System&#39;</span><span class="p">,</span> <span class="s1">&#39;Used Methodology&#39;</span><span class="p">,</span> <span class="s1">&#39;Max Team Size&#39;</span><span class="p">,</span> <span class="s1">&#39;Average Team Size&#39;</span><span class="p">,</span> <span class="s1">&#39;Input count&#39;</span><span class="p">,</span> <span class="s1">&#39;Output count&#39;</span><span class="p">,</span> <span class="s1">&#39;Enquiry count&#39;</span><span class="p">,</span> <span class="s1">&#39;File count&#39;</span><span class="p">,</span> <span class="s1">&#39;Interface count&#39;</span><span class="p">,</span> <span class="s1">&#39;Agile Method Used&#39;</span><span class="p">]</span>
+<div class=" highlight hl-python"><pre><span></span><span class="n">variables</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Industry Sector&#39;</span><span class="p">,</span><span class="s1">&#39;Application Group&#39;</span><span class="p">,</span> <span class="s1">&#39;Development Type&#39;</span><span class="p">,</span> <span class="s1">&#39;Development Platform&#39;</span><span class="p">,</span> <span class="s1">&#39;Language Type&#39;</span><span class="p">,</span> <span class="s1">&#39;Primary Programming Language&#39;</span><span class="p">,</span> <span class="s1">&#39;Functional Size&#39;</span><span class="p">,</span> <span class="s1">&#39;Adjusted Function Points&#39;</span><span class="p">,</span> <span class="s1">&#39;Normalised Work Effort Level 1&#39;</span><span class="p">,</span> <span class="s1">&#39;Project Elapsed Time&#39;</span><span class="p">,</span> <span class="s1">&#39;Business Area Type&#39;</span><span class="p">,</span> <span class="s1">&#39;1st Data Base System&#39;</span><span class="p">,</span> <span class="s1">&#39;Max Team Size&#39;</span><span class="p">,</span> <span class="s1">&#39;Average Team Size&#39;</span><span class="p">,</span> <span class="s1">&#39;Input count&#39;</span><span class="p">,</span> <span class="s1">&#39;Output count&#39;</span><span class="p">,</span> <span class="s1">&#39;Enquiry count&#39;</span><span class="p">,</span> <span class="s1">&#39;File count&#39;</span><span class="p">,</span> <span class="s1">&#39;Interface count&#39;</span><span class="p">,</span> <span class="s1">&#39;Sprints / iterations size&#39;</span><span class="p">]</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="n">variables</span><span class="p">]</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">thresh</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="mf">0.5</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)))</span>
-<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">))</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">))</span>
 <span class="n">df</span>
 </pre></div>
 
@@ -13471,14 +14506,14 @@ En este caso el umbral de las variables está al 50%</p>
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>2183
+<pre>52
 </pre>
 </div>
 </div>
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[3]:</div>
+    <div class="prompt output_prompt">Out[2]:</div>
 
 
 
@@ -13504,793 +14539,641 @@ En este caso el umbral de las variables está al 50%</p>
       <th>Industry Sector</th>
       <th>Application Group</th>
       <th>Development Type</th>
-      <th>Development Platform</th>
       <th>Language Type</th>
       <th>Primary Programming Language</th>
       <th>Functional Size</th>
-      <th>Adjusted Function Points</th>
       <th>Normalised Work Effort Level 1</th>
       <th>Project Elapsed Time</th>
-      <th>1st Data Base System</th>
-      <th>Used Methodology</th>
+      <th>Sprints / iterations size</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td>7</td>
-      <td>Insurance</td>
+      <td>210</td>
+      <td>Government</td>
+      <td>Onshore</td>
+      <td>Enhancement</td>
+      <td>4GL</td>
+      <td>Oracle</td>
+      <td>54.0</td>
+      <td>608.0</td>
+      <td>1</td>
+      <td>42</td>
+    </tr>
+    <tr>
+      <td>861</td>
+      <td>Government</td>
+      <td>Onshore</td>
+      <td>Enhancement</td>
+      <td>4GL</td>
+      <td>Oracle</td>
+      <td>75.0</td>
+      <td>641.0</td>
+      <td>1</td>
+      <td>74</td>
+    </tr>
+    <tr>
+      <td>1020</td>
+      <td>Government</td>
+      <td>Onshore</td>
+      <td>Enhancement</td>
+      <td>4GL</td>
+      <td>Oracle</td>
+      <td>159.0</td>
+      <td>596.0</td>
+      <td>1</td>
+      <td>88</td>
+    </tr>
+    <tr>
+      <td>1085</td>
+      <td>Service Industry</td>
       <td>Business Application</td>
-      <td>New Development</td>
-      <td>MF</td>
+      <td>Re-development</td>
       <td>3GL</td>
       <td>Java</td>
-      <td>620.0</td>
-      <td>620</td>
-      <td>18160.0</td>
-      <td>7,0</td>
-      <td>IMS;DB2;</td>
-      <td>Don't Know</td>
+      <td>46.0</td>
+      <td>20.0</td>
+      <td>2,0</td>
+      <td>40</td>
     </tr>
     <tr>
-      <td>43</td>
+      <td>1093</td>
       <td>Government</td>
-      <td>Business Application</td>
-      <td>New Development</td>
-      <td>MF</td>
-      <td>3GL</td>
-      <td>COBOL</td>
-      <td>243.0</td>
-      <td>250</td>
-      <td>2924.0</td>
-      <td>8,0</td>
-      <td>DB2;</td>
-      <td>Yes</td>
+      <td>Onshore</td>
+      <td>Enhancement</td>
+      <td>4GL</td>
+      <td>Oracle</td>
+      <td>88.0</td>
+      <td>515.0</td>
+      <td>1</td>
+      <td>36</td>
     </tr>
     <tr>
-      <td>68</td>
-      <td>Utilities</td>
-      <td>Business Application</td>
-      <td>New Development</td>
-      <td>MF</td>
-      <td>3GL</td>
-      <td>PL/I</td>
-      <td>163.0</td>
-      <td>152</td>
-      <td>668.0</td>
-      <td>9,0</td>
-      <td>DB2;</td>
-      <td>Yes</td>
+      <td>1238</td>
+      <td>Government</td>
+      <td>Onshore</td>
+      <td>New development</td>
+      <td>4GL</td>
+      <td>Oracle</td>
+      <td>66.0</td>
+      <td>241.0</td>
+      <td>1</td>
+      <td>31</td>
     </tr>
     <tr>
-      <td>121</td>
+      <td>1252</td>
+      <td>Government</td>
+      <td>Onshore</td>
+      <td>Enhancement</td>
+      <td>4GL</td>
+      <td>Oracle</td>
+      <td>51.0</td>
+      <td>632.0</td>
+      <td>1</td>
+      <td>47</td>
+    </tr>
+    <tr>
+      <td>1268</td>
+      <td>Government</td>
+      <td>Onshore</td>
+      <td>Enhancement</td>
+      <td>4GL</td>
+      <td>Oracle</td>
+      <td>149.0</td>
+      <td>708.0</td>
+      <td>1</td>
+      <td>71</td>
+    </tr>
+    <tr>
+      <td>1330</td>
+      <td>Government</td>
+      <td>Onshore</td>
+      <td>New development</td>
+      <td>4GL</td>
+      <td>Oracle</td>
+      <td>90.0</td>
+      <td>238.0</td>
+      <td>1</td>
+      <td>47,5</td>
+    </tr>
+    <tr>
+      <td>1572</td>
+      <td>Government</td>
+      <td>Onshore</td>
+      <td>Enhancement</td>
+      <td>4GL</td>
+      <td>Oracle</td>
+      <td>69.0</td>
+      <td>661.0</td>
+      <td>1</td>
+      <td>52</td>
+    </tr>
+    <tr>
+      <td>1606</td>
+      <td>Government</td>
+      <td>Onshore</td>
+      <td>Enhancement</td>
+      <td>4GL</td>
+      <td>Oracle</td>
+      <td>72.0</td>
+      <td>574.0</td>
+      <td>1</td>
+      <td>59</td>
+    </tr>
+    <tr>
+      <td>1674</td>
+      <td>Government</td>
+      <td>Onshore</td>
+      <td>Enhancement</td>
+      <td>4GL</td>
+      <td>Oracle</td>
+      <td>86.0</td>
+      <td>720.0</td>
+      <td>1</td>
+      <td>63</td>
+    </tr>
+    <tr>
+      <td>1765</td>
+      <td>Government</td>
+      <td>Onshore</td>
+      <td>New development</td>
+      <td>4GL</td>
+      <td>Oracle</td>
+      <td>82.0</td>
+      <td>198.0</td>
+      <td>1</td>
+      <td>45</td>
+    </tr>
+    <tr>
+      <td>1829</td>
+      <td>Government</td>
+      <td>Onshore</td>
+      <td>Enhancement</td>
+      <td>4GL</td>
+      <td>Oracle</td>
+      <td>59.0</td>
+      <td>548.0</td>
+      <td>1</td>
+      <td>56</td>
+    </tr>
+    <tr>
+      <td>1860</td>
+      <td>Government</td>
+      <td>Onshore</td>
+      <td>Enhancement</td>
+      <td>4GL</td>
+      <td>.Net</td>
+      <td>14.0</td>
+      <td>716.0</td>
+      <td>1</td>
+      <td>9</td>
+    </tr>
+    <tr>
+      <td>2272</td>
+      <td>Government</td>
+      <td>Onshore</td>
+      <td>New development</td>
+      <td>4GL</td>
+      <td>Oracle</td>
+      <td>77.0</td>
+      <td>283.0</td>
+      <td>1</td>
+      <td>37,5</td>
+    </tr>
+    <tr>
+      <td>2280</td>
+      <td>Government</td>
+      <td>Onshore</td>
+      <td>Enhancement</td>
+      <td>4GL</td>
+      <td>Oracle</td>
+      <td>289.0</td>
+      <td>511.0</td>
+      <td>1</td>
+      <td>49</td>
+    </tr>
+    <tr>
+      <td>2323</td>
+      <td>Service Industry</td>
+      <td>Business Application</td>
+      <td>New Development</td>
+      <td>3GL</td>
+      <td>Java</td>
+      <td>97.0</td>
+      <td>20.0</td>
+      <td>3,0</td>
+      <td>40</td>
+    </tr>
+    <tr>
+      <td>2995</td>
+      <td>Government</td>
+      <td>Onshore</td>
+      <td>Enhancement</td>
+      <td>4GL</td>
+      <td>Oracle</td>
+      <td>216.0</td>
+      <td>630.0</td>
+      <td>1</td>
+      <td>82</td>
+    </tr>
+    <tr>
+      <td>3756</td>
+      <td>Government</td>
+      <td>Onshore</td>
+      <td>Enhancement</td>
+      <td>4GL</td>
+      <td>Oracle</td>
+      <td>33.0</td>
+      <td>622.0</td>
+      <td>1</td>
+      <td>26</td>
+    </tr>
+    <tr>
+      <td>3760</td>
+      <td>Government</td>
+      <td>Onshore</td>
+      <td>Enhancement</td>
+      <td>4GL</td>
+      <td>.Net</td>
+      <td>41.0</td>
+      <td>908.0</td>
+      <td>1</td>
+      <td>19</td>
+    </tr>
+    <tr>
+      <td>4010</td>
+      <td>Government</td>
+      <td>Onshore</td>
+      <td>New development</td>
+      <td>4GL</td>
+      <td>Oracle</td>
+      <td>52.0</td>
+      <td>419.0</td>
+      <td>1</td>
+      <td>23</td>
+    </tr>
+    <tr>
+      <td>4133</td>
+      <td>Service Industry</td>
+      <td>Business Application</td>
+      <td>New Development</td>
+      <td>3GL</td>
+      <td>Java</td>
+      <td>57.0</td>
+      <td>20.0</td>
+      <td>3,0</td>
+      <td>40</td>
+    </tr>
+    <tr>
+      <td>4208</td>
+      <td>Government</td>
+      <td>Onshore</td>
+      <td>Enhancement</td>
+      <td>4GL</td>
+      <td>.Net</td>
+      <td>80.0</td>
+      <td>704.0</td>
+      <td>1</td>
+      <td>15</td>
+    </tr>
+    <tr>
+      <td>4233</td>
+      <td>Government</td>
+      <td>Onshore</td>
+      <td>Enhancement</td>
+      <td>4GL</td>
+      <td>Oracle</td>
+      <td>129.0</td>
+      <td>626.0</td>
+      <td>1</td>
+      <td>81</td>
+    </tr>
+    <tr>
+      <td>4852</td>
+      <td>Government</td>
+      <td>Onshore</td>
+      <td>Enhancement</td>
+      <td>4GL</td>
+      <td>Oracle</td>
+      <td>95.0</td>
+      <td>590.0</td>
+      <td>1</td>
+      <td>40</td>
+    </tr>
+    <tr>
+      <td>4882</td>
+      <td>Government</td>
+      <td>Onshore</td>
+      <td>Enhancement</td>
+      <td>4GL</td>
+      <td>Oracle</td>
+      <td>138.0</td>
+      <td>636.0</td>
+      <td>1</td>
+      <td>51</td>
+    </tr>
+    <tr>
+      <td>4966</td>
+      <td>Government</td>
+      <td>Onshore</td>
+      <td>Enhancement</td>
+      <td>4GL</td>
+      <td>Oracle</td>
+      <td>29.0</td>
+      <td>536.0</td>
+      <td>1</td>
+      <td>27</td>
+    </tr>
+    <tr>
+      <td>4977</td>
+      <td>Government</td>
+      <td>Onshore</td>
+      <td>New development</td>
+      <td>4GL</td>
+      <td>Oracle</td>
+      <td>54.0</td>
+      <td>292.0</td>
+      <td>1</td>
+      <td>54</td>
+    </tr>
+    <tr>
+      <td>4996</td>
+      <td>Government</td>
+      <td>Onshore</td>
+      <td>New development</td>
+      <td>4GL</td>
+      <td>Oracle</td>
+      <td>43.0</td>
+      <td>233.0</td>
+      <td>1</td>
+      <td>18</td>
+    </tr>
+    <tr>
+      <td>5081</td>
+      <td>Government</td>
+      <td>Onshore</td>
+      <td>Enhancement</td>
+      <td>4GL</td>
+      <td>Oracle</td>
+      <td>42.0</td>
+      <td>705.0</td>
+      <td>1</td>
+      <td>38</td>
+    </tr>
+    <tr>
+      <td>5227</td>
+      <td>Government</td>
+      <td>Onshore</td>
+      <td>Enhancement</td>
+      <td>4GL</td>
+      <td>Oracle</td>
+      <td>76.0</td>
+      <td>616.0</td>
+      <td>1</td>
+      <td>79</td>
+    </tr>
+    <tr>
+      <td>5580</td>
+      <td>Government</td>
+      <td>Onshore</td>
+      <td>Enhancement</td>
+      <td>4GL</td>
+      <td>.Net</td>
+      <td>8.0</td>
+      <td>824.0</td>
+      <td>1</td>
+      <td>8</td>
+    </tr>
+    <tr>
+      <td>5834</td>
+      <td>Government</td>
+      <td>Onshore</td>
+      <td>Enhancement</td>
+      <td>4GL</td>
+      <td>Oracle</td>
+      <td>70.0</td>
+      <td>535.0</td>
+      <td>1</td>
+      <td>38</td>
+    </tr>
+    <tr>
+      <td>6310</td>
+      <td>Government</td>
+      <td>Onshore</td>
+      <td>Enhancement</td>
+      <td>4GL</td>
+      <td>Oracle</td>
+      <td>85.0</td>
+      <td>617.0</td>
+      <td>1</td>
+      <td>63</td>
+    </tr>
+    <tr>
+      <td>6336</td>
+      <td>Government</td>
+      <td>Onshore</td>
+      <td>Enhancement</td>
+      <td>4GL</td>
+      <td>.Net</td>
+      <td>4.0</td>
+      <td>682.0</td>
+      <td>1</td>
+      <td>11</td>
+    </tr>
+    <tr>
+      <td>6427</td>
+      <td>Government</td>
+      <td>Onshore</td>
+      <td>Enhancement</td>
+      <td>4GL</td>
+      <td>Oracle</td>
+      <td>28.0</td>
+      <td>552.0</td>
+      <td>1</td>
+      <td>28</td>
+    </tr>
+    <tr>
+      <td>6462</td>
+      <td>Government</td>
+      <td>Onshore</td>
+      <td>Enhancement</td>
+      <td>4GL</td>
+      <td>Oracle</td>
+      <td>61.0</td>
+      <td>609.0</td>
+      <td>1</td>
+      <td>36</td>
+    </tr>
+    <tr>
+      <td>6505</td>
+      <td>Government</td>
+      <td>Onshore</td>
+      <td>New development</td>
+      <td>4GL</td>
+      <td>Oracle</td>
+      <td>45.0</td>
+      <td>292.0</td>
+      <td>1</td>
+      <td>29</td>
+    </tr>
+    <tr>
+      <td>6700</td>
+      <td>Government</td>
+      <td>Onshore</td>
+      <td>Enhancement</td>
+      <td>4GL</td>
+      <td>Oracle</td>
+      <td>49.0</td>
+      <td>561.0</td>
+      <td>1</td>
+      <td>46</td>
+    </tr>
+    <tr>
+      <td>6812</td>
+      <td>Government</td>
+      <td>Onshore</td>
+      <td>Enhancement</td>
+      <td>4GL</td>
+      <td>.Net</td>
+      <td>192.0</td>
+      <td>5541.0</td>
+      <td>5</td>
+      <td>11</td>
+    </tr>
+    <tr>
+      <td>7022</td>
+      <td>Government</td>
+      <td>Onshore</td>
+      <td>Enhancement</td>
+      <td>4GL</td>
+      <td>.Net</td>
+      <td>24.0</td>
+      <td>763.0</td>
+      <td>1</td>
+      <td>13</td>
+    </tr>
+    <tr>
+      <td>7132</td>
+      <td>Government</td>
+      <td>Onshore</td>
+      <td>Enhancement</td>
+      <td>4GL</td>
+      <td>.Net</td>
+      <td>28.0</td>
+      <td>490.0</td>
+      <td>1</td>
+      <td>11</td>
+    </tr>
+    <tr>
+      <td>7323</td>
+      <td>Government</td>
+      <td>Onshore</td>
+      <td>Enhancement</td>
+      <td>4GL</td>
+      <td>Oracle</td>
+      <td>85.0</td>
+      <td>723.0</td>
+      <td>1</td>
+      <td>50</td>
+    </tr>
+    <tr>
+      <td>7358</td>
+      <td>Government</td>
+      <td>Onshore</td>
+      <td>Enhancement</td>
+      <td>4GL</td>
+      <td>Oracle</td>
+      <td>121.0</td>
+      <td>607.0</td>
+      <td>1</td>
+      <td>57</td>
+    </tr>
+    <tr>
+      <td>7693</td>
       <td>Manufacturing</td>
       <td>Business Application</td>
       <td>New Development</td>
-      <td>Multi</td>
-      <td>4GL</td>
-      <td>SQL</td>
-      <td>702.0</td>
-      <td>702</td>
-      <td>4805.0</td>
-      <td>12,3</td>
-      <td>Oracle,SQL Server;</td>
-      <td>Don't Know</td>
-    </tr>
-    <tr>
-      <td>140</td>
-      <td>Service Industry</td>
-      <td>Business Application</td>
-      <td>New Development</td>
-      <td>PC</td>
       <td>3GL</td>
       <td>C#</td>
-      <td>90.0</td>
-      <td>101</td>
-      <td>2006.0</td>
-      <td>5,0</td>
-      <td>MS SQL Server 2005;</td>
-      <td>Yes</td>
-    </tr>
-    <tr>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-    </tr>
-    <tr>
-      <td>7876</td>
-      <td>Government</td>
-      <td>Business Application</td>
-      <td>Enhancement</td>
-      <td>MF</td>
-      <td>3GL</td>
-      <td>COBOL</td>
-      <td>12.0</td>
-      <td>12</td>
-      <td>129.0</td>
-      <td>3,0</td>
-      <td>VSAM;</td>
-      <td>Yes</td>
-    </tr>
-    <tr>
-      <td>7891</td>
-      <td>Financial</td>
-      <td>Business Application</td>
-      <td>New Development</td>
-      <td>Multi</td>
-      <td>4GL</td>
-      <td>PowerBuilder</td>
-      <td>478.0</td>
-      <td>478</td>
-      <td>2716.0</td>
-      <td>5,8</td>
-      <td>Oracle;</td>
-      <td>Don't Know</td>
-    </tr>
-    <tr>
-      <td>7924</td>
-      <td>Financial</td>
-      <td>Business Application</td>
-      <td>Enhancement</td>
-      <td>MR</td>
-      <td>3GL</td>
-      <td>COBOL</td>
-      <td>242.0</td>
-      <td>213</td>
-      <td>2185.0</td>
-      <td>7,0</td>
-      <td>RDB;</td>
-      <td>No</td>
-    </tr>
-    <tr>
-      <td>7928</td>
-      <td>Government</td>
-      <td>Business Application</td>
-      <td>Enhancement</td>
-      <td>MF</td>
-      <td>3GL</td>
-      <td>PL/I</td>
-      <td>96.0</td>
-      <td>96</td>
-      <td>1011.0</td>
-      <td>6,0</td>
-      <td>DB2;</td>
-      <td>Yes</td>
-    </tr>
-    <tr>
-      <td>7934</td>
-      <td>Government</td>
-      <td>Business Application</td>
-      <td>New Development</td>
-      <td>Multi</td>
-      <td>4GL</td>
-      <td>Datastage</td>
-      <td>1048.0</td>
-      <td>1048</td>
-      <td>7722.0</td>
-      <td>16,0</td>
-      <td>DB2;</td>
-      <td>Yes</td>
-    </tr>
-  </tbody>
-</table>
-<p>624 rows × 12 columns</p>
-</div>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Tras hacer el filtrado de las variables que nos interesa nos quedan 624 proyectos válidos.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Si aplicamos los filtros anteriores, sin desechar variables, y además seleccionamos aquellos que han utilizado metodología agil nos quedan solamente 21 proyectos.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[5]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-python"><pre><span></span><span class="n">filtro</span> <span class="o">=</span> <span class="p">((</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Data Quality Rating&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;A&#39;</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Data Quality Rating&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;B&#39;</span><span class="p">))</span> <span class="o">&amp;</span> <span class="p">((</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;UFP rating&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;A&#39;</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;UFP rating&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;B&#39;</span><span class="p">))</span> 
-<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">filtro</span><span class="p">,</span> <span class="p">:]</span>
-<span class="n">filtro</span> <span class="o">=</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Normalised Work Effort Level 1&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">notnull</span><span class="p">())</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Normalised Work Effort Level 1&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Summary Work Effort&#39;</span><span class="p">])</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">filtro</span><span class="p">,</span> <span class="p">:]</span>
-<span class="n">filtro</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Count Approach&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;IFPUG 4+&#39;</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">filtro</span><span class="p">,</span> <span class="p">:]</span>
-<span class="n">variables</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Industry Sector&#39;</span><span class="p">,</span><span class="s1">&#39;Application Group&#39;</span><span class="p">,</span> <span class="s1">&#39;Development Type&#39;</span><span class="p">,</span> <span class="s1">&#39;Development Platform&#39;</span><span class="p">,</span> <span class="s1">&#39;Language Type&#39;</span><span class="p">,</span> <span class="s1">&#39;Primary Programming Language&#39;</span><span class="p">,</span> <span class="s1">&#39;Functional Size&#39;</span><span class="p">,</span> <span class="s1">&#39;Adjusted Function Points&#39;</span><span class="p">,</span> <span class="s1">&#39;Normalised Work Effort Level 1&#39;</span><span class="p">,</span> <span class="s1">&#39;Project Elapsed Time&#39;</span><span class="p">,</span> <span class="s1">&#39;Business Area Type&#39;</span><span class="p">,</span> <span class="s1">&#39;1st Data Base System&#39;</span><span class="p">,</span> <span class="s1">&#39;Used Methodology&#39;</span><span class="p">,</span> <span class="s1">&#39;Max Team Size&#39;</span><span class="p">,</span> <span class="s1">&#39;Average Team Size&#39;</span><span class="p">,</span> <span class="s1">&#39;Input count&#39;</span><span class="p">,</span> <span class="s1">&#39;Output count&#39;</span><span class="p">,</span> <span class="s1">&#39;Enquiry count&#39;</span><span class="p">,</span> <span class="s1">&#39;File count&#39;</span><span class="p">,</span> <span class="s1">&#39;Interface count&#39;</span><span class="p">,</span> <span class="s1">&#39;Agile Method Used&#39;</span><span class="p">]</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="n">variables</span><span class="p">]</span>
-<span class="n">filtro</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Agile Method Used&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Yes&#39;</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">filtro</span><span class="p">,</span> <span class="p">:]</span>
-<span class="n">df</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt output_prompt">Out[5]:</div>
-
-
-
-<div class="output_html rendered_html output_subarea output_execute_result">
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>Industry Sector</th>
-      <th>Application Group</th>
-      <th>Development Type</th>
-      <th>Development Platform</th>
-      <th>Language Type</th>
-      <th>Primary Programming Language</th>
-      <th>Functional Size</th>
-      <th>Adjusted Function Points</th>
-      <th>Normalised Work Effort Level 1</th>
-      <th>Project Elapsed Time</th>
-      <th>...</th>
-      <th>1st Data Base System</th>
-      <th>Used Methodology</th>
-      <th>Max Team Size</th>
-      <th>Average Team Size</th>
-      <th>Input count</th>
-      <th>Output count</th>
-      <th>Enquiry count</th>
-      <th>File count</th>
-      <th>Interface count</th>
-      <th>Agile Method Used</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>451</td>
-      <td>Service Industry</td>
-      <td>Business Application</td>
-      <td>Enhancement</td>
-      <td>Multi</td>
-      <td>3GL</td>
-      <td>JavaScript</td>
-      <td>89.0</td>
-      <td>89</td>
-      <td>4036.0</td>
-      <td>5,0</td>
-      <td>...</td>
-      <td>DB2;</td>
-      <td>Yes</td>
-      <td>9</td>
-      <td>NaN</td>
-      <td>18</td>
+      <td>5393.0</td>
+      <td>400.0</td>
+      <td>2,5</td>
       <td>14</td>
-      <td>50.0</td>
-      <td>7</td>
-      <td>0.0</td>
-      <td>Yes</td>
     </tr>
     <tr>
-      <td>629</td>
+      <td>7715</td>
       <td>Government</td>
-      <td>NaN</td>
+      <td>Onshore</td>
       <td>Enhancement</td>
-      <td>Multi</td>
-      <td>3GL</td>
-      <td>C#</td>
-      <td>63.0</td>
-      <td>63</td>
-      <td>2742.0</td>
-      <td>10,0</td>
-      <td>...</td>
-      <td>NaN</td>
-      <td>Yes</td>
-      <td>8</td>
-      <td>NaN</td>
-      <td>28</td>
-      <td>29</td>
-      <td>6.0</td>
-      <td>0</td>
-      <td>0.0</td>
-      <td>Yes</td>
+      <td>4GL</td>
+      <td>Oracle</td>
+      <td>159.0</td>
+      <td>709.0</td>
+      <td>1</td>
+      <td>70</td>
     </tr>
     <tr>
-      <td>1505</td>
-      <td>Banking</td>
-      <td>Business Application</td>
-      <td>New Development</td>
-      <td>Proprietary</td>
-      <td>5GL</td>
-      <td>Proprietary Agile Platform</td>
-      <td>748.0</td>
-      <td>748</td>
-      <td>1518.0</td>
-      <td>3,0</td>
-      <td>...</td>
-      <td>NaN</td>
-      <td>Yes</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>Yes</td>
-    </tr>
-    <tr>
-      <td>1507</td>
+      <td>7738</td>
       <td>Government</td>
-      <td>Business Application</td>
-      <td>New Development</td>
-      <td>MR</td>
+      <td>Onshore</td>
+      <td>Enhancement</td>
+      <td>4GL</td>
+      <td>Oracle</td>
+      <td>103.0</td>
+      <td>781.0</td>
+      <td>1</td>
+      <td>59</td>
+    </tr>
+    <tr>
+      <td>7813</td>
+      <td>Government</td>
+      <td>Onshore</td>
+      <td>New development</td>
+      <td>4GL</td>
+      <td>Oracle</td>
+      <td>90.0</td>
+      <td>262.0</td>
+      <td>1</td>
+      <td>39</td>
+    </tr>
+    <tr>
+      <td>7958</td>
+      <td>Government</td>
+      <td>Onshore</td>
+      <td>Enhancement</td>
       <td>4GL</td>
       <td>.Net</td>
-      <td>498.0</td>
-      <td>498</td>
-      <td>19795.0</td>
-      <td>18,0</td>
-      <td>...</td>
-      <td>NaN</td>
-      <td>No</td>
-      <td>22</td>
-      <td>NaN</td>
-      <td>183</td>
-      <td>28</td>
-      <td>63.0</td>
-      <td>224</td>
-      <td>0.0</td>
-      <td>Yes</td>
-    </tr>
-    <tr>
-      <td>1573</td>
-      <td>Service Industry</td>
-      <td>Business Application</td>
-      <td>Enhancement</td>
-      <td>Multi</td>
-      <td>3GL</td>
-      <td>C#</td>
-      <td>695.0</td>
-      <td>695</td>
-      <td>19606.0</td>
-      <td>19,0</td>
-      <td>...</td>
-      <td>DB2;</td>
-      <td>Yes</td>
-      <td>26</td>
-      <td>NaN</td>
-      <td>368</td>
-      <td>19</td>
-      <td>224.0</td>
-      <td>84</td>
-      <td>0.0</td>
-      <td>Yes</td>
-    </tr>
-    <tr>
-      <td>1746</td>
-      <td>Service Industry</td>
-      <td>Business Application</td>
-      <td>New Development</td>
-      <td>Proprietary</td>
-      <td>5GL</td>
-      <td>Proprietary Agile Platform</td>
-      <td>257.0</td>
-      <td>257</td>
-      <td>452.0</td>
-      <td>3,0</td>
-      <td>...</td>
-      <td>NaN</td>
-      <td>Yes</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>Yes</td>
-    </tr>
-    <tr>
-      <td>2095</td>
-      <td>NaN</td>
-      <td>Business Application</td>
-      <td>Enhancement</td>
-      <td>Multi</td>
-      <td>3GL</td>
-      <td>C#</td>
-      <td>47.0</td>
-      <td>47</td>
-      <td>1002.0</td>
-      <td>5,0</td>
-      <td>...</td>
-      <td>NaN</td>
-      <td>Yes</td>
-      <td>3</td>
-      <td>NaN</td>
-      <td>14</td>
-      <td>4</td>
-      <td>7.0</td>
+      <td>12.0</td>
+      <td>783.0</td>
+      <td>1</td>
       <td>7</td>
-      <td>15.0</td>
-      <td>Yes</td>
     </tr>
     <tr>
-      <td>2510</td>
-      <td>Service Industry</td>
-      <td>Business Application</td>
-      <td>New Development</td>
-      <td>Proprietary</td>
-      <td>5GL</td>
-      <td>Proprietary Agile Platform</td>
-      <td>168.0</td>
-      <td>168</td>
-      <td>312.0</td>
-      <td>3,0</td>
-      <td>...</td>
-      <td>NaN</td>
-      <td>Yes</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>Yes</td>
-    </tr>
-    <tr>
-      <td>2598</td>
-      <td>Medical &amp; Health Care</td>
-      <td>Business Application</td>
-      <td>New Development</td>
-      <td>Proprietary</td>
-      <td>5GL</td>
-      <td>Proprietary Agile Platform</td>
-      <td>116.0</td>
-      <td>116</td>
-      <td>112.0</td>
-      <td>2,0</td>
-      <td>...</td>
-      <td>NaN</td>
-      <td>Yes</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>Yes</td>
-    </tr>
-    <tr>
-      <td>2808</td>
+      <td>7966</td>
       <td>Government</td>
-      <td>NaN</td>
+      <td>Onshore</td>
       <td>Enhancement</td>
-      <td>Multi</td>
-      <td>3GL</td>
-      <td>C#</td>
-      <td>109.0</td>
-      <td>109</td>
-      <td>2715.0</td>
-      <td>9,0</td>
-      <td>...</td>
-      <td>NaN</td>
-      <td>Yes</td>
-      <td>5</td>
-      <td>NaN</td>
-      <td>64</td>
-      <td>38</td>
-      <td>0.0</td>
-      <td>7</td>
-      <td>0.0</td>
-      <td>Yes</td>
-    </tr>
-    <tr>
-      <td>4331</td>
-      <td>Service Industry</td>
-      <td>Business Application</td>
-      <td>New Development</td>
-      <td>Multi</td>
-      <td>3GL</td>
-      <td>JavaScript</td>
-      <td>399.0</td>
-      <td>399</td>
-      <td>7037.0</td>
-      <td>8,0</td>
-      <td>...</td>
-      <td>DB2;</td>
-      <td>Yes</td>
-      <td>11</td>
-      <td>NaN</td>
-      <td>139</td>
-      <td>0</td>
-      <td>180.0</td>
-      <td>80</td>
-      <td>0.0</td>
-      <td>Yes</td>
-    </tr>
-    <tr>
-      <td>4756</td>
-      <td>Wholesale &amp; Retail</td>
-      <td>Business Application</td>
-      <td>New Development</td>
-      <td>Proprietary</td>
-      <td>5GL</td>
-      <td>Proprietary Agile Platform</td>
-      <td>243.0</td>
-      <td>243</td>
-      <td>257.0</td>
-      <td>2,0</td>
-      <td>...</td>
-      <td>NaN</td>
-      <td>Yes</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>Yes</td>
-    </tr>
-    <tr>
-      <td>5402</td>
-      <td>Service Industry</td>
-      <td>Business Application</td>
-      <td>New Development</td>
-      <td>Proprietary</td>
-      <td>5GL</td>
-      <td>Proprietary Agile Platform</td>
-      <td>679.0</td>
-      <td>679</td>
-      <td>326.0</td>
-      <td>4,0</td>
-      <td>...</td>
-      <td>NaN</td>
-      <td>Yes</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>Yes</td>
-    </tr>
-    <tr>
-      <td>5614</td>
-      <td>Government</td>
-      <td>Business Application</td>
-      <td>New Development</td>
-      <td>Proprietary</td>
-      <td>5GL</td>
-      <td>Proprietary Agile Platform</td>
-      <td>143.0</td>
-      <td>143</td>
-      <td>98.0</td>
-      <td>5,0</td>
-      <td>...</td>
-      <td>NaN</td>
-      <td>Yes</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>Yes</td>
-    </tr>
-    <tr>
-      <td>5671</td>
-      <td>Service Industry</td>
-      <td>Business Application</td>
-      <td>Enhancement</td>
-      <td>Multi</td>
       <td>4GL</td>
-      <td>ABAP</td>
-      <td>211.0</td>
-      <td>211</td>
-      <td>4393.0</td>
-      <td>8,0</td>
-      <td>...</td>
-      <td>DB2;</td>
-      <td>Yes</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>0</td>
-      <td>126</td>
-      <td>78.0</td>
-      <td>7</td>
-      <td>0.0</td>
-      <td>Yes</td>
+      <td>Oracle</td>
+      <td>116.0</td>
+      <td>590.0</td>
+      <td>1</td>
+      <td>63</td>
     </tr>
     <tr>
-      <td>5819</td>
-      <td>Electronics &amp; Computers</td>
-      <td>NaN</td>
-      <td>New Development</td>
-      <td>Proprietary</td>
-      <td>5GL</td>
-      <td>Proprietary Agile Platform</td>
-      <td>243.0</td>
-      <td>243</td>
-      <td>289.0</td>
-      <td>2,0</td>
-      <td>...</td>
-      <td>NaN</td>
-      <td>Yes</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>Yes</td>
-    </tr>
-    <tr>
-      <td>5935</td>
-      <td>Electronics &amp; Computers</td>
-      <td>Business Application</td>
-      <td>New Development</td>
-      <td>Proprietary</td>
-      <td>5GL</td>
-      <td>Proprietary Agile Platform</td>
-      <td>138.0</td>
-      <td>138</td>
-      <td>87.0</td>
-      <td>1,0</td>
-      <td>...</td>
-      <td>NaN</td>
-      <td>Yes</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>Yes</td>
-    </tr>
-    <tr>
-      <td>6083</td>
-      <td>Medical &amp; Health Care</td>
-      <td>NaN</td>
-      <td>New Development</td>
-      <td>Proprietary</td>
-      <td>5GL</td>
-      <td>Proprietary Agile Platform</td>
-      <td>144.0</td>
-      <td>144</td>
-      <td>117.0</td>
-      <td>3,0</td>
-      <td>...</td>
-      <td>NaN</td>
-      <td>Yes</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>Yes</td>
-    </tr>
-    <tr>
-      <td>7087</td>
-      <td>Service Industry</td>
-      <td>Business Application</td>
+      <td>7998</td>
+      <td>Government</td>
+      <td>Onshore</td>
       <td>Enhancement</td>
-      <td>Multi</td>
-      <td>3GL</td>
-      <td>PL/I</td>
-      <td>117.0</td>
-      <td>117</td>
-      <td>3549.0</td>
-      <td>7,0</td>
-      <td>...</td>
-      <td>DB2;</td>
-      <td>Yes</td>
-      <td>10</td>
-      <td>NaN</td>
-      <td>42</td>
-      <td>28</td>
-      <td>19.0</td>
-      <td>28</td>
-      <td>0.0</td>
-      <td>Yes</td>
-    </tr>
-    <tr>
-      <td>7791</td>
-      <td>Utilities</td>
-      <td>Business Application</td>
-      <td>New Development</td>
-      <td>Proprietary</td>
-      <td>5GL</td>
-      <td>Proprietary Agile Platform</td>
-      <td>1371.0</td>
-      <td>1371</td>
-      <td>2274.0</td>
-      <td>4,0</td>
-      <td>...</td>
-      <td>NaN</td>
-      <td>Yes</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>Yes</td>
-    </tr>
-    <tr>
-      <td>7921</td>
-      <td>Education</td>
-      <td>Business Application</td>
-      <td>New Development</td>
-      <td>Proprietary</td>
-      <td>5GL</td>
-      <td>Proprietary Agile Platform</td>
-      <td>995.0</td>
-      <td>995</td>
-      <td>614.0</td>
-      <td>5,0</td>
-      <td>...</td>
-      <td>NaN</td>
-      <td>Yes</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>Yes</td>
+      <td>4GL</td>
+      <td>Oracle</td>
+      <td>13.0</td>
+      <td>414.0</td>
+      <td>1</td>
+      <td>20</td>
     </tr>
   </tbody>
 </table>
-<p>21 rows × 21 columns</p>
 </div>
 </div>
 
@@ -14300,63 +15183,13 @@ En este caso el umbral de las variables está al 50%</p>
 </div>
 
 </div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-python"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="n">archivo</span> <span class="o">=</span> <span class="s1">&#39;..\data\ISBSG - Release May 2017 R1.csv&#39;</span>
-<span class="c1">#archivo = &#39;..\data\ISBSG DATA Release 12.csv&#39;</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">archivo</span><span class="p">,</span> <span class="n">sep</span> <span class="o">=</span> <span class="s1">&#39;;&#39;</span><span class="p">,</span> <span class="n">low_memory</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
-<span class="n">variables</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Data Quality Rating&#39;</span><span class="p">,</span> <span class="s1">&#39;UFP rating&#39;</span><span class="p">,</span> <span class="s1">&#39;Industry Sector&#39;</span><span class="p">,</span><span class="s1">&#39;Application Group&#39;</span><span class="p">,</span> <span class="s1">&#39;Development Type&#39;</span><span class="p">,</span> <span class="s1">&#39;Development Platform&#39;</span><span class="p">,</span> <span class="s1">&#39;Language Type&#39;</span><span class="p">,</span> <span class="s1">&#39;Primary Programming Language&#39;</span><span class="p">,</span> <span class="s1">&#39;Count Approach&#39;</span><span class="p">,</span> <span class="s1">&#39;Functional Size&#39;</span><span class="p">,</span> <span class="s1">&#39;Adjusted Function Points&#39;</span><span class="p">,</span> <span class="s1">&#39;Normalised Work Effort Level 1&#39;</span><span class="p">,</span> <span class="s1">&#39;Summary Work Effort&#39;</span><span class="p">,</span> <span class="s1">&#39;Project Elapsed Time&#39;</span><span class="p">,</span> <span class="s1">&#39;Business Area Type&#39;</span><span class="p">,</span> <span class="s1">&#39;1st Data Base System&#39;</span><span class="p">,</span> <span class="s1">&#39;Used Methodology&#39;</span><span class="p">,</span> <span class="s1">&#39;Resource Level&#39;</span><span class="p">,</span> <span class="s1">&#39;Max Team Size&#39;</span><span class="p">,</span> <span class="s1">&#39;Average Team Size&#39;</span><span class="p">,</span> <span class="s1">&#39;Input count&#39;</span><span class="p">,</span> <span class="s1">&#39;Output count&#39;</span><span class="p">,</span> <span class="s1">&#39;Enquiry count&#39;</span><span class="p">,</span> <span class="s1">&#39;File count&#39;</span><span class="p">,</span> <span class="s1">&#39;Interface count&#39;</span><span class="p">,</span> <span class="s1">&#39;Agile Method Used&#39;</span><span class="p">]</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="n">variables</span><span class="p">]</span>
-<span class="n">filtro</span> <span class="o">=</span> <span class="p">((</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Data Quality Rating&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;A&#39;</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Data Quality Rating&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;B&#39;</span><span class="p">))</span> <span class="o">&amp;</span> <span class="p">((</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;UFP rating&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;A&#39;</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;UFP rating&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;B&#39;</span><span class="p">))</span> 
-<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">filtro</span><span class="p">,</span> <span class="p">:]</span>
-<span class="n">filtro</span> <span class="o">=</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Normalised Work Effort Level 1&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">notnull</span><span class="p">())</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Normalised Work Effort Level 1&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Summary Work Effort&#39;</span><span class="p">])</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">filtro</span><span class="p">,</span> <span class="p">:]</span>
-<span class="n">filtro</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Count Approach&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;IFPUG 4+&#39;</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">filtro</span><span class="p">,</span> <span class="p">:]</span>
-<span class="n">variables</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Industry Sector&#39;</span><span class="p">,</span><span class="s1">&#39;Application Group&#39;</span><span class="p">,</span> <span class="s1">&#39;Development Type&#39;</span><span class="p">,</span> <span class="s1">&#39;Development Platform&#39;</span><span class="p">,</span> <span class="s1">&#39;Language Type&#39;</span><span class="p">,</span> <span class="s1">&#39;Primary Programming Language&#39;</span><span class="p">,</span> <span class="s1">&#39;Functional Size&#39;</span><span class="p">,</span> <span class="s1">&#39;Adjusted Function Points&#39;</span><span class="p">,</span> <span class="s1">&#39;Normalised Work Effort Level 1&#39;</span><span class="p">,</span> <span class="s1">&#39;Project Elapsed Time&#39;</span><span class="p">,</span> <span class="s1">&#39;1st Data Base System&#39;</span><span class="p">,</span> <span class="s1">&#39;Used Methodology&#39;</span><span class="p">,</span> <span class="s1">&#39;Agile Method Used&#39;</span><span class="p">]</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="n">variables</span><span class="p">]</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
-<span class="n">df</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>52 proyectos eliminando los valores a Null, no me termina de convencer las variables que tenemos pero como se puede ver en la primera tabla hay muchos valores a NaN</p>
 
 </div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-python"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="n">archivo</span> <span class="o">=</span> <span class="s1">&#39;..\data\ISBSG - Release May 2017 R1.csv&#39;</span>
-<span class="c1">#archivo = &#39;..\data\ISBSG DATA Release 12.csv&#39;</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">archivo</span><span class="p">,</span> <span class="n">sep</span> <span class="o">=</span> <span class="s1">&#39;;&#39;</span><span class="p">,</span> <span class="n">low_memory</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
-<span class="n">variables</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Data Quality Rating&#39;</span><span class="p">,</span> <span class="s1">&#39;UFP rating&#39;</span><span class="p">,</span> <span class="s1">&#39;Industry Sector&#39;</span><span class="p">,</span><span class="s1">&#39;Application Group&#39;</span><span class="p">,</span> <span class="s1">&#39;Development Type&#39;</span><span class="p">,</span> <span class="s1">&#39;Development Platform&#39;</span><span class="p">,</span> <span class="s1">&#39;Language Type&#39;</span><span class="p">,</span> <span class="s1">&#39;Primary Programming Language&#39;</span><span class="p">,</span> <span class="s1">&#39;Count Approach&#39;</span><span class="p">,</span> <span class="s1">&#39;Functional Size&#39;</span><span class="p">,</span> <span class="s1">&#39;Adjusted Function Points&#39;</span><span class="p">,</span> <span class="s1">&#39;Normalised Work Effort Level 1&#39;</span><span class="p">,</span> <span class="s1">&#39;Summary Work Effort&#39;</span><span class="p">,</span> <span class="s1">&#39;Project Elapsed Time&#39;</span><span class="p">,</span> <span class="s1">&#39;Business Area Type&#39;</span><span class="p">,</span> <span class="s1">&#39;1st Data Base System&#39;</span><span class="p">,</span> <span class="s1">&#39;Used Methodology&#39;</span><span class="p">,</span> <span class="s1">&#39;Resource Level&#39;</span><span class="p">,</span> <span class="s1">&#39;Max Team Size&#39;</span><span class="p">,</span> <span class="s1">&#39;Average Team Size&#39;</span><span class="p">,</span> <span class="s1">&#39;Input count&#39;</span><span class="p">,</span> <span class="s1">&#39;Output count&#39;</span><span class="p">,</span> <span class="s1">&#39;Enquiry count&#39;</span><span class="p">,</span> <span class="s1">&#39;File count&#39;</span><span class="p">,</span> <span class="s1">&#39;Interface count&#39;</span><span class="p">,</span> <span class="s1">&#39;Agile Method Used&#39;</span><span class="p">]</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="n">variables</span><span class="p">]</span>
-<span class="n">filtro</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Agile Method Used&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Yes&#39;</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">filtro</span><span class="p">,</span> <span class="p">:]</span>
-<span class="n">filtro</span> <span class="o">=</span> <span class="p">((</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Data Quality Rating&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;A&#39;</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Data Quality Rating&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;B&#39;</span><span class="p">))</span> <span class="o">&amp;</span> <span class="p">((</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;UFP rating&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;A&#39;</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;UFP rating&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;B&#39;</span><span class="p">))</span> 
-<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">filtro</span><span class="p">,</span> <span class="p">:]</span>
-<span class="n">filtro</span> <span class="o">=</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Normalised Work Effort Level 1&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">notnull</span><span class="p">())</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Normalised Work Effort Level 1&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Summary Work Effort&#39;</span><span class="p">])</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">filtro</span><span class="p">,</span> <span class="p">:]</span>
-<span class="n">filtro</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Count Approach&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;IFPUG 4+&#39;</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">filtro</span><span class="p">,</span> <span class="p">:]</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">thresh</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="mf">0.5</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)))</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">))</span>
-<span class="n">df</span>
-</pre></div>
-
-    </div>
 </div>
-</div>
-
 </div>
     </div>
   </div>
