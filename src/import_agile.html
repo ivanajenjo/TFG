@@ -13076,7 +13076,7 @@ div#notebook {
 
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[1]:</div>
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-python"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -13100,7 +13100,7 @@ div#notebook {
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[1]:</div>
+    <div class="prompt output_prompt">Out[2]:</div>
 
 
 
@@ -14481,10 +14481,10 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-python"><pre><span></span><span class="n">variables</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Industry Sector&#39;</span><span class="p">,</span><span class="s1">&#39;Application Group&#39;</span><span class="p">,</span> <span class="s1">&#39;Development Type&#39;</span><span class="p">,</span> <span class="s1">&#39;Development Platform&#39;</span><span class="p">,</span> <span class="s1">&#39;Language Type&#39;</span><span class="p">,</span> <span class="s1">&#39;Primary Programming Language&#39;</span><span class="p">,</span> <span class="s1">&#39;Functional Size&#39;</span><span class="p">,</span> <span class="s1">&#39;Adjusted Function Points&#39;</span><span class="p">,</span> <span class="s1">&#39;Normalised Work Effort Level 1&#39;</span><span class="p">,</span> <span class="s1">&#39;Project Elapsed Time&#39;</span><span class="p">,</span> <span class="s1">&#39;Business Area Type&#39;</span><span class="p">,</span> <span class="s1">&#39;1st Data Base System&#39;</span><span class="p">,</span> <span class="s1">&#39;Max Team Size&#39;</span><span class="p">,</span> <span class="s1">&#39;Average Team Size&#39;</span><span class="p">,</span> <span class="s1">&#39;Input count&#39;</span><span class="p">,</span> <span class="s1">&#39;Output count&#39;</span><span class="p">,</span> <span class="s1">&#39;Enquiry count&#39;</span><span class="p">,</span> <span class="s1">&#39;File count&#39;</span><span class="p">,</span> <span class="s1">&#39;Interface count&#39;</span><span class="p">,</span> <span class="s1">&#39;Sprints / iterations size&#39;</span><span class="p">]</span>
+<div class=" highlight hl-python"><pre><span></span><span class="n">variables</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Industry Sector&#39;</span><span class="p">,</span><span class="s1">&#39;Application Group&#39;</span><span class="p">,</span> <span class="s1">&#39;Development Type&#39;</span><span class="p">,</span> <span class="s1">&#39;Development Platform&#39;</span><span class="p">,</span> <span class="s1">&#39;Language Type&#39;</span><span class="p">,</span> <span class="s1">&#39;Primary Programming Language&#39;</span><span class="p">,</span> <span class="s1">&#39;Functional Size&#39;</span><span class="p">,</span> <span class="s1">&#39;Adjusted Function Points&#39;</span><span class="p">,</span> <span class="s1">&#39;Normalised Work Effort Level 1&#39;</span><span class="p">,</span> <span class="s1">&#39;Project Elapsed Time&#39;</span><span class="p">,</span> <span class="s1">&#39;Business Area Type&#39;</span><span class="p">,</span> <span class="s1">&#39;1st Data Base System&#39;</span><span class="p">,</span> <span class="s1">&#39;Max Team Size&#39;</span><span class="p">,</span> <span class="s1">&#39;Average Team Size&#39;</span><span class="p">,</span> <span class="s1">&#39;Input count&#39;</span><span class="p">,</span> <span class="s1">&#39;Output count&#39;</span><span class="p">,</span> <span class="s1">&#39;Enquiry count&#39;</span><span class="p">,</span> <span class="s1">&#39;File count&#39;</span><span class="p">,</span> <span class="s1">&#39;Interface count&#39;</span><span class="p">,</span> <span class="s1">&#39;Sprints / iterations size&#39;</span><span class="p">,</span> <span class="s1">&#39;Count Approach&#39;</span><span class="p">,</span> <span class="s1">&#39;Summary Work Effort&#39;</span><span class="p">]</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="n">variables</span><span class="p">]</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">thresh</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="mf">0.5</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)))</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
@@ -14513,7 +14513,7 @@ div#notebook {
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[2]:</div>
+    <div class="prompt output_prompt">Out[3]:</div>
 
 
 
@@ -14545,6 +14545,8 @@ div#notebook {
       <th>Normalised Work Effort Level 1</th>
       <th>Project Elapsed Time</th>
       <th>Sprints / iterations size</th>
+      <th>Count Approach</th>
+      <th>Summary Work Effort</th>
     </tr>
   </thead>
   <tbody>
@@ -14559,6 +14561,8 @@ div#notebook {
       <td>608.0</td>
       <td>1</td>
       <td>42</td>
+      <td>NESMA</td>
+      <td>428.0</td>
     </tr>
     <tr>
       <td>861</td>
@@ -14571,6 +14575,8 @@ div#notebook {
       <td>641.0</td>
       <td>1</td>
       <td>74</td>
+      <td>NESMA</td>
+      <td>450.0</td>
     </tr>
     <tr>
       <td>1020</td>
@@ -14583,6 +14589,8 @@ div#notebook {
       <td>596.0</td>
       <td>1</td>
       <td>88</td>
+      <td>NESMA</td>
+      <td>418.0</td>
     </tr>
     <tr>
       <td>1085</td>
@@ -14595,6 +14603,8 @@ div#notebook {
       <td>20.0</td>
       <td>2,0</td>
       <td>40</td>
+      <td>COSMIC</td>
+      <td>28.0</td>
     </tr>
     <tr>
       <td>1093</td>
@@ -14607,6 +14617,8 @@ div#notebook {
       <td>515.0</td>
       <td>1</td>
       <td>36</td>
+      <td>NESMA</td>
+      <td>362.0</td>
     </tr>
     <tr>
       <td>1238</td>
@@ -14619,6 +14631,8 @@ div#notebook {
       <td>241.0</td>
       <td>1</td>
       <td>31</td>
+      <td>NESMA</td>
+      <td>164.0</td>
     </tr>
     <tr>
       <td>1252</td>
@@ -14631,6 +14645,8 @@ div#notebook {
       <td>632.0</td>
       <td>1</td>
       <td>47</td>
+      <td>NESMA</td>
+      <td>444.0</td>
     </tr>
     <tr>
       <td>1268</td>
@@ -14643,6 +14659,8 @@ div#notebook {
       <td>708.0</td>
       <td>1</td>
       <td>71</td>
+      <td>NESMA</td>
+      <td>498.0</td>
     </tr>
     <tr>
       <td>1330</td>
@@ -14655,6 +14673,8 @@ div#notebook {
       <td>238.0</td>
       <td>1</td>
       <td>47,5</td>
+      <td>NESMA</td>
+      <td>162.0</td>
     </tr>
     <tr>
       <td>1572</td>
@@ -14667,6 +14687,8 @@ div#notebook {
       <td>661.0</td>
       <td>1</td>
       <td>52</td>
+      <td>NESMA</td>
+      <td>464.0</td>
     </tr>
     <tr>
       <td>1606</td>
@@ -14679,6 +14701,8 @@ div#notebook {
       <td>574.0</td>
       <td>1</td>
       <td>59</td>
+      <td>NESMA</td>
+      <td>403.0</td>
     </tr>
     <tr>
       <td>1674</td>
@@ -14691,6 +14715,8 @@ div#notebook {
       <td>720.0</td>
       <td>1</td>
       <td>63</td>
+      <td>NESMA</td>
+      <td>506.0</td>
     </tr>
     <tr>
       <td>1765</td>
@@ -14703,6 +14729,8 @@ div#notebook {
       <td>198.0</td>
       <td>1</td>
       <td>45</td>
+      <td>NESMA</td>
+      <td>136.0</td>
     </tr>
     <tr>
       <td>1829</td>
@@ -14715,6 +14743,8 @@ div#notebook {
       <td>548.0</td>
       <td>1</td>
       <td>56</td>
+      <td>NESMA</td>
+      <td>384.0</td>
     </tr>
     <tr>
       <td>1860</td>
@@ -14727,6 +14757,8 @@ div#notebook {
       <td>716.0</td>
       <td>1</td>
       <td>9</td>
+      <td>NESMA</td>
+      <td>715.0</td>
     </tr>
     <tr>
       <td>2272</td>
@@ -14739,6 +14771,8 @@ div#notebook {
       <td>283.0</td>
       <td>1</td>
       <td>37,5</td>
+      <td>NESMA</td>
+      <td>193.0</td>
     </tr>
     <tr>
       <td>2280</td>
@@ -14751,6 +14785,8 @@ div#notebook {
       <td>511.0</td>
       <td>1</td>
       <td>49</td>
+      <td>NESMA</td>
+      <td>360.0</td>
     </tr>
     <tr>
       <td>2323</td>
@@ -14763,6 +14799,8 @@ div#notebook {
       <td>20.0</td>
       <td>3,0</td>
       <td>40</td>
+      <td>COSMIC</td>
+      <td>89.0</td>
     </tr>
     <tr>
       <td>2995</td>
@@ -14775,6 +14813,8 @@ div#notebook {
       <td>630.0</td>
       <td>1</td>
       <td>82</td>
+      <td>NESMA</td>
+      <td>442.0</td>
     </tr>
     <tr>
       <td>3756</td>
@@ -14787,6 +14827,8 @@ div#notebook {
       <td>622.0</td>
       <td>1</td>
       <td>26</td>
+      <td>NESMA</td>
+      <td>438.0</td>
     </tr>
     <tr>
       <td>3760</td>
@@ -14799,6 +14841,8 @@ div#notebook {
       <td>908.0</td>
       <td>1</td>
       <td>19</td>
+      <td>NESMA</td>
+      <td>909.0</td>
     </tr>
     <tr>
       <td>4010</td>
@@ -14811,6 +14855,8 @@ div#notebook {
       <td>419.0</td>
       <td>1</td>
       <td>23</td>
+      <td>NESMA</td>
+      <td>287.0</td>
     </tr>
     <tr>
       <td>4133</td>
@@ -14823,6 +14869,8 @@ div#notebook {
       <td>20.0</td>
       <td>3,0</td>
       <td>40</td>
+      <td>COSMIC</td>
+      <td>107.0</td>
     </tr>
     <tr>
       <td>4208</td>
@@ -14835,6 +14883,8 @@ div#notebook {
       <td>704.0</td>
       <td>1</td>
       <td>15</td>
+      <td>NESMA</td>
+      <td>705.0</td>
     </tr>
     <tr>
       <td>4233</td>
@@ -14847,6 +14897,8 @@ div#notebook {
       <td>626.0</td>
       <td>1</td>
       <td>81</td>
+      <td>NESMA</td>
+      <td>440.0</td>
     </tr>
     <tr>
       <td>4852</td>
@@ -14859,6 +14911,8 @@ div#notebook {
       <td>590.0</td>
       <td>1</td>
       <td>40</td>
+      <td>NESMA</td>
+      <td>414.0</td>
     </tr>
     <tr>
       <td>4882</td>
@@ -14871,6 +14925,8 @@ div#notebook {
       <td>636.0</td>
       <td>1</td>
       <td>51</td>
+      <td>NESMA</td>
+      <td>447.0</td>
     </tr>
     <tr>
       <td>4966</td>
@@ -14883,6 +14939,8 @@ div#notebook {
       <td>536.0</td>
       <td>1</td>
       <td>27</td>
+      <td>NESMA</td>
+      <td>377.0</td>
     </tr>
     <tr>
       <td>4977</td>
@@ -14895,6 +14953,8 @@ div#notebook {
       <td>292.0</td>
       <td>1</td>
       <td>54</td>
+      <td>NESMA</td>
+      <td>200.0</td>
     </tr>
     <tr>
       <td>4996</td>
@@ -14907,6 +14967,8 @@ div#notebook {
       <td>233.0</td>
       <td>1</td>
       <td>18</td>
+      <td>NESMA</td>
+      <td>160.0</td>
     </tr>
     <tr>
       <td>5081</td>
@@ -14919,6 +14981,8 @@ div#notebook {
       <td>705.0</td>
       <td>1</td>
       <td>38</td>
+      <td>NESMA</td>
+      <td>496.0</td>
     </tr>
     <tr>
       <td>5227</td>
@@ -14931,6 +14995,8 @@ div#notebook {
       <td>616.0</td>
       <td>1</td>
       <td>79</td>
+      <td>NESMA</td>
+      <td>432.0</td>
     </tr>
     <tr>
       <td>5580</td>
@@ -14943,6 +15009,8 @@ div#notebook {
       <td>824.0</td>
       <td>1</td>
       <td>8</td>
+      <td>NESMA</td>
+      <td>824.0</td>
     </tr>
     <tr>
       <td>5834</td>
@@ -14955,6 +15023,8 @@ div#notebook {
       <td>535.0</td>
       <td>1</td>
       <td>38</td>
+      <td>NESMA</td>
+      <td>376.0</td>
     </tr>
     <tr>
       <td>6310</td>
@@ -14967,6 +15037,8 @@ div#notebook {
       <td>617.0</td>
       <td>1</td>
       <td>63</td>
+      <td>NESMA</td>
+      <td>433.0</td>
     </tr>
     <tr>
       <td>6336</td>
@@ -14979,6 +15051,8 @@ div#notebook {
       <td>682.0</td>
       <td>1</td>
       <td>11</td>
+      <td>NESMA</td>
+      <td>684.0</td>
     </tr>
     <tr>
       <td>6427</td>
@@ -14991,6 +15065,8 @@ div#notebook {
       <td>552.0</td>
       <td>1</td>
       <td>28</td>
+      <td>NESMA</td>
+      <td>388.0</td>
     </tr>
     <tr>
       <td>6462</td>
@@ -15003,6 +15079,8 @@ div#notebook {
       <td>609.0</td>
       <td>1</td>
       <td>36</td>
+      <td>NESMA</td>
+      <td>428.0</td>
     </tr>
     <tr>
       <td>6505</td>
@@ -15015,6 +15093,8 @@ div#notebook {
       <td>292.0</td>
       <td>1</td>
       <td>29</td>
+      <td>NESMA</td>
+      <td>200.0</td>
     </tr>
     <tr>
       <td>6700</td>
@@ -15027,6 +15107,8 @@ div#notebook {
       <td>561.0</td>
       <td>1</td>
       <td>46</td>
+      <td>NESMA</td>
+      <td>394.0</td>
     </tr>
     <tr>
       <td>6812</td>
@@ -15039,6 +15121,8 @@ div#notebook {
       <td>5541.0</td>
       <td>5</td>
       <td>11</td>
+      <td>NESMA</td>
+      <td>5542.0</td>
     </tr>
     <tr>
       <td>7022</td>
@@ -15051,6 +15135,8 @@ div#notebook {
       <td>763.0</td>
       <td>1</td>
       <td>13</td>
+      <td>NESMA</td>
+      <td>764.0</td>
     </tr>
     <tr>
       <td>7132</td>
@@ -15063,6 +15149,8 @@ div#notebook {
       <td>490.0</td>
       <td>1</td>
       <td>11</td>
+      <td>NESMA</td>
+      <td>491.0</td>
     </tr>
     <tr>
       <td>7323</td>
@@ -15075,6 +15163,8 @@ div#notebook {
       <td>723.0</td>
       <td>1</td>
       <td>50</td>
+      <td>NESMA</td>
+      <td>508.0</td>
     </tr>
     <tr>
       <td>7358</td>
@@ -15087,6 +15177,8 @@ div#notebook {
       <td>607.0</td>
       <td>1</td>
       <td>57</td>
+      <td>NESMA</td>
+      <td>427.0</td>
     </tr>
     <tr>
       <td>7693</td>
@@ -15099,6 +15191,8 @@ div#notebook {
       <td>400.0</td>
       <td>2,5</td>
       <td>14</td>
+      <td>IFPUG 4+</td>
+      <td>460.0</td>
     </tr>
     <tr>
       <td>7715</td>
@@ -15111,6 +15205,8 @@ div#notebook {
       <td>709.0</td>
       <td>1</td>
       <td>70</td>
+      <td>NESMA</td>
+      <td>498.0</td>
     </tr>
     <tr>
       <td>7738</td>
@@ -15123,6 +15219,8 @@ div#notebook {
       <td>781.0</td>
       <td>1</td>
       <td>59</td>
+      <td>NESMA</td>
+      <td>549.0</td>
     </tr>
     <tr>
       <td>7813</td>
@@ -15135,6 +15233,8 @@ div#notebook {
       <td>262.0</td>
       <td>1</td>
       <td>39</td>
+      <td>NESMA</td>
+      <td>180.0</td>
     </tr>
     <tr>
       <td>7958</td>
@@ -15147,6 +15247,8 @@ div#notebook {
       <td>783.0</td>
       <td>1</td>
       <td>7</td>
+      <td>NESMA</td>
+      <td>784.0</td>
     </tr>
     <tr>
       <td>7966</td>
@@ -15159,6 +15261,8 @@ div#notebook {
       <td>590.0</td>
       <td>1</td>
       <td>63</td>
+      <td>NESMA</td>
+      <td>414.0</td>
     </tr>
     <tr>
       <td>7998</td>
@@ -15171,6 +15275,8 @@ div#notebook {
       <td>414.0</td>
       <td>1</td>
       <td>20</td>
+      <td>NESMA</td>
+      <td>290.0</td>
     </tr>
   </tbody>
 </table>
