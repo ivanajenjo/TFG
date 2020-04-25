@@ -4,5 +4,7 @@
 			"path": "D:\\Users\\ivana\\Documents\\TFG"
 		}
 	],
-	"settings": {}
+	"settings": {
+		"python.pythonPath": "C:\\Users\\ivana\\AppData\\Local\\Programs\\Python\\Python38\\python.exe"
+	}
 }
