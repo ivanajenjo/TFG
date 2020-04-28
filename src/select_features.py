@@ -1,4 +1,4 @@
-from sklearn.feature_selection import mutual_info_regression, mutual_info_classif
+from sklearn.feature_selection import mutual_info_regression, mutual_info_classif, SelectKBest
 from sklearn.preprocessing import LabelEncoder
 import pandas as pd
 
@@ -9,11 +9,21 @@ def calcularMI(variable, df):
                  'Functional Size', 'Adjusted Function Points', 'Project Elapsed Time', '1st Data Base System', 'Used Methodology']
     X = df.loc[:, variables]
     y = df.loc[:, variable].values
-    mi = mutual_info_regression(X, y)
+    mi = mutual_info_regression(X, y, discrete_features=[True, True, True, True, True, True, False, False, False, True, True])
     mi = pd.Series(mi)
     mi.index = X.columns
     mi.sort_values(ascending=False)
     return mi
+
+def selectKBestMi(df):
+    fs = SelectKBest(score_func=mutual_info_regression, k='all')
+    variables = ['Industry Sector', 'Application Group', 'Development Type', 'Development Platform', 'Language Type', 'Primary Programming Language',
+                 'Functional Size', 'Adjusted Function Points', 'Project Elapsed Time', '1st Data Base System', 'Used Methodology']
+    X = df.loc[:, variables]
+    y = df.loc[:,'Normalised Work Effort Level 1'].values
+    fs.fit(X, y)
+    fs.index = X.columns
+    return fs
 
 
 def recodeDataframe(dataframe):
