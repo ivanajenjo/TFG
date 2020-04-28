@@ -1,9 +1,9 @@
-from sklearn.feature_selection import mutual_info_regression
+from sklearn.feature_selection import mutual_info_regression, mutual_info_classif
 from sklearn.preprocessing import LabelEncoder
 import pandas as pd
 
 
-def ordenar_porMI(variable, df):
+def calcularMI(variable, df):
     df.columns
     variables = ['Industry Sector', 'Application Group', 'Development Type', 'Development Platform', 'Language Type', 'Primary Programming Language',
                  'Functional Size', 'Adjusted Function Points', 'Project Elapsed Time', '1st Data Base System', 'Used Methodology']
@@ -28,7 +28,7 @@ def recodeDataframe(dataframe):
     #resultado['Primary Programming Language'] = X_en
     return resultado
 
-
+#aproximacion no valida para nuestro caso práctico
 def recodeDataframeV2(dataframe):
     resultado = dataframe
     variables = ['Industry Sector', 'Application Group', 'Development Type', 'Development Platform',
