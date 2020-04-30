@@ -1,10 +1,35 @@
 from sklearn.feature_selection import mutual_info_regression, mutual_info_classif, SelectKBest
 from sklearn.preprocessing import LabelEncoder
+from sklearn.metrics import mutual_info_score, normalized_mutual_info_score, adjusted_mutual_info_score
+from scipy.stats import chi2_contingency
+from info_gain import info_gain
 import pandas as pd
+import numpy as np
 
+def calc_MI(x, y):
+    c_xy = np.histogram2d(x, y)[0]
+    g, p, dof, expected = chi2_contingency(c_xy, lambda_="log-likelihood")
+    mi = 0.5 * g / c_xy.sum()
+    return mi
+
+def calc_MI_scikit(x, y):
+    mi = mutual_info_score(y, x)
+    return mi
+
+def calcularMiManual(variable, df):
+    y = df[variable].values
+    x = df.loc[:, df.columns != variable]
+    column = []
+    resultado = []
+    for (columnName, columnData) in x.iteritems():
+        #print('Colunm Name : ', columnName)
+        aux = calc_MI_scikit(y, columnData)
+        resultado.append(aux)
+    resultado = pd.Series(resultado)
+    resultado.index = x.columns
+    return resultado
 
 def calcularMI(variable, df):
-    df.columns
     variables = ['Industry Sector', 'Application Group', 'Development Type', 'Development Platform', 'Language Type', 'Primary Programming Language',
                  'Functional Size', 'Adjusted Function Points', 'Project Elapsed Time', '1st Data Base System', 'Used Methodology']
     X = df.loc[:, variables]
@@ -14,6 +39,16 @@ def calcularMI(variable, df):
     mi.index = X.columns
     mi.sort_values(ascending=False)
     return mi
+
+def calcularMIV2(variable, df):
+    variables = ['Industry Sector', 'Application Group', 'Development Type', 'Development Platform', 'Language Type', 'Primary Programming Language',
+                 'Functional Size', 'Adjusted Function Points', 'Project Elapsed Time', '1st Data Base System', 'Used Methodology']
+    #X = df.loc[:, 'Functional Size'].values
+    X = df.loc[:, variables]
+    y = df.loc[:, variable].values
+    ig = info_gain.info_gain(X, y)
+    return ig
+
 
 def selectKBestMi(df):
     fs = SelectKBest(score_func=mutual_info_regression, k='all')
