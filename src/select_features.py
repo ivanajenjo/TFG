@@ -29,6 +29,19 @@ def calcularMiManual(variable, df):
     resultado.index = x.columns
     return resultado
 
+def calcularMiManualInfo_gain(variable, df):
+    y = df[variable].values
+    x = df.loc[:, df.columns != variable]
+    column = []
+    resultado = []
+    for (columnName, columnData) in x.iteritems():
+        #print('Colunm Name : ', columnName)
+        aux = info_gain.intrinsic_value(y, columnData)
+        resultado.append(aux)
+    resultado = pd.Series(resultado)
+    resultado.index = x.columns
+    return resultado
+
 def calcularMI(variable, df):
     variables = ['Industry Sector', 'Application Group', 'Development Type', 'Development Platform', 'Language Type', 'Primary Programming Language',
                  'Functional Size', 'Adjusted Function Points', 'Project Elapsed Time', '1st Data Base System', 'Used Methodology']
@@ -40,16 +53,6 @@ def calcularMI(variable, df):
     mi.sort_values(ascending=False)
     return mi
 
-def calcularMIV2(variable, df):
-    variables = ['Industry Sector', 'Application Group', 'Development Type', 'Development Platform', 'Language Type', 'Primary Programming Language',
-                 'Functional Size', 'Adjusted Function Points', 'Project Elapsed Time', '1st Data Base System', 'Used Methodology']
-    #X = df.loc[:, 'Functional Size'].values
-    X = df.loc[:, variables]
-    y = df.loc[:, variable].values
-    ig = info_gain.info_gain(X, y)
-    return ig
-
-
 def selectKBestMi(df):
     fs = SelectKBest(score_func=mutual_info_regression, k='all')
     variables = ['Industry Sector', 'Application Group', 'Development Type', 'Development Platform', 'Language Type', 'Primary Programming Language',
@@ -59,7 +62,6 @@ def selectKBestMi(df):
     fs.fit(X, y)
     fs.index = X.columns
     return fs
-
 
 def recodeDataframe(dataframe):
     resultado = dataframe
@@ -71,13 +73,4 @@ def recodeDataframe(dataframe):
     #X_en= dataframe['Primary Programming Language'].values
     #X_en = labelencoder.fit_transform(X_en)
     #resultado['Primary Programming Language'] = X_en
-    return resultado
-
-#aproximacion no valida para nuestro caso práctico
-def recodeDataframeV2(dataframe):
-    resultado = dataframe
-    variables = ['Industry Sector', 'Application Group', 'Development Type', 'Development Platform',
-                 'Language Type', 'Primary Programming Language', '1st Data Base System', 'Used Methodology']
-    resultado[variables] = resultado[variables].astype('category')
-    resultado[variables] = resultado[variables].cat.codes
     return resultado
