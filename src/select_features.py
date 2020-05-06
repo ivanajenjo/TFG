@@ -16,10 +16,9 @@ def calc_MI_scikit(x, y):
     mi = mutual_info_score(y, x)
     return mi
 
-def calcularMiManual(variable, df):
+def calcularMi_Manual(variable, df):
     y = df[variable].values
     x = df.loc[:, df.columns != variable]
-    column = []
     resultado = []
     for (columnName, columnData) in x.iteritems():
         #print('Colunm Name : ', columnName)
@@ -27,12 +26,12 @@ def calcularMiManual(variable, df):
         resultado.append(aux)
     resultado = pd.Series(resultado)
     resultado.index = x.columns
+    resultado = resultado.sort_values(ascending=False)
     return resultado
 
-def calcularMiManualInfo_gain(variable, df):
+def calcularMi_ManualInfo_gain(variable, df):
     y = df[variable].values
     x = df.loc[:, df.columns != variable]
-    column = []
     resultado = []
     for (columnName, columnData) in x.iteritems():
         #print('Colunm Name : ', columnName)
@@ -40,6 +39,7 @@ def calcularMiManualInfo_gain(variable, df):
         resultado.append(aux)
     resultado = pd.Series(resultado)
     resultado.index = x.columns
+    resultado = resultado.sort_values(ascending=False)
     return resultado
 
 def calcularMI(variable, df):
@@ -47,10 +47,10 @@ def calcularMI(variable, df):
                  'Functional Size', 'Adjusted Function Points', 'Project Elapsed Time', '1st Data Base System', 'Used Methodology']
     X = df.loc[:, variables]
     y = df.loc[:, variable].values
-    mi = mutual_info_regression(X, y, discrete_features=[True, True, True, True, True, True, False, False, False, True, True])
+    mi = mutual_info_regression(X, y, discrete_features=[True, True, True, True, True, True, False, False, False, True, True], n_neighbors=10)
     mi = pd.Series(mi)
     mi.index = X.columns
-    mi.sort_values(ascending=False)
+    mi = mi.sort_values(ascending=False)
     return mi
 
 def selectKBestMi(df):
@@ -73,4 +73,16 @@ def recodeDataframe(dataframe):
     #X_en= dataframe['Primary Programming Language'].values
     #X_en = labelencoder.fit_transform(X_en)
     #resultado['Primary Programming Language'] = X_en
+    return resultado
+
+def calcular_mRMR(variable, df):
+    ganancias = calcularMi_ManualInfo_gain(variable, df)
+    resultado = {}
+    i = 0
+    for index, value in ganancias.items():
+        if i == 0:
+            resultado[index] = value
+        i += 1
+        #print(f"Index : {index}, Value : {value}")
+    resultado = pd.Series(resultado)
     return resultado
