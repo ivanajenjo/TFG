@@ -13,7 +13,7 @@ def calc_MI(x, y):
     return mi
 
 def calc_MI_scikit(x, y):
-    mi = mutual_info_score(y, x)
+    mi = normalized_mutual_info_score(y, x)
     return mi
 
 def calcularMi_Manual(variable, df):
@@ -47,7 +47,7 @@ def calcularMI(variable, df):
                  'Functional Size', 'Adjusted Function Points', 'Project Elapsed Time', '1st Data Base System', 'Used Methodology']
     X = df.loc[:, variables]
     y = df.loc[:, variable].values
-    mi = mutual_info_regression(X, y, discrete_features=[True, True, True, True, True, True, False, False, False, True, True], n_neighbors=10)
+    mi = mutual_info_regression(X, y, discrete_features=[True, True, True, True, True, True, False, False, False, True, True], n_neighbors=1)
     mi = pd.Series(mi)
     mi.index = X.columns
     mi = mi.sort_values(ascending=False)
@@ -76,6 +76,21 @@ def recodeDataframe(dataframe):
     return resultado
 
 def calcular_mRMR(variable, df):
+    ordenadas = calcularMi_ManualInfo_gain(variable, df)
+    ordenadas = ordenadas.keys()
+    print(ordenadas)
+    mrmr = {}
+    seleccionadas = {}
+    iteraciones = len(ordenadas)
+    for i in range(iteraciones):
+       for prueba in ordenadas:
+           I = calcularMi_ManualInfo_gain(df[variable], df[prueba, variable])
+           for seleccionada in seleccionadas:
+               print('Hi')
+
+
+
+""" def calcular_mRMR(variable, df):
     ganancias = calcularMi_ManualInfo_gain(variable, df)
     resultado = {}
     i = 0
@@ -85,4 +100,4 @@ def calcular_mRMR(variable, df):
         i += 1
         #print(f"Index : {index}, Value : {value}")
     resultado = pd.Series(resultado)
-    return resultado
+    return resultado """
