@@ -4,6 +4,7 @@ from sklearn.metrics import normalized_mutual_info_score
 from info_gain import info_gain
 import pandas as pd
 import numpy as np
+import operator
 
 
 def calc_MI_scikit(x, y):
@@ -99,16 +100,26 @@ def calcular_mRMR(variable, df):
     print(mrmr)
     
 
-
-
-""" def calcular_mRMR(variable, df):
-    ganancias = calcularMi_ManualInfo_gain(variable, df)
-    resultado = {}
-    i = 0
-    for index, value in ganancias.items():
-        if i == 0:
-            resultado[index] = value
-        i += 1
-        #print(f"Index : {index}, Value : {value}")
-    resultado = pd.Series(resultado)
-    return resultado """
+def calcular_mRMRV2(variable, df):
+    seleccionadas = []
+    mrmr = {}
+    info_gain = calcularMi_ManualInfo_gain(variable, df)
+    ordenadas = info_gain.keys().values.tolist()
+    seleccionadas.append(ordenadas[0])
+    mrmr[ordenadas[0]] = info_gain.iloc[0]
+    ordenadas.pop(0)
+    iteraciones = len(ordenadas)
+    for i in range(iteraciones):
+        coefs = {}
+        for prueba in ordenadas:
+            info_parcial = {}
+            Info_prueba = calc_MI_scikit(df[variable], df[prueba])
+            for seleccionada in seleccionadas:
+                I_parcial = calc_MI_scikit(df[prueba], df[seleccionada])
+                info_parcial[seleccionada] = I_parcial 
+            coef_parcial = Info_prueba - np.mean(list(info_parcial.values()))
+            coefs[prueba] = coef_parcial
+        coefs_ordenados = sorted(coefs.items(), key=operator.itemgetter(1), reverse=True)
+        mrmr[coefs_ordenados[0]] = coefs[coefs_ordenados[0]]
+        ordenadas.remove(coefs_ordenados[0])
+    return mrmr
