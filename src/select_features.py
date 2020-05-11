@@ -26,44 +26,6 @@ def calcularMi_Manual(variable, df):
     return resultado
 
 
-def calcularMi_ManualInfo_gain(variable, df):
-    y = df[variable].values
-    x = df.loc[:, df.columns != variable]
-    resultado = []
-    for (columnName, columnData) in x.iteritems():
-        #print('Colunm Name : ', columnName)
-        aux = info_gain.intrinsic_value(y, columnData)
-        resultado.append(aux)
-    resultado = pd.Series(resultado)
-    resultado.index = x.columns
-    resultado = resultado.sort_values(ascending=False)
-    return resultado
-
-
-def calcularMI(variable, df):
-    variables = ['Industry Sector', 'Application Group', 'Development Type', 'Development Platform', 'Language Type', 'Primary Programming Language',
-                 'Functional Size', 'Adjusted Function Points', 'Project Elapsed Time', '1st Data Base System', 'Used Methodology']
-    X = df.loc[:, variables]
-    y = df.loc[:, variable].values
-    mi = mutual_info_regression(X, y, discrete_features=[
-                                True, True, True, True, True, True, False, False, False, True, True], n_neighbors=1)
-    mi = pd.Series(mi)
-    mi.index = X.columns
-    mi = mi.sort_values(ascending=False)
-    return mi
-
-
-def selectKBestMi(df):
-    fs = SelectKBest(score_func=mutual_info_regression, k='all')
-    variables = ['Industry Sector', 'Application Group', 'Development Type', 'Development Platform', 'Language Type', 'Primary Programming Language',
-                 'Functional Size', 'Adjusted Function Points', 'Project Elapsed Time', '1st Data Base System', 'Used Methodology']
-    X = df.loc[:, variables]
-    y = df.loc[:, 'Normalised Work Effort Level 1'].values
-    fs.fit(X, y)
-    fs.index = X.columns
-    return fs
-
-
 def recodeDataframe(dataframe):
     resultado = dataframe
     categorical_feature_mask = resultado.dtypes == object
@@ -76,34 +38,10 @@ def recodeDataframe(dataframe):
     #resultado['Primary Programming Language'] = X_en
     return resultado
 
-
-def calcular_mRMR(variable, df):
-    infogain = calcularMi_ManualInfo_gain(variable, df)
-    ordenadas = infogain.keys().values.tolist()
-    mrmr = []
-    seleccionadas = []
-    iteraciones = len(ordenadas)
-    for i in range(iteraciones):
-        seleccionadas.append(ordenadas[0])
-        ordenadas.pop(0)
-        coefs = []
-        for prueba in ordenadas:
-            I = calc_MI_scikit(df[variable], df[prueba])
-            info_parcial = []
-            for seleccionada in seleccionadas:
-                I_parcial = calc_MI_scikit(df[seleccionada], df[prueba])
-                info_parcial.append(I_parcial)
-            coef = I - np.mean(info_parcial)
-            coefs.append(coef)
-        indices_ordenados = coefs.sort(reverse=True)
-        mrmr.append(coefs)
-    print(mrmr)
-    
-
 def calcular_mRMRV2(variable, df):
     seleccionadas = []
     mrmr = {}
-    info_gain = calcularMi_ManualInfo_gain(variable, df)
+    info_gain = calcularMi_Manual(variable, df)
     ordenadas = info_gain.keys().values.tolist()
     seleccionadas.append(ordenadas[0])
     mrmr[ordenadas[0]] = info_gain.iloc[0]
@@ -120,6 +58,9 @@ def calcular_mRMRV2(variable, df):
             coef_parcial = Info_prueba - np.mean(list(info_parcial.values()))
             coefs[prueba] = coef_parcial
         coefs_ordenados = sorted(coefs.items(), key=operator.itemgetter(1), reverse=True)
-        mrmr[coefs_ordenados[0]] = coefs[coefs_ordenados[0]]
-        ordenadas.remove(coefs_ordenados[0])
-    return mrmr
+        print(coefs)
+        mrmr[coefs_ordenados[0][0]] = coefs[coefs_ordenados[0][0]]
+        ordenadas.remove(coefs_ordenados[0][0])
+        seleccionadas.append(coefs_ordenados[0][0])
+    resultado = pd.Series(mrmr)
+    return resultado
