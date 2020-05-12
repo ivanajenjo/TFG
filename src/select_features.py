@@ -1,11 +1,10 @@
 from sklearn.feature_selection import mutual_info_regression, mutual_info_classif, SelectKBest
 from sklearn.preprocessing import LabelEncoder
-from sklearn.metrics import normalized_mutual_info_score
+from sklearn.metrics import normalized_mutual_info_score, mutual_info_score, adjusted_mutual_info_score
 from info_gain import info_gain
 import pandas as pd
 import numpy as np
 import operator
-
 
 def calc_MI_scikit(x, y):
     mi = normalized_mutual_info_score(y, x)
@@ -25,6 +24,29 @@ def calcularMi_Manual(variable, df):
     resultado = resultado.sort_values(ascending=False)
     return resultado
 
+def calcularMi_ManualInfo_gain(variable, df):
+    y = df[variable].values
+    x = df.loc[:, df.columns != variable]
+    resultado = []
+    for (columnName, columnData) in x.iteritems():
+        #print('Colunm Name : ', columnName)
+        aux = info_gain.intrinsic_value(y, columnData)
+        resultado.append(aux)
+    resultado = pd.Series(resultado)
+    resultado.index = x.columns
+    resultado = resultado.sort_values(ascending=False)
+    return resultado
+
+def calcularMI(variable, df):
+    variables = ['Industry Sector', 'Application Group', 'Development Type', 'Development Platform', 'Language Type', 'Primary Programming Language',
+                 'Functional Size', 'Adjusted Function Points', 'Project Elapsed Time', '1st Data Base System', 'Used Methodology']
+    X = df.loc[:, variables]
+    y = df.loc[:, variable].values
+    mi = mutual_info_regression(X, y, n_neighbors=1)
+    mi = pd.Series(mi)
+    mi.index = X.columns
+    mi = mi.sort_values(ascending=False)
+    return mi
 
 def recodeDataframe(dataframe):
     resultado = dataframe
