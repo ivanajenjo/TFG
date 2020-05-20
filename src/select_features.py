@@ -1,45 +1,47 @@
-from sklearn.feature_selection import mutual_info_regression, mutual_info_classif, SelectKBest
-from sklearn.preprocessing import LabelEncoder
-from sklearn.metrics import normalized_mutual_info_score, mutual_info_score, adjusted_mutual_info_score
-from info_gain import info_gain
-import pandas as pd
-import numpy as np
 import operator
+
+import numpy as np
+import pandas as pd
+import rpy2.robjects as ro
 import rpy2.robjects.packages as rpackages
+from info_gain import info_gain
+from rpy2.robjects import Formula, pandas2ri
+from rpy2.robjects.packages import importr
+from rpy2.robjects.vectors import StrVector
+from sklearn.feature_selection import (SelectKBest, mutual_info_classif,
+                                       mutual_info_regression)
+from sklearn.metrics import (adjusted_mutual_info_score, mutual_info_score,
+                             normalized_mutual_info_score)
+from sklearn.preprocessing import LabelEncoder
 
+utils = None
+information_gain = None
 
-def calcularMi_R(variable, df):
+def setupR_enviroment():
+    global utils
+    global information_gain
     utils = rpackages.importr('utils')
     utils.chooseCRANmirror(ind=1)
     packages = ('FSelector')
-    from rpy2.robjects.vectors import StrVector
     utils.install_packages(StrVector(packages))
-    from rpy2.robjects.packages import importr
     FSelector = importr("FSelector")
-    # print(FSelector.__dict__['_rpy2r'])
     information_gain = FSelector.information_gain
-    import rpy2.robjects as ro
-    from rpy2.robjects import pandas2ri, Formula
+
+def calcularMi_R(variable, df):
+    if utils == None:
+        setupR_enviroment()
     pandas2ri.activate()
     r_df = ro.conversion.py2rpy(df)
     #fmla = Formula('Normalised_Work_Effort_Level_1~.')
     fmla = Formula(str(variable + '~.'))
     resultado = information_gain(fmla, r_df)
-    resultado = resultado.sort_values('attr_importance', ascending = False)
+    resultado = resultado.sort_values('attr_importance', ascending=False)
     return resultado
 
+
 def calcularMi_R_2V(variable1, variable2, df):
-    utils = rpackages.importr('utils')
-    utils.chooseCRANmirror(ind=1)
-    packages = ('FSelector')
-    from rpy2.robjects.vectors import StrVector
-    utils.install_packages(StrVector(packages))
-    from rpy2.robjects.packages import importr
-    FSelector = importr("FSelector")
-    # print(FSelector.__dict__['_rpy2r'])
-    information_gain = FSelector.information_gain
-    import rpy2.robjects as ro
-    from rpy2.robjects import pandas2ri, Formula
+    if utils == None:
+        setupR_enviroment()
     pandas2ri.activate()
     r_df = ro.conversion.py2rpy(df)
     fmla = Formula(str(variable1 + '~' + variable2))
@@ -53,7 +55,7 @@ def calcular_mRMR_R(variable, df):
     info_gain = calcularMi_R(variable, df)
     ordenadas = info_gain.index.tolist()
     seleccionadas.append(ordenadas[0])
-    mrmr[ordenadas[0]] = info_gain.iloc[0]
+    mrmr[ordenadas[0]] = info_gain.iloc[0].values[0]
     ordenadas.pop(0)
     iteraciones = len(ordenadas)
     for i in range(iteraciones):
@@ -62,8 +64,9 @@ def calcular_mRMR_R(variable, df):
             info_parcial = {}
             Info_prueba = calcularMi_R_2V(variable, prueba, df)
             for seleccionada in seleccionadas:
-                I_parcial = calcularMi_R_2V(prueba, seleccionada, df)
+                I_parcial = calcularMi_R_2V(seleccionada, prueba, df)
                 info_parcial[seleccionada] = I_parcial
+                #print('Prueba ' + str(prueba) + 'Seleccionada ' + str(seleccionada) + 'Info ' + str(I_parcial))
             coef_parcial = Info_prueba - np.mean(list(info_parcial.values()))
             coefs[prueba] = coef_parcial
         coefs_ordenados = sorted(
@@ -81,14 +84,12 @@ def recodeDataframe_R(df):
                   'Development_Platform', 'Language_Type', 'Primary_Programming_Language',
                   'Functional_Size', 'Adjusted_Function_Points',
                   'Normalised_Work_Effort_Level_1', 'Project_Elapsed_Time',
-                  '1st_Data_Base_System', 'Used_Methodology']
+                  'First_Data_Base_System', 'Used_Methodology']
     return df
-
 
 def calc_MI_scikit(x, y):
     mi = normalized_mutual_info_score(y, x)
     return mi
-
 
 def calcularMi_Manual(variable, df):
     y = df[variable].values
@@ -104,7 +105,6 @@ def calcularMi_Manual(variable, df):
     resultado = resultado.sort_values(ascending=False)
     return resultado
 
-
 def calcularMi_ManualInfo_gain(variable, df):
     y = df[variable].values
     x = df.loc[:, df.columns != variable]
@@ -118,7 +118,6 @@ def calcularMi_ManualInfo_gain(variable, df):
     resultado = resultado.sort_values(ascending=False)
     return resultado
 
-
 def calcularMI(variable, df):
     variables = ['Industry Sector', 'Application Group', 'Development Type', 'Development Platform', 'Language Type', 'Primary Programming Language',
                  'Functional Size', 'Adjusted Function Points', 'Project Elapsed Time', '1st Data Base System', 'Used Methodology']
@@ -129,7 +128,6 @@ def calcularMI(variable, df):
     mi.index = X.columns
     mi = mi.sort_values(ascending=False)
     return mi
-
 
 def recodeDataframe(dataframe):
     resultado = dataframe
@@ -142,7 +140,6 @@ def recodeDataframe(dataframe):
     #X_en = labelencoder.fit_transform(X_en)
     #resultado['Primary Programming Language'] = X_en
     return resultado
-
 
 def calcular_mRMRV2(variable, df):
     seleccionadas = []
