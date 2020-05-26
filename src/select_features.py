@@ -13,9 +13,12 @@ from sklearn.feature_selection import (SelectKBest, mutual_info_classif,
 from sklearn.metrics import (adjusted_mutual_info_score, mutual_info_score,
                              normalized_mutual_info_score)
 from sklearn.preprocessing import LabelEncoder
+from sklearn.impute import KNNImputer
+from fancyimpute import KNN
 
 utils = None
 information_gain = None
+
 
 def setupR_enviroment():
     global utils
@@ -26,6 +29,7 @@ def setupR_enviroment():
     utils.install_packages(StrVector(packages))
     FSelector = importr("FSelector")
     information_gain = FSelector.information_gain
+
 
 def calcularMi_R(variable, df):
     if utils == None:
@@ -48,6 +52,7 @@ def calcularMi_R_2V(variable1, variable2, df):
     resultado = information_gain(fmla, r_df)
     resultado = resultado.iloc[0].values[0]
     return resultado
+
 
 def calcular_mRMR_R(variable, df):
     seleccionadas = []
@@ -87,9 +92,11 @@ def recodeDataframe_R(df):
                   'First_Data_Base_System', 'Used_Methodology']
     return df
 
+
 def calc_MI_scikit(x, y):
     mi = normalized_mutual_info_score(y, x)
     return mi
+
 
 def calcularMi_Manual(variable, df):
     y = df[variable].values
@@ -105,20 +112,8 @@ def calcularMi_Manual(variable, df):
     resultado = resultado.sort_values(ascending=False)
     return resultado
 
-def calcularMi_ManualInfo_gain(variable, df):
-    y = df[variable].values
-    x = df.loc[:, df.columns != variable]
-    resultado = []
-    for (columnName, columnData) in x.iteritems():
-        #print('Colunm Name : ', columnName)
-        aux = info_gain.intrinsic_value(y, columnData)
-        resultado.append(aux)
-    resultado = pd.Series(resultado)
-    resultado.index = x.columns
-    resultado = resultado.sort_values(ascending=False)
-    return resultado
 
-def calcularMI(variable, df):
+def calcular_mi(variable, df):
     variables = ['Industry Sector', 'Application Group', 'Development Type', 'Development Platform', 'Language Type', 'Primary Programming Language',
                  'Functional Size', 'Adjusted Function Points', 'Project Elapsed Time', '1st Data Base System', 'Used Methodology']
     X = df.loc[:, variables]
@@ -128,6 +123,7 @@ def calcularMI(variable, df):
     mi.index = X.columns
     mi = mi.sort_values(ascending=False)
     return mi
+
 
 def recodeDataframe(dataframe):
     resultado = dataframe
@@ -140,6 +136,7 @@ def recodeDataframe(dataframe):
     #X_en = labelencoder.fit_transform(X_en)
     #resultado['Primary Programming Language'] = X_en
     return resultado
+
 
 def calcular_mRMRV2(variable, df):
     seleccionadas = []
@@ -168,3 +165,35 @@ def calcular_mRMRV2(variable, df):
         seleccionadas.append(coefs_ordenados[0][0])
     resultado = pd.Series(mrmr)
     return resultado
+
+
+def calcular_mmre(variable, df, k=5):
+    total = len(df)
+    resultado = pd.DataFrame(columns=['Valor Original', 'Valor Imputado'])
+    for i in range(total):
+        df_test = df.copy(deep=True)
+        dato_original = df_test[variable].iloc[i]
+        df_test[variable].iloc[i] = np.nan
+        imputer = KNNImputer(n_neighbors=k)
+        df_test = imputer.fit_transform(df_test)
+        dato_imputado = df_test[i ,8]
+        #print(dato_original)
+        #print(dato_imputado)
+        resultado = resultado.append({'Valor Original':dato_original, 'Valor Imputado':dato_imputado}, ignore_index=True)
+        mmre = (1/total)*sum(abs(resultado['Valor Original'] - resultado['Valor Imputado'])/resultado['Valor Original'])
+    return mmre
+
+
+def calcular_mmre_v2(variable, df, k=5):
+    total = len(df)
+    resultado = pd.DataFrame(columns=['Valor Original', 'Valor Imputado'])
+    for i in range(total):  
+        df_test = df.copy(deep=True)
+        dato_original = df_test[variable].iloc[i]
+        df_test[variable].iloc[i] = np.nan
+        imputer = KNN(k=k)
+        df_test = imputer.fit_transform(df_test)
+        dato_imutado = df_test[i ,8]
+        resultado = resultado.append({'Valor Original':dato_original, 'Valor Imputado':dato_imutado}, ignore_index=True)
+    mmre = (1/total)*sum(abs(resultado['Valor Original'] - resultado['Valor Imputado'])/resultado['Valor Original'])
+    return mmre
