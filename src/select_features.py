@@ -21,6 +21,7 @@ information_gain = None
 
 
 def setupR_enviroment():
+    """Prepara el entorno necesario de R para utilizar FSelector"""
     global utils
     global information_gain
     utils = rpackages.importr('utils')
@@ -31,7 +32,16 @@ def setupR_enviroment():
     information_gain = FSelector.information_gain
 
 
-def calcularMi_R(variable, df):
+def calcular_mi_R(variable, df):
+    """Calcula Mutual Information para las variables independientes utilizando FSelector
+    
+    Parameters:
+        variable (String): Variable sobre la cual se quiere calcular MI
+        df (pandas.DataFrame): DataFrame
+
+    Returns:
+        pandas.DataFrame: DataFrame ordenado con los valores de MI de cada una de las variables del df
+    """
     if utils == None:
         setupR_enviroment()
     pandas2ri.activate()
@@ -43,7 +53,17 @@ def calcularMi_R(variable, df):
     return resultado
 
 
-def calcularMi_R_2V(variable1, variable2, df):
+def calcular_mi_R_2v(variable1, variable2, df):
+    """Calcula MI entre 2 variables de un DataFrame utilizando FSelector
+    
+    Parameters:
+        variable1 (String): Primera variable utilizada para calcular MI
+        variable2 (String): Segunda variable utilizada para calcular MI
+        df (pandas.DataFrame): DataFrame
+
+    Returns:
+        float: Valor de MI
+    """
     if utils == None:
         setupR_enviroment()
     pandas2ri.activate()
@@ -54,10 +74,19 @@ def calcularMi_R_2V(variable1, variable2, df):
     return resultado
 
 
-def calcular_mRMR_R(variable, df):
+def calcular_mrmr_R(variable, df):
+    """Minimum redundancy – Maximum relevance (MRMR) utilizando FSelector para calcular los MI necesarios
+    
+    Parameters:
+        variable (String): Variable sobre la cual se calcula mrmr
+        df (pandas.DataFrame): DataFrame
+
+    Returns:
+        pandas.Series: Serie con los resultados de mrmr
+    """
     seleccionadas = []
     mrmr = {}
-    info_gain = calcularMi_R(variable, df)
+    info_gain = calcular_mi_R(variable, df)
     ordenadas = info_gain.index.tolist()
     seleccionadas.append(ordenadas[0])
     mrmr[ordenadas[0]] = info_gain.iloc[0].values[0]
@@ -67,11 +96,10 @@ def calcular_mRMR_R(variable, df):
         coefs = {}
         for prueba in ordenadas:
             info_parcial = {}
-            Info_prueba = calcularMi_R_2V(variable, prueba, df)
+            Info_prueba = calcular_mi_R_2v(variable, prueba, df)
             for seleccionada in seleccionadas:
-                I_parcial = calcularMi_R_2V(seleccionada, prueba, df)
+                I_parcial = calcular_mi_R_2v(seleccionada, prueba, df)
                 info_parcial[seleccionada] = I_parcial
-                #print('Prueba ' + str(prueba) + 'Seleccionada ' + str(seleccionada) + 'Info ' + str(I_parcial))
             coef_parcial = Info_prueba - np.mean(list(info_parcial.values()))
             coefs[prueba] = coef_parcial
         coefs_ordenados = sorted(
@@ -84,7 +112,16 @@ def calcular_mRMR_R(variable, df):
     return resultado
 
 
-def recodeDataframe_R(df):
+def recode_dataframe_R(df):
+    """Cambia el nombre de las columnas para que puedan ser utilizadas correctamente por FSelector
+    MÉTODO SOLO VALIDO PARA EL DATAFRAME DEL TRABAJO ORIGINAL
+
+    Parameters:
+        df (pandas.DataFrame): Dataframe
+
+    Returns:
+        Dataframe modificado
+    """
     df.columns = ['Industry_Sector', 'Application_Group', 'Development_Type',
                   'Development_Platform', 'Language_Type', 'Primary_Programming_Language',
                   'Functional_Size', 'Adjusted_Function_Points',
@@ -93,19 +130,28 @@ def recodeDataframe_R(df):
     return df
 
 
-def calc_MI_scikit(x, y):
+def calc_mi_scikit(x, y):
     mi = normalized_mutual_info_score(y, x)
     return mi
 
 
-def calcularMi_Manual(variable, df):
+def calcular_mi_manual(variable, df):
+    """Calcula Mutual Information para las variables independientes utilizando sklearn.metrics.normalized_mutual_info_score para un DataFrame
+    
+    Parameters:
+        variable (String): Variable sobre la cual se calcula mi
+        df (pandas.DataFrame): Dataframe
+
+    Returns:
+        pandas.Series: Serie con los resultados de mi
+    """
     y = df[variable].values
     x = df.loc[:, df.columns != variable]
     #x = df
     resultado = []
     for (columnName, columnData) in x.iteritems():
         #print('Colunm Name : ', columnName)
-        aux = calc_MI_scikit(y, columnData)
+        aux = calc_mi_scikit(y, columnData)
         resultado.append(aux)
     resultado = pd.Series(resultado)
     resultado.index = x.columns
@@ -114,6 +160,16 @@ def calcularMi_Manual(variable, df):
 
 
 def calcular_mi(variable, df):
+    """Calcula Mutual Information para las variables independientes utilizando sklearn.feature_selection.mutual_info_regression para un DataFrame
+    MÉTODO SOLO VALIDO PARA EL DATAFRAME DEL TRABAJO ORIGINAL
+    
+    Parameters:
+        variable (String): Variable sobre la cual se calcula mi
+        df (pandas.DataFrame): Dataframe
+
+    Returns:
+        pandas.Series: Serie con los resultados de mi
+    """
     variables = ['Industry Sector', 'Application Group', 'Development Type', 'Development Platform', 'Language Type', 'Primary Programming Language',
                  'Functional Size', 'Adjusted Function Points', 'Project Elapsed Time', '1st Data Base System', 'Used Methodology']
     X = df.loc[:, variables]
@@ -125,7 +181,15 @@ def calcular_mi(variable, df):
     return mi
 
 
-def recodeDataframe(dataframe):
+def recode_dataframe(dataframe):
+    """Recodifica el DataFrame utilizando sklearn.preprocessing.LabelEncoder para las variables categóricas
+    
+    Parameters:
+        dataframe (pandas.DataFrame): Dataframe
+
+    Returns:
+        pandas.DataFrame con las variables categóricas codificadas
+    """
     resultado = dataframe
     categorical_feature_mask = resultado.dtypes == object
     categorical_cols = resultado.columns[categorical_feature_mask].tolist()
@@ -138,10 +202,19 @@ def recodeDataframe(dataframe):
     return resultado
 
 
-def calcular_mRMRV2(variable, df):
+def calcular_mrmr_v2(variable, df):
+    """Minimum redundancy – Maximum relevance (MRMR) utilizando sklearn.metrics.normalized_mutual_info_score para calcular los MI necesarios
+    
+    Parameters:
+        variable (String): Variable sobre la cual se calcula mrmr
+        df (pandas.DataFrame): DataFrame
+
+    Returns:
+        pandas.Series: Serie con los resultados de mrmr
+    """
     seleccionadas = []
     mrmr = {}
-    info_gain = calcularMi_Manual(variable, df)
+    info_gain = calcular_mi_manual(variable, df)
     ordenadas = info_gain.keys().values.tolist()
     seleccionadas.append(ordenadas[0])
     mrmr[ordenadas[0]] = info_gain.iloc[0]
@@ -151,15 +224,15 @@ def calcular_mRMRV2(variable, df):
         coefs = {}
         for prueba in ordenadas:
             info_parcial = {}
-            Info_prueba = calc_MI_scikit(df[variable], df[prueba])
+            Info_prueba = calc_mi_scikit(df[variable], df[prueba])
             for seleccionada in seleccionadas:
-                I_parcial = calc_MI_scikit(df[prueba], df[seleccionada])
+                I_parcial = calc_mi_scikit(df[prueba], df[seleccionada])
                 info_parcial[seleccionada] = I_parcial
             coef_parcial = Info_prueba - np.mean(list(info_parcial.values()))
             coefs[prueba] = coef_parcial
         coefs_ordenados = sorted(
             coefs.items(), key=operator.itemgetter(1), reverse=True)
-        print(coefs)
+        #print(coefs)
         mrmr[coefs_ordenados[0][0]] = coefs[coefs_ordenados[0][0]]
         ordenadas.remove(coefs_ordenados[0][0])
         seleccionadas.append(coefs_ordenados[0][0])
@@ -168,6 +241,17 @@ def calcular_mRMRV2(variable, df):
 
 
 def calcular_mmre(variable, df, k=5):
+    """Calcula mmre imputando los valores con la funcion sklearn.impute.KNNImputer
+    EL MÉTODO TODAVIA NO ESTÁ TERMINADO YA QUE SOLO FUNCIONA CON EL DATAFRAME DEL TRABAJO A DIA 28-5
+
+    Parameters:
+        variable (String): Variable sobre la cual se va a calcular mmre
+        df (pandas.DataFrame): DataFrame
+        k (int): Valor utilizado en n_neighbors de KNNImputer
+    
+    Returns:
+        float con el valor de mmre
+    """
     total = len(df)
     resultado = pd.DataFrame(columns=['Valor Original', 'Valor Imputado'])
     for i in range(total):
@@ -177,14 +261,23 @@ def calcular_mmre(variable, df, k=5):
         imputer = KNNImputer(n_neighbors=k)
         df_test = imputer.fit_transform(df_test)
         dato_imputado = df_test[i ,8]
-        #print(dato_original)
-        #print(dato_imputado)
         resultado = resultado.append({'Valor Original':dato_original, 'Valor Imputado':dato_imputado}, ignore_index=True)
         mmre = (1/total)*sum(abs(resultado['Valor Original'] - resultado['Valor Imputado'])/resultado['Valor Original'])
     return mmre
 
 
 def calcular_mmre_v2(variable, df, k=5):
+    """Calcula mmre imputando los valores con la funcion fancyimpute.KNN
+    EL MÉTODO TODAVIA NO ESTÁ TERMINADO YA QUE SOLO FUNCIONA CON EL DATAFRAME DEL TRABAJO A DIA 28-5
+
+    Parameters:
+        variable (String): Variable sobre la cual se va a calcular mmre
+        df (pandas.DataFrame): DataFrame
+        k (int): Valor utilizado en n_neighbors de fancyimpute.KNN
+    
+    Returns:
+        float con el valor de mmre
+    """
     total = len(df)
     resultado = pd.DataFrame(columns=['Valor Original', 'Valor Imputado'])
     for i in range(total):  
@@ -193,7 +286,7 @@ def calcular_mmre_v2(variable, df, k=5):
         df_test[variable].iloc[i] = np.nan
         imputer = KNN(k=k)
         df_test = imputer.fit_transform(df_test)
-        dato_imutado = df_test[i ,8]
-        resultado = resultado.append({'Valor Original':dato_original, 'Valor Imputado':dato_imutado}, ignore_index=True)
+        dato_imputado = df_test[i ,8]
+        resultado = resultado.append({'Valor Original':dato_original, 'Valor Imputado':dato_imputado}, ignore_index=True)
     mmre = (1/total)*sum(abs(resultado['Valor Original'] - resultado['Valor Imputado'])/resultado['Valor Original'])
     return mmre
