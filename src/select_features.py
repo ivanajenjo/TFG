@@ -34,7 +34,7 @@ def setupR_enviroment():
 
 def calcular_mi_R(variable, df):
     """Calcula Mutual Information para las variables independientes utilizando FSelector
-    
+
     Parameters:
         variable (String): Variable sobre la cual se quiere calcular MI
         df (pandas.DataFrame): DataFrame
@@ -55,7 +55,7 @@ def calcular_mi_R(variable, df):
 
 def calcular_mi_R_2v(variable1, variable2, df):
     """Calcula MI entre 2 variables de un DataFrame utilizando FSelector
-    
+
     Parameters:
         variable1 (String): Primera variable utilizada para calcular MI
         variable2 (String): Segunda variable utilizada para calcular MI
@@ -76,7 +76,7 @@ def calcular_mi_R_2v(variable1, variable2, df):
 
 def calcular_mrmr_R(variable, df):
     """Minimum redundancy – Maximum relevance (MRMR) utilizando FSelector para calcular los MI necesarios
-    
+
     Parameters:
         variable (String): Variable sobre la cual se calcula mrmr
         df (pandas.DataFrame): DataFrame
@@ -114,7 +114,7 @@ def calcular_mrmr_R(variable, df):
 
 def recode_dataframe_R(df):
     """Cambia el nombre de las columnas para que puedan ser utilizadas correctamente por FSelector
-    MÉTODO SOLO VALIDO PARA EL DATAFRAME DEL TRABAJO ORIGINAL
+    FUNCIÓN SOLO VALIDA PARA EL DATAFRAME DEL TRABAJO ORIGINAL
 
     Parameters:
         df (pandas.DataFrame): Dataframe
@@ -137,7 +137,7 @@ def calc_mi_scikit(x, y):
 
 def calcular_mi_manual(variable, df):
     """Calcula Mutual Information para las variables independientes utilizando sklearn.metrics.normalized_mutual_info_score para un DataFrame
-    
+
     Parameters:
         variable (String): Variable sobre la cual se calcula mi
         df (pandas.DataFrame): Dataframe
@@ -161,8 +161,8 @@ def calcular_mi_manual(variable, df):
 
 def calcular_mi(variable, df):
     """Calcula Mutual Information para las variables independientes utilizando sklearn.feature_selection.mutual_info_regression para un DataFrame
-    MÉTODO SOLO VALIDO PARA EL DATAFRAME DEL TRABAJO ORIGINAL
-    
+    FUNCIÓN SOLO VALIDA PARA EL DATAFRAME DEL TRABAJO ORIGINAL
+
     Parameters:
         variable (String): Variable sobre la cual se calcula mi
         df (pandas.DataFrame): Dataframe
@@ -183,7 +183,7 @@ def calcular_mi(variable, df):
 
 def recode_dataframe(dataframe):
     """Recodifica el DataFrame utilizando sklearn.preprocessing.LabelEncoder para las variables categóricas
-    
+
     Parameters:
         dataframe (pandas.DataFrame): Dataframe
 
@@ -204,7 +204,7 @@ def recode_dataframe(dataframe):
 
 def calcular_mrmr_v2(variable, df):
     """Minimum redundancy – Maximum relevance (MRMR) utilizando sklearn.metrics.normalized_mutual_info_score para calcular los MI necesarios
-    
+
     Parameters:
         variable (String): Variable sobre la cual se calcula mrmr
         df (pandas.DataFrame): DataFrame
@@ -232,7 +232,7 @@ def calcular_mrmr_v2(variable, df):
             coefs[prueba] = coef_parcial
         coefs_ordenados = sorted(
             coefs.items(), key=operator.itemgetter(1), reverse=True)
-        #print(coefs)
+        # print(coefs)
         mrmr[coefs_ordenados[0][0]] = coefs[coefs_ordenados[0][0]]
         ordenadas.remove(coefs_ordenados[0][0])
         seleccionadas.append(coefs_ordenados[0][0])
@@ -242,51 +242,123 @@ def calcular_mrmr_v2(variable, df):
 
 def calcular_mmre(variable, df, k=5):
     """Calcula mmre imputando los valores con la funcion sklearn.impute.KNNImputer
-    EL MÉTODO TODAVIA NO ESTÁ TERMINADO YA QUE SOLO FUNCIONA CON EL DATAFRAME DEL TRABAJO A DIA 28-5
 
     Parameters:
         variable (String): Variable sobre la cual se va a calcular mmre
         df (pandas.DataFrame): DataFrame
         k (int): Valor utilizado en n_neighbors de KNNImputer
-    
+
     Returns:
         float con el valor de mmre
     """
     total = len(df)
     resultado = pd.DataFrame(columns=['Valor Original', 'Valor Imputado'])
+    numero_columna = df.columns.get_loc(variable)
     for i in range(total):
         df_test = df.copy(deep=True)
         dato_original = df_test[variable].iloc[i]
         df_test[variable].iloc[i] = np.nan
         imputer = KNNImputer(n_neighbors=k)
         df_test = imputer.fit_transform(df_test)
-        dato_imputado = df_test[i ,8]
-        resultado = resultado.append({'Valor Original':dato_original, 'Valor Imputado':dato_imputado}, ignore_index=True)
-        mmre = (1/total)*sum(abs(resultado['Valor Original'] - resultado['Valor Imputado'])/resultado['Valor Original'])
-    return mmre
+        dato_imputado = df_test[i, numero_columna]
+        resultado = resultado.append(
+            {'Valor Original': dato_original, 'Valor Imputado': dato_imputado}, ignore_index=True)
+        mmre = (1/total)*sum(abs(resultado['Valor Original'] -
+                                 resultado['Valor Imputado'])/resultado['Valor Original'])
+    return mmre, resultado
 
 
 def calcular_mmre_v2(variable, df, k=5):
     """Calcula mmre imputando los valores con la funcion fancyimpute.KNN
-    EL MÉTODO TODAVIA NO ESTÁ TERMINADO YA QUE SOLO FUNCIONA CON EL DATAFRAME DEL TRABAJO A DIA 28-5
 
     Parameters:
         variable (String): Variable sobre la cual se va a calcular mmre
         df (pandas.DataFrame): DataFrame
         k (int): Valor utilizado en n_neighbors de fancyimpute.KNN
-    
+
     Returns:
         float con el valor de mmre
     """
     total = len(df)
     resultado = pd.DataFrame(columns=['Valor Original', 'Valor Imputado'])
-    for i in range(total):  
+    numero_columna = df.columns.get_loc(variable)
+    for i in range(total):
         df_test = df.copy(deep=True)
         dato_original = df_test[variable].iloc[i]
         df_test[variable].iloc[i] = np.nan
-        imputer = KNN(k=k)
+        imputer = KNN(k=k, verbose=False)
         df_test = imputer.fit_transform(df_test)
-        dato_imputado = df_test[i ,8]
-        resultado = resultado.append({'Valor Original':dato_original, 'Valor Imputado':dato_imputado}, ignore_index=True)
-    mmre = (1/total)*sum(abs(resultado['Valor Original'] - resultado['Valor Imputado'])/resultado['Valor Original'])
-    return mmre
+        dato_imputado = df_test[i, numero_columna]
+        resultado = resultado.append(
+            {'Valor Original': dato_original, 'Valor Imputado': dato_imputado}, ignore_index=True)
+    mmre = (1/total)*sum(abs(resultado['Valor Original'] -
+                             resultado['Valor Imputado'])/resultado['Valor Original'])
+    return mmre, resultado
+
+
+def determinar_numero_variables(variable, variables_numericas, variables_nominales, df, k=2, umbral_mmre=0, verbose=False):
+    #TO-DO 
+    umbral = 1 + umbral_mmre/100
+    total_iteraciones = len(variables_nominales) + len(variables_numericas)
+    hay_numericas = True
+    hay_nominales = True
+    variables_elegidas = []
+    variables_eliminadas = []
+    mmres = []
+    mmre_min = float('Inf')
+    iteracion = 1
+    while (hay_numericas or hay_nominales):
+        mmre_num = float('Inf')
+        mmre_nom = float('Inf')
+        if len(variables_numericas) > 0:
+            # En la primera iteracion las variables elegidas son [] porque no hay ninguna por lo tanto no se deberia agregar
+            if len(variables_elegidas) <= 0:
+                campos = [variable, variables_numericas[0]]
+            else:
+                #Al añadir variables_elegidas, como es una lista se crea una lista de listas por tanto no funciona
+                campos = [variable, variables_elegidas, variables_numericas[0]]
+            print(campos)
+            mmre_num, results = calcular_mmre(variable, df[campos], k)
+        else:
+            hay_numericas = False
+
+        if len(variables_nominales) > 0:
+            # En la primera iteracion las variables elegidas son [] porque no hay ninguna por lo tanto no se deberia agregar
+            if len(variables_elegidas) <= 0:
+                campos = [variable, variables_nominales[0]]
+            else:
+                #Al añadir variables_elegidas, como es una lista se crea una lista de listas por tanto no funciona
+                campos = [variable, variables_elegidas, variables_nominales[0]]
+            print(campos)
+            mmre_nom, results = calcular_mmre(variable, df[campos], k)
+        else:
+            hay_nominales = False
+
+        if mmre_num <= mmre_nom:
+            if (umbral*mmre_min) >= mmre_num:
+                variables_elegidas.append(variables_numericas[0])
+                mmres.append(mmre_num)
+                if mmre_min > mmre_num:
+                    mmre_min = mmre_num
+            else:
+                variables_eliminadas.append(variables_numericas[0])
+            variables_numericas.pop(0)
+        else:
+            if (umbral*mmre_min) >= mmre_nom:
+                variables_elegidas.append(variables_nominales[0])
+                mmres.append(mmre_nom)
+                if mmre_min > mmre_nom:
+                    mmre_min = mmre_nom
+            else:
+                variables_eliminadas.append(variables_nominales[0])
+            variables_nominales.pop(0)
+
+        if verbose and (hay_nominales or hay_numericas):
+            print('Iteracion:', iteracion, 'de', total_iteraciones)
+            print('Variables elegidas:', variables_elegidas)
+            print('Variables eliminadas', variables_eliminadas)
+            iteracion += 1
+
+    resultado = [variable, variables_elegidas,
+                 variables_eliminadas, mmres, umbral_mmre]
+    return resultado
