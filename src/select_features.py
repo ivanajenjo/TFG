@@ -4,7 +4,6 @@ import numpy as np
 import pandas as pd
 import rpy2.robjects as ro
 import rpy2.robjects.packages as rpackages
-from info_gain import info_gain
 from rpy2.robjects import Formula, pandas2ri
 from rpy2.robjects.packages import importr
 from rpy2.robjects.vectors import StrVector
@@ -297,6 +296,18 @@ def calcular_mmre_v2(variable, df, k=5):
 
 
 def determinar_numero_variables(variable, variables_numericas, variables_nominales, df, k=2, umbral_mmre=0, verbose=False):
+    """Calcula el numero de variables a elegir para la imputacion utilizando KNN y MMRE
+
+    Parameters:
+        variable (String): Variable sobre la cual se va a calcular mmre
+        variables_numericas (list:String): Lista de Variables numericas del DF
+        variables_nominales (list:String): Lista de Variables nominales del DF
+        df (pandas.DataFrame): DataFrame
+        k (int): Valor utilizado en n_neighbors de fancyimpute.KNN
+
+    Returns:
+        Por Terminar...
+    """
     #TO-DO 
     umbral = 1 + umbral_mmre/100
     total_iteraciones = len(variables_nominales) + len(variables_numericas)
