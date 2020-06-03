@@ -316,8 +316,8 @@ def determinar_numero_variables(variable, variables_numericas, variables_nominal
                 campos = [variable, variables_numericas[0]]
             else:
                 #Al añadir variables_elegidas, como es una lista se crea una lista de listas por tanto no funciona
-                campos = [variable, variables_elegidas, variables_numericas[0]]
-            print(campos)
+                campos = [variable] + variables_elegidas + [variables_numericas[0]]
+            #print(campos)
             mmre_num, results = calcular_mmre(variable, df[campos], k)
         else:
             hay_numericas = False
@@ -328,8 +328,8 @@ def determinar_numero_variables(variable, variables_numericas, variables_nominal
                 campos = [variable, variables_nominales[0]]
             else:
                 #Al añadir variables_elegidas, como es una lista se crea una lista de listas por tanto no funciona
-                campos = [variable, variables_elegidas, variables_nominales[0]]
-            print(campos)
+                campos = [variable] + variables_elegidas + [variables_nominales[0]]
+            #print(campos)
             mmre_nom, results = calcular_mmre(variable, df[campos], k)
         else:
             hay_nominales = False
@@ -359,6 +359,14 @@ def determinar_numero_variables(variable, variables_numericas, variables_nominal
             print('Variables eliminadas', variables_eliminadas)
             iteracion += 1
 
+        #Comprobacion para terminar el algoritmo
+        if len(variables_nominales) < 1:
+            hay_nominales = False
+
+        if len(variables_numericas) < 1:
+            hay_numericas = False
+
     resultado = [variable, variables_elegidas,
                  variables_eliminadas, mmres, umbral_mmre]
+    print('Ejecucion Completa')
     return resultado
