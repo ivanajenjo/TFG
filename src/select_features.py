@@ -308,7 +308,6 @@ def determinar_numero_variables(variable, variables_numericas, variables_nominal
     Returns:
         Por Terminar...
     """
-    #TO-DO 
     umbral = 1 + umbral_mmre/100
     total_iteraciones = len(variables_nominales) + len(variables_numericas)
     hay_numericas = True
@@ -321,6 +320,7 @@ def determinar_numero_variables(variable, variables_numericas, variables_nominal
     while (hay_numericas or hay_nominales):
         mmre_num = float('Inf')
         mmre_nom = float('Inf')
+
         if len(variables_numericas) > 0:
             # En la primera iteracion las variables elegidas son [] porque no hay ninguna por lo tanto no se deberia agregar
             if len(variables_elegidas) <= 0:
@@ -377,7 +377,9 @@ def determinar_numero_variables(variable, variables_numericas, variables_nominal
         if len(variables_numericas) < 1:
             hay_numericas = False
 
-    resultado = [variable, variables_elegidas,
-                 variables_eliminadas, mmres, umbral_mmre]
+    resultado = [variable, variables_elegidas, variables_eliminadas, mmres, umbral_mmre]
+    #resultado = {'Variable':[variable], 'Variables Elegidas':variables_elegidas, 'Variables Eliminadas':variables_eliminadas, 'MMREs':mmres, 'Umbral MMRE':[umbral_mmre]}
+    #result_df = pd.DataFrame(resultado)
+
     print('Ejecucion Completa')
     return resultado
