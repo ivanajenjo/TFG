@@ -17,19 +17,39 @@ from fancyimpute import KNN
 
 utils = None
 information_gain = None
+knn_r = None
+media = None
 
 
 def setupR_enviroment():
     """Prepara el entorno necesario de R para utilizar FSelector"""
     global utils
     global information_gain
+    global knn_r
+    global media
     utils = rpackages.importr('utils')
     utils.chooseCRANmirror(ind=1)
-    packages = ('FSelector')
+    packages = ('FSelector', 'VIM')
     utils.install_packages(StrVector(packages))
     FSelector = importr("FSelector")
     information_gain = FSelector.information_gain
+    VIM = importr("VIM")
+    knn_r = VIM.kNN
+    base = importr("base")
+    media = base.mean
 
+def setupR_enviroment_knn():
+    "Prepara el entorno necesario para utilizar knn de vim"
+    global utils
+    global knn_r
+    if utils == None:
+        utils = rpackages.importr('utils')
+        utils.chooseCRANmirror(ind=1)
+    packages = importr("VIM")
+    utils.install_packages(StrVector(packages))
+    VIM = importr("VIM")
+    knn_r = VIM.kNN
+    
 
 def calcular_mi_R(variable, df):
     """Calcula Mutual Information para las variables independientes utilizando FSelector
@@ -294,6 +314,23 @@ def calcular_mmre_v2(variable, df, k=5):
                              resultado['Valor Imputado'])/resultado['Valor Original'])
     return mmre, resultado
 
+def calcular_mmre_R(variable_a_imputar, df, k=5):
+    if utils == None:
+        setupR_enviroment()
+    total = len(df)
+    resultado = pd.DataFrame(columns=['Valor Original', 'Valor Imputado'])
+    numero_columna = df.columns.get_loc(variable_a_imputar)
+    pandas2ri.activate()
+    for i in range(total):
+        df_test = df.copy(deep=True)
+        dato_original = df_test[variable_a_imputar].iloc[i]
+        df_test[variable_a_imputar].iloc[i] = np.nan
+        r_df_test = ro.conversion.py2rpy(df_test)
+        r_df_test_imputed = knn_r(r_df_test, variable=variable_a_imputar, numFun=media, k=k)
+        dato_imputado = r_df_test_imputed[variable_a_imputar].iloc[i]
+        resultado = resultado.append({'Valor Original': dato_original, 'Valor Imputado': dato_imputado}, ignore_index=True)
+    mmre = (1/total)*sum(abs(resultado['Valor Original'] - resultado['Valor Imputado'])/resultado['Valor Original'])
+    return mmre, resultado
 
 def determinar_numero_variables(variable, variables_numericas, variables_nominales, df, k=2, umbral_mmre=0, verbose=False):
     """Calcula el numero de variables a elegir para la imputacion utilizando KNN y MMRE
