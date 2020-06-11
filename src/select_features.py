@@ -11,6 +11,7 @@ from sklearn.feature_selection import (SelectKBest, mutual_info_classif,
                                        mutual_info_regression)
 from sklearn.metrics import (adjusted_mutual_info_score, mutual_info_score,
                              normalized_mutual_info_score)
+from sklearn.model_selection import KFold
 from sklearn.preprocessing import LabelEncoder
 from sklearn.impute import KNNImputer
 from fancyimpute import KNN
@@ -285,7 +286,7 @@ def calcular_mmre(variable, df, k=5):
             {'Valor Original': dato_original, 'Valor Imputado': dato_imputado}, ignore_index=True)
         mmre = (1/total)*sum(abs(resultado['Valor Original'] -
                                  resultado['Valor Imputado'])/resultado['Valor Original'])
-    return mmre, resultado
+    return mmre
 
 
 def calcular_mmre_v2(variable, df, k=5):
@@ -432,9 +433,17 @@ def determinar_numero_variables(variable, variables_numericas, variables_nominal
 
 
 def evaluator(nfolds, kNN, df, variable):
-    k = nfolds
-
-    pass
+    kf = KFold(n_splits=nfolds, shuffle=True)
+    kf.split(df)
+    mmres = []
+    for train_index, test_index in kf.split(df):
+        #print('Train Index', train_index)
+        #print('Test Index', test_index)
+        df_train, df_test = df.iloc[train_index], df.iloc[test_index]
+        mmre = calcular_mmre(variable, df_test, kNN)
+        mmres.append(mmre)
+    resultado = np.mean(mmres)
+    return resultado
 
 
 def greedy_forward_selection(valor_knn, variable, var_ordenadas, df, umbral_mmre=0, verbose=False):
@@ -448,8 +457,8 @@ def greedy_forward_selection(valor_knn, variable, var_ordenadas, df, umbral_mmre
     iteracion = 1
     while iteracion <= total_iteraciones:
         campos = [variable] + variables_elegidas + [var_ordenadas[0]]
-        mmre_calc = evaluator(valor_de_nfolds, valor_knn, df, variable) 
-        if umbral*mmre_min >= mmre_calc:
+        mmre_calc = evaluator(valor_de_nfolds, valor_knn, df[campos], variable) 
+        if ((umbral*mmre_min) >= mmre_calc):
             variables_elegidas.append(var_ordenadas[0])
             mmres.append(mmre_calc)
             if mmre_min > mmre_calc:
@@ -511,6 +520,12 @@ def doquire_forward_selection(valor_knn, variable, var_numericas, var_nominales,
             print('Iteracion', iteracion, 'de', total_iteraciones)
             print('Variables Elegidas', variables_elegidas)
             print('Variables Eliminadas', variables_eliminadas)
+
+        if len(var_nominales) < 1:
+            hay_nominales = False
+
+        if len(var_numericas) < 1:
+            hay_numericas = False        
         
         iteracion += 1
     resultado = [variable, variables_elegidas, variables_eliminadas, mmres, umbral_mmre]
