@@ -14,7 +14,6 @@ from sklearn.metrics import (adjusted_mutual_info_score, mutual_info_score,
 from sklearn.model_selection import KFold
 from sklearn.preprocessing import LabelEncoder
 from sklearn.impute import KNNImputer
-from fancyimpute import KNN
 
 utils = None
 information_gain = None
@@ -289,32 +288,32 @@ def calcular_mmre(variable, df, k=5):
     return mmre
 
 
-def calcular_mmre_v2(variable, df, k=5):
-    """Calcula mmre imputando los valores con la funcion fancyimpute.KNN
-
-    Parameters:
-        variable (String): Variable sobre la cual se va a calcular mmre
-        df (pandas.DataFrame): DataFrame
-        k (int): Valor utilizado en n_neighbors de fancyimpute.KNN
-
-    Returns:
-        float con el valor de mmre
-    """
-    total = len(df)
-    resultado = pd.DataFrame(columns=['Valor Original', 'Valor Imputado'])
-    numero_columna = df.columns.get_loc(variable)
-    for i in range(total):
-        df_test = df.copy(deep=True)
-        dato_original = df_test[variable].iloc[i]
-        df_test[variable].iloc[i] = np.nan
-        imputer = KNN(k=k, verbose=False)
-        df_test = imputer.fit_transform(df_test)
-        dato_imputado = df_test[i, numero_columna]
-        resultado = resultado.append(
-            {'Valor Original': dato_original, 'Valor Imputado': dato_imputado}, ignore_index=True)
-    mmre = (1/total)*sum(abs(resultado['Valor Original'] -
-                             resultado['Valor Imputado'])/resultado['Valor Original'])
-    return mmre, resultado
+#def calcular_mmre_v2(variable, df, k=5):
+#    """Calcula mmre imputando los valores con la funcion fancyimpute.KNN
+#
+#    Parameters:
+#        variable (String): Variable sobre la cual se va a calcular mmre
+#        df (pandas.DataFrame): DataFrame
+#        k (int): Valor utilizado en n_neighbors de fancyimpute.KNN
+#
+#    Returns:
+#        float con el valor de mmre
+#    """
+#    total = len(df)
+#    resultado = pd.DataFrame(columns=['Valor Original', 'Valor Imputado'])
+#    numero_columna = df.columns.get_loc(variable)
+#    for i in range(total):
+#        df_test = df.copy(deep=True)
+#        dato_original = df_test[variable].iloc[i]
+#        df_test[variable].iloc[i] = np.nan
+#        imputer = KNN(k=k, verbose=False)
+#        df_test = imputer.fit_transform(df_test)
+#        dato_imputado = df_test[i, numero_columna]
+#        resultado = resultado.append(
+#            {'Valor Original': dato_original, 'Valor Imputado': dato_imputado}, ignore_index=True)
+#    mmre = (1/total)*sum(abs(resultado['Valor Original'] -
+#                             resultado['Valor Imputado'])/resultado['Valor Original'])
+#    return mmre, resultado
 
 
 def calcular_mmre_R(variable_a_imputar, df, k=5):

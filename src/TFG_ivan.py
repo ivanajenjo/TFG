@@ -2,6 +2,7 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import select_features
+import time
 
 
 def main():
@@ -37,11 +38,14 @@ def main():
     print('Recode DF')
     df = select_features.recode_dataframe(df)
     print('Empieza el Bucle')
-    for i in range(10):
+    start = time.time()
+    for i in range(1):
         var = variables_por_mi[:]
         mmre = select_features.greedy_forward_selection(1, 'Normalised Work Effort Level 1', var, df, seed=i)
         resultados.append((mmre[3])[-1])
         print('Iteracion', i)
+    end = time.time()
+    print('Tiempo de ejecucion', end-start)
     final_value = np.mean(resultados)
     print(final_value)
 
