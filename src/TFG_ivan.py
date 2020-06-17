@@ -4,13 +4,12 @@ import matplotlib.pyplot as plt
 import select_features
 import time
 
+df = None
 
-def main():
-    pd.options.mode.chained_assignment = None
-    #archivo = '..\data\ISBSG - Release May 2017 R1.csv'
+def importBD():
+    global df
     archivo ='D:\\Users\\ivana\\Documents\\TFG\\data\\ISBSG DATA Release 12.csv'
     df = pd.read_csv(archivo, sep = ';', low_memory = False)
-    #variables = ['Data Quality Rating', 'UFP rating', 'Industry Sector','Application Group', 'Development Type', 'Development Platform', 'Language Type', 'Primary Programming Language', 'Count Approach', 'Functional Size', 'Adjusted Function Points', 'Normalised Work Effort Level 1', 'Summary Work Effort', 'Project Elapsed Time', 'Business Area Type', '1st Data Base System', 'Used Methodology', 'Resource Level', 'Max Team Size', 'Average Team Size', 'Input count', 'Output count', 'Enquiry count', 'File count', 'Interface count', 'Agile Method Used']
     variables = ['Data Quality Rating', 'UFP rating', 'Industry Sector','Application Group', 'Development Type', 'Development Platform', 'Language Type', 'Primary Programming Language', 'Count Approach', 'Functional Size', 'Adjusted Function Points', 'Normalised Work Effort Level 1', 'Summary Work Effort', 'Project Elapsed Time', 'Business Area Type', '1st Data Base System', 'Used Methodology', 'Resource Level', 'Max Team Size', 'Average Team Size', 'Input count', 'Output count', 'Enquiry count', 'File count', 'Interface count']
     df = df.loc[:, variables]
     filtro = ((df['Data Quality Rating'] == 'A') | (df['Data Quality Rating'] == 'B')) & ((df['UFP rating'] == 'A') | (df['UFP rating'] == 'B')) 
@@ -19,7 +18,6 @@ def main():
     df = df.loc[filtro, :]
     filtro = df['Count Approach'] == 'IFPUG 4+'
     df = df.loc[filtro, :]
-    #variables = ['Industry Sector','Application Group', 'Development Type', 'Development Platform', 'Language Type', 'Primary Programming Language', 'Functional Size', 'Adjusted Function Points', 'Normalised Work Effort Level 1', 'Project Elapsed Time', 'Business Area Type', '1st Data Base System', 'Used Methodology', 'Max Team Size', 'Average Team Size', 'Input count', 'Output count', 'Enquiry count', 'File count', 'Interface count', 'Agile Method Used']
     variables = ['Industry Sector','Application Group', 'Development Type', 'Development Platform', 'Language Type', 'Primary Programming Language', 'Functional Size', 'Adjusted Function Points', 'Normalised Work Effort Level 1', 'Project Elapsed Time', 'Business Area Type', '1st Data Base System', 'Used Methodology', 'Max Team Size', 'Average Team Size', 'Input count', 'Output count', 'Enquiry count', 'File count', 'Interface count']
     df = df.loc[:, variables]
     df = df.dropna(axis=1, thresh=int(0.5*len(df)))
@@ -31,24 +29,58 @@ def main():
     database = {'[;].*':';','ACCESS[; ].*':'ACCESS', 'MS Access':'ACCESS', 'ACCESS;':'ACCESS', 'ADABAS;':'ADABAS', 'Micosoft.*':'Attain', 'DB2[; /].*':'DB2', 'IBM DB2':'DB2', 'UDB2':'DB2', 'Domino[ ].*':'Domino', 'LOTUS.*':'Domino', 'Notes.*':'Domino', 'Exchange.*':'Exchange', 'FOXPRO;':'Foxpro', 'HIRDB;':'HIRDB', 'DB[/].*':'IMS', 'DEDB;':'IMS', 'IDMS[; -].*':'IMS', 'IMS.*':'IMS', 'MS[- ]SQL[; ].*':'MS SQL', 'MSDE.*':'MS SQL', 'SQL Server[; ].*':'MS SQL', 'SQL;':'MS SQL', 'VSE/.*':'MS SQL', 'NCR;':'NCR', 'Oracle.*':'ORACLE', 'Personal O.*':'ORACLE', 'RDB[; ].*':'ORACLE', 'CICS;':'ORACLE', 'SAS;':'SAS', 'Solid;':'Solid', 'SYBASE.*':'SYBASE', 'YES':'Unspecified', 'ISAM;':'Unspecified', 'multiple;':'Unspecified', 'VSAM[; ].*':'Unspecified', 'WATCOM[; ].*':'Watcom', 'WGRES;':'WGRES'}
     df['1st Data Base System'].replace( database, inplace = True, regex = True)
     df['1st Data Base System'].replace( {'ACCESS;':'ACCESS'}, inplace = True, regex = True)
+
+def main():
+    global df
+    pd.options.mode.chained_assignment = None
+    importBD()
     print('Calculo MI')
     mi = select_features.calcular_mi_manual('Normalised Work Effort Level 1', df)
     variables_por_mi = list(mi.index.values)
-    resultados = []
+    mmres = list()
+    ks = list()
+    var_elegidas = list()
+    resultados = list()
     print('Recode DF')
     df = select_features.recode_dataframe(df)
     print('Empieza el Bucle')
     start = time.time()
-    for i in range(1):
-        var = variables_por_mi[:]
-        mmre = select_features.greedy_forward_selection(1, 'Normalised Work Effort Level 1', var, df, seed=i)
-        resultados.append((mmre[3])[-1])
-        print('Iteracion', i)
-    end = time.time()
-    print('Tiempo de ejecucion', end-start)
-    final_value = np.mean(resultados)
-    print(final_value)
 
+    #k in range(1, 5) para que k sea de 1 a 4
+    for k in range(1, 3):
+        print ('K =', k)
+        for i in range(5):
+            print('Iteracion', i)
+            iteration_start = time.time()
+            var = variables_por_mi[:]
+            mmre = select_features.greedy_forward_selection(k, 'Normalised Work Effort Level 1', var, df)
+            mmres.append((mmre[3])[-1])
+            var_elegidas.append(mmre[1])
+            ks.append(k)
+            iteration_time = time.time() - iteration_start
+            print(iteration_time)
+            resultados.append(str((mmre[3])[-1]) + ';' + str(k) + ';' + str(mmre[1]) + ';' + str(1) + ';' + str(iteration_time) + ';' + str(i))
+             
+    end = time.time()
+
+    print('Tiempo de ejecucion', end-start)
+    final_value = np.mean(mmres)
+    print(final_value)
+    convertirACsv(resultados)
+
+
+def convertirACsv(lista):
+    import csv
+
+    with open("csv.csv", 'w', newline='') as myfile:
+        wr = csv.writer(myfile, quoting=csv.QUOTE_MINIMAL, delimiter= ";")
+        row = 'MMRE' + ';' + 'k' + ';' + 'Variables Elegidas' + ';' + 'Metodo' + ';' + 'Tiempo' + ';' + 'Iteracion'
+        wr.writerow(row.split(';'))
+        for i in lista:
+            #print(i)
+            wr.writerow(i.split(';'))
+    print("escrito en csv")
 
 if __name__ == "__main__":
     main()
+

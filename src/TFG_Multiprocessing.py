@@ -3,13 +3,20 @@ import numpy as np
 import matplotlib.pyplot as plt
 import select_features
 import time
-import multiprocessing
+from multiprocessing import Pool, Queue
+import os
 
 # Not Working
 
 df = None
 variables_por_mi = None
 
+def thread_process(i):
+    global df
+    global variables_por_mi
+    print('Ejecutando proceso', i)
+    mmre = select_features.greedy_forward_selection(1, 'Normalised Work Effort Level 1', variables_por_mi[:], df)
+    return (mmre[3])[-1]
 
 def main():
     global df
@@ -58,8 +65,10 @@ def main():
 
     start = time.time()
 
-    pool = multiprocessing.Pool()
-    result = pool.map(thread_process, list(range(20)))
+    data_imputs = list(range(20))
+
+    pool = Pool(os.cpu_count()-1)
+    result = pool.map(thread_process, data_imputs)
 
     end = time.time()
 
@@ -68,14 +77,6 @@ def main():
 
     #final_value = np.mean(resultados)
     #print(final_value)
-
-
-def thread_process(i):
-    global df
-    global variables_por_mi
-    print('Ejecutando proceso', i)
-    mmre = select_features.greedy_forward_selection(1, 'Normalised Work Effort Level 1', variables_por_mi[:], df, seed=i)
-    return (mmre[3])[-1]
 
 
 if __name__ == "__main__":

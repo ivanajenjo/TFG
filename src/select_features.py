@@ -431,8 +431,8 @@ def determinar_numero_variables(variable, variables_numericas, variables_nominal
     return resultado
 
 
-def evaluator(nfolds, kNN, df, variable, seed):
-    kf = KFold(n_splits=nfolds, shuffle=True, random_state=seed)
+def evaluator(nfolds, kNN, df, variable):
+    kf = KFold(n_splits=nfolds, shuffle=True)
     kf.split(df)
     mmres = []
     for train_index, test_index in kf.split(df):
@@ -445,7 +445,7 @@ def evaluator(nfolds, kNN, df, variable, seed):
     return resultado
 
 
-def greedy_forward_selection(valor_knn, variable, var_ordenadas, df, umbral_mmre=0, verbose=False, seed=0):
+def greedy_forward_selection(valor_knn, variable, var_ordenadas, df, umbral_mmre=0, verbose=False):
     valor_de_nfolds = 3
     total_iteraciones = len(var_ordenadas)
     umbral = 1 + umbral_mmre/100
@@ -456,7 +456,7 @@ def greedy_forward_selection(valor_knn, variable, var_ordenadas, df, umbral_mmre
     iteracion = 1
     while iteracion <= total_iteraciones:
         campos = [variable] + variables_elegidas + [var_ordenadas[0]]
-        mmre_calc = evaluator(valor_de_nfolds, valor_knn, df[campos], variable, seed)
+        mmre_calc = evaluator(valor_de_nfolds, valor_knn, df[campos], variable)
         if ((umbral*mmre_min) >= mmre_calc):
             variables_elegidas.append(var_ordenadas[0])
             mmres.append(mmre_calc)
@@ -476,7 +476,7 @@ def greedy_forward_selection(valor_knn, variable, var_ordenadas, df, umbral_mmre
     return resultado
 
 
-def doquire_forward_selection(valor_knn, variable, var_numericas, var_nominales, df, umbral_mmre=0, verbose=False, seed=0):
+def doquire_forward_selection(valor_knn, variable, var_numericas, var_nominales, df, umbral_mmre=0, verbose=False):
     valor_de_nfolds = 3
     total_iteraciones = len(var_nominales) + len(var_numericas)
     umbral = 1 + umbral_mmre/100
@@ -493,12 +493,12 @@ def doquire_forward_selection(valor_knn, variable, var_numericas, var_nominales,
         if len(var_numericas) > 0:
             campos = [variable] + variables_elegidas + [var_numericas[0]]
             mmre_num = evaluator(
-                valor_de_nfolds, valor_knn, df[campos], variable, seed)
+                valor_de_nfolds, valor_knn, df[campos], variable)
 
         if len(var_nominales) > 0:
             campos = [variable] + variables_elegidas + [var_nominales[0]]
             mmre_nom = evaluator(
-                valor_de_nfolds, valor_knn, df[campos], variable, seed)
+                valor_de_nfolds, valor_knn, df[campos], variable)
 
         if mmre_num <= mmre_nom:
             if umbral*mmre_min >= mmre_num:
