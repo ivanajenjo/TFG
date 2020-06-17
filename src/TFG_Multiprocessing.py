@@ -17,10 +17,10 @@ def thread_process(i):
     print('Ejecutando proceso', i)
     mmre = select_features.greedy_forward_selection(1, 'Normalised Work Effort Level 1', variables_por_mi[:], df)
     return (mmre[3])[-1]
+    #return i*2
 
-def main():
-    global df
-    global variables_por_mi
+
+if __name__ == "__main__":
     pd.options.mode.chained_assignment = None
     #archivo = '..\data\ISBSG - Release May 2017 R1.csv'
     archivo = 'D:\\Users\\ivana\\Documents\\TFG\\data\\ISBSG DATA Release 12.csv'
@@ -65,19 +65,16 @@ def main():
 
     start = time.time()
 
-    data_imputs = list(range(20))
+    from concurrent.futures import ProcessPoolExecutor
+    executor = ProcessPoolExecutor()
 
-    pool = Pool(os.cpu_count()-1)
-    result = pool.map(thread_process, data_imputs)
+    results = executor.map(thread_process, range(50))
+    #executor.shutdown(wait=True)
 
     end = time.time()
 
     print('Tiempo total', end-start)
-    print(result)
+    print(results)
 
     #final_value = np.mean(resultados)
     #print(final_value)
-
-
-if __name__ == "__main__":
-    main()
