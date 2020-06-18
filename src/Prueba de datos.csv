@@ -1,0 +1,17 @@
+MMRE;k;Variables Elegidas;Metodo;Tiempo;Iteracion
+1.6537111323990805;1;['Adjusted Function Points', 'Project Elapsed Time', 'Primary Programming Language', 'Industry Sector'];1;26.187355756759644;0
+1.5729080330934193;1;['Adjusted Function Points', 'Project Elapsed Time', 'Industry Sector', 'Development Type', 'Application Group'];1;25.753198623657227;1
+1.7006002888287055;1;['Adjusted Function Points', 'Functional Size', 'Project Elapsed Time', 'Development Type', 'Application Group'];1;25.572816848754883;2
+1.61195326073877;1;['Adjusted Function Points', 'Project Elapsed Time', 'Development Platform', 'Used Methodology'];1;25.631615161895752;3
+1.6488040428935509;1;['Adjusted Function Points', 'Development Platform', 'Project Elapsed Time', 'Primary Programming Language', 'Used Methodology'];2;26.04721999168396;0
+1.5748767756806414;1;['Adjusted Function Points', 'Development Platform', 'Project Elapsed Time'];2;25.912879467010498;1
+1.594147186638409;1;['Adjusted Function Points', 'Development Platform', 'Project Elapsed Time', 'Industry Sector', 'Development Type', 'Used Methodology'];2;26.02590537071228;2
+1.6904683175818869;1;['Adjusted Function Points', 'Development Platform', 'Functional Size', 'Project Elapsed Time'];2;26.016215562820435;3
+1.516477532682546;1;['Project Elapsed Time', 'Functional Size', 'Used Methodology'];3;39.851418018341064;0
+1.6239923019459166;1;['Project Elapsed Time', 'Functional Size', 'Industry Sector'];3;41.8624587059021;1
+1.572922328724119;1;['Project Elapsed Time', 'Functional Size', 'Adjusted Function Points'];3;39.12894678115845;2
+1.7105219424572893;1;['Project Elapsed Time', 'Functional Size', 'Adjusted Function Points'];3;32.552873611450195;3
+1.6094840160088542;1;['Project Elapsed Time', 'Functional Size', 'Used Methodology', 'Development Type', 'Language Type'];4;37.356462478637695;0
+1.5190518446001653;1;['Project Elapsed Time', 'Functional Size', 'Used Methodology', 'Development Type', 'Application Group'];4;34.936914682388306;1
+1.6058686424206936;1;['Project Elapsed Time', 'Functional Size', 'Used Methodology'];4;39.62398552894592;2
+1.580520292589118;1;['Project Elapsed Time', 'Functional Size'];4;41.32304406166077;3
