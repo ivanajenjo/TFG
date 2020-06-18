@@ -49,14 +49,14 @@ def main():
     ks = list()
     var_elegidas = list()
     resultados = list()
-    iteraciones = 4
+    iteraciones = 500
     print('Recode DF')
     df = select_features.recode_dataframe(df)
     print('Empieza el Bucle')
     start = time.time()
 
     #k in range(1, 5) para que k sea de 1 a 4
-    for k in range(1, 2):
+    for k in range(1, 5):
         print ('K =', k)
         for i in range(iteraciones):
             print('Iteracion', i, 'Método 1 k', k)
