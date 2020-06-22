@@ -56,7 +56,7 @@ def main():
     start = time.time()
 
     #k in range(1, 5) para que k sea de 1 a 4
-    for k in range(2, 3):
+    for k in range(3, 4):
         print ('K =', k)
         for i in range(iteraciones):
             print('Iteracion', i, 'Método 1 k', k)
