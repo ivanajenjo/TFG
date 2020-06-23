@@ -12,7 +12,7 @@ from sklearn.feature_selection import (SelectKBest, mutual_info_classif,
 from sklearn.metrics import (adjusted_mutual_info_score, mutual_info_score,
                              normalized_mutual_info_score)
 from sklearn.model_selection import KFold
-from sklearn.preprocessing import LabelEncoder
+from sklearn.preprocessing import LabelEncoder, OrdinalEncoder
 from sklearn.impute import KNNImputer
 
 utils = None
@@ -221,6 +221,13 @@ def recode_dataframe(dataframe):
     #resultado['Primary Programming Language'] = X_en
     return resultado
 
+def recode_dataframe_v2(dataframe):
+    ordinalencoder = OrdinalEncoder()
+    resultado = dataframe[:]
+    categorical_feature_mask = resultado.dtypes == object
+    categorical_cols = resultado.columns[categorical_feature_mask].tolist()
+    for col in categorical_cols:
+        ordinalencoder.fit_transform(dataframe[col])
 
 def calcular_mrmr_v2(variable, df):
     """Minimum redundancy – Maximum relevance (MRMR) utilizando sklearn.metrics.normalized_mutual_info_score para calcular los MI necesarios
@@ -333,9 +340,8 @@ def calcular_mmre_R(variable_a_imputar, df, k=5):
         dato_imputado = r_df_test_imputed[variable_a_imputar].iloc[i]
         resultado = resultado.append(
             {'Valor Original': dato_original, 'Valor Imputado': dato_imputado}, ignore_index=True)
-    mmre = (1/total)*sum(abs(resultado['Valor Original'] -
-                             resultado['Valor Imputado'])/resultado['Valor Original'])
-    return mmre, resultado
+    mmre = sum(abs(resultado['Valor Original'] - resultado['Valor Imputado'])/resultado['Valor Original'])/total
+    return mmre
 
 
 def determinar_numero_variables(variable, variables_numericas, variables_nominales, df, k=2, umbral_mmre=0, verbose=False):
@@ -430,6 +436,18 @@ def determinar_numero_variables(variable, variables_numericas, variables_nominal
     print('Ejecucion Completa')
     return resultado
 
+def evaluator_r(nfolds, kNN, df, variable):
+    kf = KFold(n_splits=nfolds, shuffle=True)
+    kf.split(df)
+    mmres = []
+    for train_index, test_index in kf.split(df):
+        #print('Train Index', train_index)
+        #print('Test Index', test_index)
+        df_train, df_test = df.iloc[train_index], df.iloc[test_index]
+        mmre = calcular_mmre_R(variable, df_test, kNN)
+        mmres.append(mmre)
+    resultado = np.mean(mmres)
+    return resultado
 
 def evaluator(nfolds, kNN, df, variable):
     kf = KFold(n_splits=nfolds, shuffle=True)
@@ -443,7 +461,6 @@ def evaluator(nfolds, kNN, df, variable):
         mmres.append(mmre)
     resultado = np.mean(mmres)
     return resultado
-
 
 def greedy_forward_selection(valor_knn, variable, var_ordenadas, df, umbral_mmre=0, verbose=False):
     valor_de_nfolds = 3
@@ -475,6 +492,35 @@ def greedy_forward_selection(valor_knn, variable, var_ordenadas, df, umbral_mmre
                  variables_eliminadas, mmres, umbral_mmre]
     return resultado
 
+def greedy_forward_selection_r(valor_knn, variable, var_ordenadas, df, umbral_mmre=0, verbose=False):
+    valor_de_nfolds = 3
+    total_iteraciones = len(var_ordenadas)
+    umbral = 1 + umbral_mmre/100
+    variables_elegidas = []
+    variables_eliminadas = []
+    mmres = []
+    mmre_min = float('Inf')
+    iteracion = 1
+    while iteracion <= total_iteraciones:
+        campos = [variable] + variables_elegidas + [var_ordenadas[0]]
+        mmre_calc = evaluator_r(valor_de_nfolds, valor_knn, df[campos], variable)
+        if ((umbral*mmre_min) >= mmre_calc):
+            variables_elegidas.append(var_ordenadas[0])
+            mmres.append(mmre_calc)
+            if mmre_min > mmre_calc:
+                mmre_min = mmre_calc
+        else:
+            variables_eliminadas.append(var_ordenadas[0])
+        var_ordenadas.pop(0)
+
+        if verbose:
+            print('Iteracion', iteracion, 'de', total_iteraciones)
+            print('Variables elegidas', variables_elegidas)
+            print('Variables eliminadas', variables_eliminadas)
+        iteracion += 1
+    resultado = [variable, variables_elegidas,
+                 variables_eliminadas, mmres, umbral_mmre]
+    return resultado
 
 def doquire_forward_selection(valor_knn, variable, var_numericas, var_nominales, df, umbral_mmre=0, verbose=False):
     valor_de_nfolds = 3
@@ -498,6 +544,65 @@ def doquire_forward_selection(valor_knn, variable, var_numericas, var_nominales,
         if len(var_nominales) > 0:
             campos = [variable] + variables_elegidas + [var_nominales[0]]
             mmre_nom = evaluator(
+                valor_de_nfolds, valor_knn, df[campos], variable)
+
+        if mmre_num <= mmre_nom:
+            if umbral*mmre_min >= mmre_num:
+                variables_elegidas.append(var_numericas[0])
+                mmres.append(mmre_num)
+                if mmre_min > mmre_num:
+                    mmre_min = mmre_num
+            else:
+                variables_eliminadas.append(var_numericas[0])
+            var_numericas.pop(0)
+        else:
+            if umbral*mmre_min >= mmre_nom:
+                variables_elegidas.append(var_nominales[0])
+                mmres.append(mmre_nom)
+                if mmre_min > mmre_nom:
+                    mmre_min = mmre_nom
+            else:
+                variables_eliminadas.append(var_nominales[0])
+            var_nominales.pop(0)
+
+        if verbose:
+            print('Iteracion', iteracion, 'de', total_iteraciones)
+            print('Variables Elegidas', variables_elegidas)
+            print('Variables Eliminadas', variables_eliminadas)
+
+        if len(var_nominales) < 1:
+            hay_nominales = False
+
+        if len(var_numericas) < 1:
+            hay_numericas = False
+
+        iteracion += 1
+    resultado = [variable, variables_elegidas,
+                 variables_eliminadas, mmres, umbral_mmre]
+    return resultado
+
+def doquire_forward_selection_r(valor_knn, variable, var_numericas, var_nominales, df, umbral_mmre=0, verbose=False):
+    valor_de_nfolds = 3
+    total_iteraciones = len(var_nominales) + len(var_numericas)
+    umbral = 1 + umbral_mmre/100
+    hay_numericas = True
+    hay_nominales = True
+    variables_elegidas = []
+    variables_eliminadas = []
+    mmres = []
+    mmre_min = float('Inf')
+    iteracion = 1
+    while hay_nominales or hay_numericas:
+        mmre_num = float('Inf')
+        mmre_nom = float('Inf')
+        if len(var_numericas) > 0:
+            campos = [variable] + variables_elegidas + [var_numericas[0]]
+            mmre_num = evaluator_r(
+                valor_de_nfolds, valor_knn, df[campos], variable)
+
+        if len(var_nominales) > 0:
+            campos = [variable] + variables_elegidas + [var_nominales[0]]
+            mmre_nom = evaluator_r(
                 valor_de_nfolds, valor_knn, df[campos], variable)
 
         if mmre_num <= mmre_nom:

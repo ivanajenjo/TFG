@@ -1,0 +1,9 @@
+MMRE;k;Variables Elegidas;Metodo;Tiempo;Iteracion
+0.83762409118473;1;['Adjusted_Function_Points', 'Project_Elapsed_Time', 'First_Data_Base_System'];1;157.55950212478638;0
+0.9320911495103159;1;['Adjusted_Function_Points', 'Functional_Size', 'Project_Elapsed_Time', 'Industry_Sector', 'First_Data_Base_System', 'Development_Type'];1;174.91114807128906;1
+1.1233266303228857;1;['Adjusted_Function_Points', 'Development_Platform', 'Project_Elapsed_Time', 'Industry_Sector', 'Development_Type'];2;176.44322848320007;0
+1.3016512924980892;1;['Adjusted_Function_Points', 'Development_Platform', 'Functional_Size', 'Project_Elapsed_Time', 'Industry_Sector'];2;176.1051845550537;1
+1.2752717055334573;1;['Primary_Programming_Language', 'Functional_Size', 'Industry_Sector', 'First_Data_Base_System'];3;269.47361159324646;0
+1.7092390857468889;1;['Primary_Programming_Language'];3;213.61401462554932;1
+0.9743145926857059;1;['Adjusted_Function_Points', 'Development_Platform', 'Project_Elapsed_Time', 'Industry_Sector', 'Development_Type', 'Used_Methodology'];4;233.21567678451538;0
+0.8820051452889844;1;['Adjusted_Function_Points', 'Project_Elapsed_Time', 'Industry_Sector', 'First_Data_Base_System', 'Development_Type'];4;198.9551031589508;1
