@@ -34,9 +34,10 @@ def main():
     pd.options.mode.chained_assignment = None
     importBD()
     df = select_features.recode_dataframe_R(df)
-    mmre, dfmmre = select_features.calcular_mmre_R('Normalised_Work_Effort_Level_1', df)
+    mmre, dfmmre = select_features.calcular_mmre_R('Normalised_Work_Effort_Level_1', df, k=2)
     dfmmre.to_csv('Testing_mmre_r.csv', index=False, encoding='utf-8')
-
+    df.to_csv('df_de_prueba.csv', index=False, encoding='utf-8')
+    print(mmre)
 
 if __name__ == "__main__":
     main()

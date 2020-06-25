@@ -292,7 +292,7 @@ def calcular_mmre(variable, df, k=5):
             {'Valor Original': dato_original, 'Valor Imputado': dato_imputado}, ignore_index=True)
         mmre = (1/total)*sum(abs(resultado['Valor Original'] -
                                  resultado['Valor Imputado'])/resultado['Valor Original'])
-    return mmre
+    return mmre, resultado
 
 
 #def calcular_mmre_v2(variable, df, k=5):
@@ -341,7 +341,7 @@ def calcular_mmre_R(variable_a_imputar, df, k=5):
         resultado = resultado.append(
             {'Valor Original': dato_original, 'Valor Imputado': dato_imputado}, ignore_index=True)
     mmre = sum(abs(resultado['Valor Original'] - resultado['Valor Imputado'])/resultado['Valor Original'])/total
-    return mmre
+    return mmre, resultado
 
 
 def determinar_numero_variables(variable, variables_numericas, variables_nominales, df, k=2, umbral_mmre=0, verbose=False):
