@@ -343,7 +343,6 @@ def calcular_mmre_R(variable_a_imputar, df, k=5):
     mmre = sum(abs(resultado['Valor Original'] - resultado['Valor Imputado'])/resultado['Valor Original'])/total
     return mmre, resultado
 
-
 def determinar_numero_variables(variable, variables_numericas, variables_nominales, df, k=2, umbral_mmre=0, verbose=False):
     """Calcula el numero de variables a elegir para la imputacion utilizando KNN y MMRE
 
