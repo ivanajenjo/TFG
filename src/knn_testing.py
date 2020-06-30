@@ -33,10 +33,10 @@ def main():
     global df
     pd.options.mode.chained_assignment = None
     importBD()
-    lista_variables = ['Normalised Work Effort Level 1' ,'Primary Programming Language', 'Industry Sector', '1st Data Base System', 'Development Platform', 'Used Methodology', 'Development Type', 'Language Type', 'Application Group']
+    lista_variables = ['Normalised Work Effort Level 1' ,'Adjusted Function Points', 'Functional Size', 'Project Elapsed Time', 'Primary Programming Language', 'Industry Sector', '1st Data Base System', 'Development Platform', 'Used Methodology', 'Development Type', 'Language Type', 'Application Group']
     df = df.loc[:, lista_variables]
     df = select_features.recode_dataframe(df)
-    mmre, dfmmre = select_features.calcular_mmre('Normalised Work Effort Level 1', df, k=2)
+    mmre, dfmmre = select_features.calcular_mmre('Normalised Work Effort Level 1', df, k=1)
     dfmmre.to_csv('Testing_mmre.csv', index=False, encoding='utf-8')
     df.to_csv('df_de_prueba.csv', index=False, encoding='utf-8')
     print(mmre)

@@ -292,7 +292,7 @@ def calcular_mmre(variable, df, k=5):
             {'Valor Original': dato_original, 'Valor Imputado': dato_imputado}, ignore_index=True)
         mmre = (1/total)*sum(abs(resultado['Valor Original'] -
                                  resultado['Valor Imputado'])/resultado['Valor Original'])
-    return mmre
+    return mmre, resultado
 
 
 #def calcular_mmre_v2(variable, df, k=5):
