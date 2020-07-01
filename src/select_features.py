@@ -221,6 +221,7 @@ def recode_dataframe(dataframe):
     #resultado['Primary Programming Language'] = X_en
     return resultado
 
+
 def recode_dataframe_v2(dataframe):
     ordinalencoder = OrdinalEncoder()
     resultado = dataframe[:]
@@ -228,6 +229,7 @@ def recode_dataframe_v2(dataframe):
     categorical_cols = resultado.columns[categorical_feature_mask].tolist()
     for col in categorical_cols:
         ordinalencoder.fit_transform(dataframe[col])
+
 
 def calcular_mrmr_v2(variable, df):
     """Minimum redundancy – Maximum relevance (MRMR) utilizando sklearn.metrics.normalized_mutual_info_score para calcular los MI necesarios
@@ -295,34 +297,6 @@ def calcular_mmre(variable, df, k=5):
     return mmre, resultado
 
 
-#def calcular_mmre_v2(variable, df, k=5):
-#    """Calcula mmre imputando los valores con la funcion fancyimpute.KNN
-#
-#    Parameters:
-#        variable (String): Variable sobre la cual se va a calcular mmre
-#        df (pandas.DataFrame): DataFrame
-#        k (int): Valor utilizado en n_neighbors de fancyimpute.KNN
-#
-#    Returns:
-#        float con el valor de mmre
-#    """
-#    total = len(df)
-#    resultado = pd.DataFrame(columns=['Valor Original', 'Valor Imputado'])
-#    numero_columna = df.columns.get_loc(variable)
-#    for i in range(total):
-#        df_test = df.copy(deep=True)
-#        dato_original = df_test[variable].iloc[i]
-#        df_test[variable].iloc[i] = np.nan
-#        imputer = KNN(k=k, verbose=False)
-#        df_test = imputer.fit_transform(df_test)
-#        dato_imputado = df_test[i, numero_columna]
-#        resultado = resultado.append(
-#            {'Valor Original': dato_original, 'Valor Imputado': dato_imputado}, ignore_index=True)
-#    mmre = (1/total)*sum(abs(resultado['Valor Original'] -
-#                             resultado['Valor Imputado'])/resultado['Valor Original'])
-#    return mmre, resultado
-
-
 def calcular_mmre_R(variable_a_imputar, df, k=5):
     if utils == None:
         setupR_enviroment()
@@ -340,8 +314,10 @@ def calcular_mmre_R(variable_a_imputar, df, k=5):
         dato_imputado = r_df_test_imputed[variable_a_imputar].iloc[i]
         resultado = resultado.append(
             {'Valor Original': dato_original, 'Valor Imputado': dato_imputado}, ignore_index=True)
-    mmre = sum(abs(resultado['Valor Original'] - resultado['Valor Imputado'])/resultado['Valor Original'])/total
+    mmre = sum(abs(resultado['Valor Original'] -
+                   resultado['Valor Imputado'])/resultado['Valor Original'])/total
     return mmre, resultado
+
 
 def determinar_numero_variables(variable, variables_numericas, variables_nominales, df, k=2, umbral_mmre=0, verbose=False):
     """Calcula el numero de variables a elegir para la imputacion utilizando KNN y MMRE
@@ -435,6 +411,7 @@ def determinar_numero_variables(variable, variables_numericas, variables_nominal
     print('Ejecucion Completa')
     return resultado
 
+
 def evaluator_r(nfolds, kNN, df, variable):
     kf = KFold(n_splits=nfolds, shuffle=True)
     kf.split(df)
@@ -448,6 +425,7 @@ def evaluator_r(nfolds, kNN, df, variable):
     resultado = np.mean(mmres)
     return resultado
 
+
 def evaluator(nfolds, kNN, df, variable):
     kf = KFold(n_splits=nfolds, shuffle=True)
     kf.split(df)
@@ -460,6 +438,7 @@ def evaluator(nfolds, kNN, df, variable):
         mmres.append(mmre)
     resultado = np.mean(mmres)
     return resultado
+
 
 def greedy_forward_selection(valor_knn, variable, var_ordenadas, df, umbral_mmre=0, verbose=False):
     valor_de_nfolds = 3
@@ -491,6 +470,7 @@ def greedy_forward_selection(valor_knn, variable, var_ordenadas, df, umbral_mmre
                  variables_eliminadas, mmres, umbral_mmre]
     return resultado
 
+
 def greedy_forward_selection_r(valor_knn, variable, var_ordenadas, df, umbral_mmre=0, verbose=False):
     valor_de_nfolds = 3
     total_iteraciones = len(var_ordenadas)
@@ -502,7 +482,8 @@ def greedy_forward_selection_r(valor_knn, variable, var_ordenadas, df, umbral_mm
     iteracion = 1
     while iteracion <= total_iteraciones:
         campos = [variable] + variables_elegidas + [var_ordenadas[0]]
-        mmre_calc = evaluator_r(valor_de_nfolds, valor_knn, df[campos], variable)
+        mmre_calc = evaluator_r(
+            valor_de_nfolds, valor_knn, df[campos], variable)
         if ((umbral*mmre_min) >= mmre_calc):
             variables_elegidas.append(var_ordenadas[0])
             mmres.append(mmre_calc)
@@ -520,6 +501,7 @@ def greedy_forward_selection_r(valor_knn, variable, var_ordenadas, df, umbral_mm
     resultado = [variable, variables_elegidas,
                  variables_eliminadas, mmres, umbral_mmre]
     return resultado
+
 
 def doquire_forward_selection(valor_knn, variable, var_numericas, var_nominales, df, umbral_mmre=0, verbose=False):
     valor_de_nfolds = 3
@@ -579,6 +561,7 @@ def doquire_forward_selection(valor_knn, variable, var_numericas, var_nominales,
     resultado = [variable, variables_elegidas,
                  variables_eliminadas, mmres, umbral_mmre]
     return resultado
+
 
 def doquire_forward_selection_r(valor_knn, variable, var_numericas, var_nominales, df, umbral_mmre=0, verbose=False):
     valor_de_nfolds = 3
