@@ -1,4 +1,4 @@
-Industry_Sector,Application_Group,Development_Type,Development_Platform,Language_Type,Primary_Programming_Language,Functional_Size,Adjusted_Function_Points,Normalised_Work_Effort_Level_1,Project_Elapsed_Time,First_Data_Base_System,Used_Methodology
+Industry Sector,Application Group,Development Type,Development Platform,Language Type,Primary Programming Language,Functional Size,Adjusted Function Points,Normalised Work Effort Level 1,Project Elapsed Time,1st Data Base System,Used Methodology
 Insurance,Business Application,New Development,MF,3GL,Java,620.0,620.0,18160.0,7.0,IMS,Don't Know
 Government,Business Application,New Development,MF,3GL,COBOL,243.0,250.0,2924.0,8.0,DB2,Yes
 Utilities,Business Application,New Development,MF,3GL,PL/I,163.0,152.0,668.0,9.0,DB2,Yes

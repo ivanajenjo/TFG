@@ -14,6 +14,8 @@ from sklearn.metrics import (adjusted_mutual_info_score, mutual_info_score,
 from sklearn.model_selection import KFold
 from sklearn.preprocessing import LabelEncoder, OrdinalEncoder
 from sklearn.impute import KNNImputer
+import knn_impute
+import gower
 
 utils = None
 information_gain = None
@@ -269,6 +271,7 @@ def calcular_mrmr_v2(variable, df):
     return resultado
 
 
+
 def calcular_mmre(variable, df, k=5):
     """Calcula mmre imputando los valores con la funcion sklearn.impute.KNNImputer
 
@@ -287,7 +290,7 @@ def calcular_mmre(variable, df, k=5):
         df_test = df.copy(deep=True)
         dato_original = df_test[variable].iloc[i]
         df_test[variable].iloc[i] = np.nan
-        imputer = KNNImputer(n_neighbors=k)
+        imputer = KNNImputer(n_neighbors=k, metric=gower.gower_matrix(df_test))
         df_test = imputer.fit_transform(df_test)
         dato_imputado = df_test[i, numero_columna]
         resultado = resultado.append(
@@ -295,6 +298,33 @@ def calcular_mmre(variable, df, k=5):
         mmre = (1/total)*sum(abs(resultado['Valor Original'] -
                                  resultado['Valor Imputado'])/resultado['Valor Original'])
     return mmre, resultado
+
+def calcular_mmre_v2(variable, df, k=5):
+    """Calcula mmre imputando los valores con la funcion sklearn.impute.KNNImputer
+
+    Parameters:
+        variable (String): Variable sobre la cual se va a calcular mmre
+        df (pandas.DataFrame): DataFrame
+        k (int): Valor utilizado en n_neighbors de KNNImputer
+
+    Returns:
+        float con el valor de mmre
+    """
+    total = len(df)
+    resultado = pd.DataFrame(columns=['Valor Original', 'Valor Imputado'])
+    numero_columna = df.columns.get_loc(variable)
+    for i in range(total):
+        df_test = df.copy(deep=True)
+        dato_original = df_test[variable].iloc[i]
+        df_test[variable].iloc[i] = np.nan
+        df_test = knn_impute.knn_impute(df_test[variable], df_test.loc[:, df_test.columns != variable], k, categorical_distance='hamming')
+        dato_imputado = df_test.iloc[i].values
+        #print(dato_imputado[0])
+        resultado = resultado.append(
+            {'Valor Original': dato_original, 'Valor Imputado': dato_imputado[0]}, ignore_index=True)
+        mmre = (1/total)*sum(abs(resultado['Valor Original'] -
+                                 resultado['Valor Imputado'])/resultado['Valor Original'])
+    return mmre, df_test
 
 
 def calcular_mmre_R(variable_a_imputar, df, k=5):
@@ -434,7 +464,7 @@ def evaluator(nfolds, kNN, df, variable):
         #print('Train Index', train_index)
         #print('Test Index', test_index)
         df_train, df_test = df.iloc[train_index], df.iloc[test_index]
-        mmre = calcular_mmre(variable, df_test, kNN)
+        mmre = calcular_mmre_v2(variable, df_test, kNN)
         mmres.append(mmre)
     resultado = np.mean(mmres)
     return resultado

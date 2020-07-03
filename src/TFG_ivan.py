@@ -49,14 +49,14 @@ def main():
     ks = list()
     var_elegidas = list()
     resultados = list()
-    iteraciones = 500
-    print('Recode DF')
-    df = select_features.recode_dataframe(df)
+    iteraciones = 25
+    #print('Recode DF')
+    #df = select_features.recode_dataframe(df)
     print('Empieza el Bucle')
     start = time.time()
 
     #k in range(1, 5) para que k sea de 1 a 4
-    for k in range(3, 4):
+    for k in range(1, 2):
         print ('K =', k)
         for i in range(iteraciones):
             print('Iteracion', i, 'Método 1 k', k)
@@ -70,40 +70,40 @@ def main():
             print(iteration_time, 'Segundos')
             resultados.append(str((mmre[3])[-1]) + ';' + str(k) + ';' + str(mmre[1]) + ';' + str(1) + ';' + str(iteration_time) + ';' + str(i))
 
-        for i in range(iteraciones):
-            print('Iteracion', i, 'Método 2 k', k)
-            iteration_start = time.time()
-            var = variables_por_mrmr[:]
-            mmre = select_features.greedy_forward_selection(k, 'Normalised Work Effort Level 1', var, df)
-            mmres.append((mmre[3])[-1])
-            var_elegidas.append(mmre[1])
-            ks.append(k)
-            iteration_time = time.time() - iteration_start
-            print(iteration_time, 'Segundos')
-            resultados.append(str((mmre[3])[-1]) + ';' + str(k) + ';' + str(mmre[1]) + ';' + str(2) + ';' + str(iteration_time) + ';' + str(i))
+        #for i in range(iteraciones):
+        #    print('Iteracion', i, 'Método 2 k', k)
+        #    iteration_start = time.time()
+        #    var = variables_por_mrmr[:]
+        #    mmre = select_features.greedy_forward_selection(k, 'Normalised Work Effort Level 1', var, df)
+        #    mmres.append((mmre[3])[-1])
+        #    var_elegidas.append(mmre[1])
+        #    ks.append(k)
+        #    iteration_time = time.time() - iteration_start
+        #    print(iteration_time, 'Segundos')
+        #    resultados.append(str((mmre[3])[-1]) + ';' + str(k) + ';' + str(mmre[1]) + ';' + str(2) + ';' + str(iteration_time) + ';' + str(i))
 
-        for i in range(iteraciones):
-            print('Iteracion', i, 'Método 3 k', k)
-            iteration_start = time.time()
-            mmre = select_features.doquire_forward_selection(k, 'Normalised Work Effort Level 1', var_n_mi[:], var_c_mi[:], df)
-            mmres.append((mmre[3])[-1])
-            var_elegidas.append(mmre[1])
-            ks.append(k)
-            iteration_time = time.time() - iteration_start
-            print(iteration_time, 'Segundos')
-            resultados.append(str((mmre[3])[-1]) + ';' + str(k) + ';' + str(mmre[1]) + ';' + str(3) + ';' + str(iteration_time) + ';' + str(i))
+        #for i in range(iteraciones):
+        #    print('Iteracion', i, 'Método 3 k', k)
+        #    iteration_start = time.time()
+        #    mmre = select_features.doquire_forward_selection(k, 'Normalised Work Effort Level 1', var_n_mi[:], var_c_mi[:], df)
+        #    mmres.append((mmre[3])[-1])
+        #    var_elegidas.append(mmre[1])
+        #    ks.append(k)
+        #    iteration_time = time.time() - iteration_start
+        #    print(iteration_time, 'Segundos')
+        #    resultados.append(str((mmre[3])[-1]) + ';' + str(k) + ';' + str(mmre[1]) + ';' + str(3) + ';' + str(iteration_time) + ';' + str(i))
 
-        for i in range(iteraciones):
-            print('Iteracion', i, 'Método 4 k', k)
-            iteration_start = time.time()
-            mmre = select_features.doquire_forward_selection(k, 'Normalised Work Effort Level 1', var_n_mrmr[:], var_c_mrmr[:], df)
-            mmres.append((mmre[3])[-1])
-            var_elegidas.append(mmre[1])
-            ks.append(k)
-            iteration_time = time.time() - iteration_start
-            print(iteration_time, 'Segundos')
-            resultados.append(str((mmre[3])[-1]) + ';' + str(k) + ';' + str(mmre[1]) + ';' + str(4) + ';' + str(iteration_time) + ';' + str(i))
-             
+        #for i in range(iteraciones):
+        #    print('Iteracion', i, 'Método 4 k', k)
+        #    iteration_start = time.time()
+        #    mmre = select_features.doquire_forward_selection(k, 'Normalised Work Effort Level 1', var_n_mrmr[:], var_c_mrmr[:], df)
+        #    mmres.append((mmre[3])[-1])
+        #    var_elegidas.append(mmre[1])
+        #    ks.append(k)
+        #    iteration_time = time.time() - iteration_start
+        #    print(iteration_time, 'Segundos')
+        #    resultados.append(str((mmre[3])[-1]) + ';' + str(k) + ';' + str(mmre[1]) + ';' + str(4) + ';' + str(iteration_time) + ';' + str(i))
+         
     end = time.time()
 
     print('Tiempo de ejecucion', end-start)
