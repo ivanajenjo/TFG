@@ -551,12 +551,10 @@ def doquire_forward_selection(valor_knn, variable, var_numericas, var_nominales,
             campos = [variable] + variables_elegidas + [var_numericas[0]]
             mmre_num = evaluator(
                 valor_de_nfolds, valor_knn, df[campos], variable)
-
         if len(var_nominales) > 0:
             campos = [variable] + variables_elegidas + [var_nominales[0]]
             mmre_nom = evaluator(
                 valor_de_nfolds, valor_knn, df[campos], variable)
-
         if mmre_num <= mmre_nom:
             if umbral*mmre_min >= mmre_num:
                 variables_elegidas.append(var_numericas[0])
@@ -575,18 +573,14 @@ def doquire_forward_selection(valor_knn, variable, var_numericas, var_nominales,
             else:
                 variables_eliminadas.append(var_nominales[0])
             var_nominales.pop(0)
-
         if verbose:
             print('Iteracion', iteracion, 'de', total_iteraciones)
             print('Variables Elegidas', variables_elegidas)
             print('Variables Eliminadas', variables_eliminadas)
-
         if len(var_nominales) < 1:
             hay_nominales = False
-
         if len(var_numericas) < 1:
             hay_numericas = False
-
         iteracion += 1
     resultado = [variable, variables_elegidas,
                  variables_eliminadas, mmres, umbral_mmre]
