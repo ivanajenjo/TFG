@@ -15,7 +15,7 @@ from sklearn.model_selection import KFold
 from sklearn.preprocessing import LabelEncoder, OrdinalEncoder
 from sklearn.impute import KNNImputer
 import knn_impute
-import gower
+
 
 utils = None
 information_gain = None
